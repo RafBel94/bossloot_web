@@ -1,0 +1,28 @@
+$color_1: #f2f2f2;
+$button_bg_color: darkviolet;
+
+.navbar {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 1rem;
+	background: #222;
+	color: $color_1;
+}
+
+a {
+    color: $color_1;
+    text-decoration: none;
+}
+
+button {
+    background: $button_bg_color;
+    border: none;
+    color: $color_1;
+}
+
+button:hover {
+    background: purple;
+}
