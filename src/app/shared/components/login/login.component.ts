@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../../../services/login.service';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ export class LoginComponent {
 
   loginErrorMsg = '';
 
-  loginService = inject(LoginService);
+  authService = inject(AuthService);
   router = inject(Router);
 
   onLogin() {
@@ -28,11 +28,12 @@ export class LoginComponent {
     }
 
     const userData = this.loginUser.value;
-    this.loginService.loginUser(userData.email!, userData.password!).subscribe({
+    this.authService.loginUser(userData.email!, userData.password!).subscribe({
       next: (res: any) => {
         if (res.success) {
           this.loginErrorMsg = '';
-          localStorage.setItem('angular19User', res.data.userId);
+          localStorage.setItem('bosslootUser', res.data.userId);
+          localStorage.setItem('bosslootToken', res.data.token);
           this.router.navigate(['/dashboard']);
         }
       },

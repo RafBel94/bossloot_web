@@ -1,20 +1,24 @@
 import { Component, inject } from "@angular/core";
-import { LoginService } from "../../../services/login.service";
-import { Router } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { AuthService } from "../../../services/auth.service";
 
 @Component({
     selector: 'app-navbar',
+    standalone: true,
+    imports: [RouterLink, RouterLinkActive, FontAwesomeModule],
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-    title = 'Admin Dashboard';
+    userIcon = faCircleUser;
 
-    loginService = inject(LoginService);
+    authService = inject(AuthService);
     router = inject(Router);
 
     logoutUser() {
-        this.loginService.logoutUser();
+        this.authService.logoutUser();
         this.router.navigate(['/login']);
     }
 }

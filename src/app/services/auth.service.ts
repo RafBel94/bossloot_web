@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
 
     constructor(private http: HttpClient) { }
 
@@ -14,10 +14,11 @@ export class LoginService {
     }
 
     logoutUser() {
-        localStorage.removeItem('angular19User');
+        localStorage.removeItem('bosslootUser');
+        localStorage.removeItem('bosslootToken');
     }
 
     isLoggedIn(): boolean {
-        return localStorage.getItem('angular19User') !== null;
+        return localStorage.getItem('bosslootUser') !== null;
     }
 }

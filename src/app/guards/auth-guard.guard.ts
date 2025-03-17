@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const user = localStorage.getItem('angular19User');
+  const user = localStorage.getItem('bosslootUser');
   if (user !== null) {
     return true;
   }

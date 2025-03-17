@@ -1,6 +1,17 @@
-<nav class="navbar">
-    <a class="navbar-brand">{{ title }}</a>
-    <div class="ml-auto">
-        <button class="btn" (click)="logoutUser()">Logout</button>
+<div class="sidebar">
+
+    <div class="sidebar-header">
+        <h2>Dashboard</h2>
     </div>
-</nav>
+
+    <div class="menu-item">
+        <a routerLink="/dashboard/users" routerLinkActive="active">Users</a>
+    </div>
+    <div class="menu-item">
+        <a routerLink="/dashboard/products" routerLinkActive="active">Products</a>
+    </div>
+    <div class="user-profile">
+        <i class="user-image"><fa-icon [icon]="userIcon" size="2x"></fa-icon></i>
+        <button class="logout-btn" (click)="logoutUser()">Logout</button>
+    </div>
+</div>

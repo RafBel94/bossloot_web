@@ -1,28 +1,87 @@
-$color_1: #f2f2f2;
-$button_bg_color: darkviolet;
+$color_1: #ffffff;
+$color_2: #cccccc;
+$color_3: #999;
+$font-family_1: 'Segoe UI', sans-serif;
+$background-color_1: #1a1a1a;
+$background-color_2: #2d2d2d;
+$background-color_3: #404040;
+$background-color_4: #007acc;
+$background-color_5: white;
+$background-color_6: #4CAF50;
+$background-color_7: #FFC107;
+$background-color_8: #F44336;
 
-.navbar {
-	position: relative;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0.5rem 1rem;
-	background: #222;
-	color: $color_1;
+.user-image {
+    border-radius: 50%;
+    margin-bottom: 0;
+    margin-right: 20px;
+    color: aliceblue;
 }
 
-a {
-    color: $color_1;
-    text-decoration: none;
+.user-profile {
+    margin-top: auto;
+    padding: 20px 0;
+    border-top: 1px solid #404040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-button {
-    background: $button_bg_color;
+.logout-btn {
+    background-color: #f44336;
+    color: white;
     border: none;
-    color: $color_1;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #d32f2f;
+    }
 }
 
-button:hover {
-    background: purple;
+.sidebar {
+    background-color: $background-color_2;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    padding: 20px 0;
+    border-bottom: 1px solid #404040;
+    margin-bottom: 20px;
+
+    h2 {
+        color: $color_1;
+        font-size: 24px;
+    }
+}
+
+.menu-item {
+    padding: 12px 15px;
+    margin: 5px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: $color_2;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    &:hover {
+        background-color: $background-color_3;
+        color: $color_1;
+    }
+
+    &.active {
+        background-color: $background-color_4;
+        color: $color_1;
+    }
 }
