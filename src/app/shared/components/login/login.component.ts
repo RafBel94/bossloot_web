@@ -32,7 +32,7 @@ export class LoginComponent {
       next: (res: any) => {
         if (res.success) {
           this.loginErrorMsg = '';
-          this.loginService.setLoggedIn(true);
+          localStorage.setItem('angular19User', res.data.userId);
           this.router.navigate(['/dashboard']);
         }
       },

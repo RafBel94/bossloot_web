@@ -70,6 +70,7 @@ body {
 		margin-bottom: 0.5rem;
 		background: linear-gradient(45deg, #fff, #ccc);
 		-webkit-background-clip: text;
+		background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}
 
@@ -120,6 +121,7 @@ body {
 }
 
 .submit-button {
+	margin-top: 1.5rem;
 	width: 100%;
 	padding: 1rem;
 	background: white;
@@ -194,61 +196,6 @@ body {
 		&::before {
 			transform: translateY(0);
 		}
-	}
-}
-
-.divider {
-	display: flex;
-	align-items: center;
-	margin: 2rem 0;
-	color: rgba(255, 255, 255, 0.4);
-
-	&::before,
-	&::after {
-		content: '';
-		flex: 1;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	}
-
-	span {
-		padding: 0 1rem;
-		font-size: 0.9rem;
-	}
-}
-
-.additional-options {
-	text-align: center;
-	font-size: 0.9rem;
-	color: rgba(255, 255, 255, 0.6);
-
-	a {
-		color: white;
-		text-decoration: none;
-		transition: opacity 0.3s ease;
-
-		&:hover {
-			opacity: 0.8;
-		}
-	}
-}
-
-.error-message {
-	color: #ff4477;
-	font-size: 0.85rem;
-	margin-top: 0.5rem;
-	display: none;
-	animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translateY(-10px);
-	}
-
-	to {
-		opacity: 1;
-		transform: translateY(0);
 	}
 }
 

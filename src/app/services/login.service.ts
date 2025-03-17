@@ -6,7 +6,6 @@ import { Observable } from "rxjs";
     providedIn: 'root'
 })
 export class LoginService {
-    private loggedIn = false;
 
     constructor(private http: HttpClient) { }
 
@@ -14,11 +13,11 @@ export class LoginService {
         return this.http.post('http://localhost:8000/api/login', {email, password});
     }
 
-    setLoggedIn(value: boolean) {
-        this.loggedIn = value;
+    logoutUser() {
+        localStorage.removeItem('angular19User');
     }
 
     isLoggedIn(): boolean {
-        return this.loggedIn;
+        return localStorage.getItem('angular19User') !== null;
     }
 }

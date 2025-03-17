@@ -1,4 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
+import { LoginService } from "../../../services/login.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-navbar',
@@ -6,5 +8,13 @@ import { Component } from "@angular/core";
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-    title = 'BossLoot Administration Web';
+    title = 'Admin Dashboard';
+
+    loginService = inject(LoginService);
+    router = inject(Router);
+
+    logoutUser() {
+        this.loginService.logoutUser();
+        this.router.navigate(['/login']);
+    }
 }

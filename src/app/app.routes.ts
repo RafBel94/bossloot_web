@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { AuthGuard } from './auth-guard.guard';
+import { authGuard } from './auth-guard.guard';
+import { loginRedirectGuard } from './login-redirect.guard';
 
 export const routes: Routes = [
     {
@@ -11,11 +12,12 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [loginRedirectGuard]
     },
     {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [AuthGuard]
+        canActivate: [authGuard]
     }
 ];

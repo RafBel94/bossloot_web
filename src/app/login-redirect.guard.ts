@@ -1,13 +1,13 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const router = inject(Router);
+export const loginRedirectGuard: CanActivateFn = (route, state) => {
   const user = localStorage.getItem('angular19User');
+  const router = inject(Router);
   if (user !== null) {
-    return true;
+    router.navigate(['/dashboard']);
+    return false;
   }
-
-  router.navigate(['/login']);
-  return false;
+  
+  return true;
 };
