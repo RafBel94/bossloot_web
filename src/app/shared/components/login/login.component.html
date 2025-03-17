@@ -1,49 +1,32 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-<div class="animated-background">
-    <div class="gradient-sphere sphere-1"></div>
-    <div class="gradient-sphere sphere-2"></div>
-    <div class="gradient-sphere sphere-3"></div>
-    <div class="particles" id="particles"></div>
-</div>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to start managing</p>
+        </div>
 
-<div class="login-container d-flex flex-column">
-    <div class="login-header">
-        <h1>Welcome Back</h1>
-        <p>Sign in to start managing</p>
+        <form id="loginForm" [formGroup]="loginUser" (submit)="onLogin()">
+            <div class="form-group">
+                <input type="email" class="form-input" id="email" placeholder="Email address" formControlName="email"
+                    required>
+                <i class="input-icon fas fa-envelope"></i>
+                <span class="error-message" id="emailError"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-input" id="password" placeholder="Password"
+                    formControlName="password" required>
+                <i class="input-icon fas fa-lock"></i>
+                <span class="error-message" id="passwordError"></span>
+            </div>
+
+            <div class="mb-3 text-center">
+                <span>{{ loginErrorMsg }}</span>
+            </div>
+
+            <button type="submit" class="submit-button">Sign In</button>
+        </form>
     </div>
-
-    <form id="loginForm" [formGroup]="loginUser" (submit)="onLogin()">
-        <div class="form-group">
-            <input 
-                type="email" 
-                class="form-input" 
-                id="email" 
-                placeholder="Email address"
-                formControlName="email"
-                required
-            >
-            <i class="input-icon fas fa-envelope"></i>
-            <span class="error-message" id="emailError"></span>
-        </div>
-
-        <div class="form-group">
-            <input 
-                type="password" 
-                class="form-input" 
-                id="password" 
-                placeholder="Password"
-                formControlName="password"
-                required
-            >
-            <i class="input-icon fas fa-lock"></i>
-            <span class="error-message" id="passwordError"></span>
-        </div>
-
-        <div class="mb-3 text-center">
-            <span>{{ loginErrorMsg }}</span>
-        </div>
-
-        <button type="submit" class="submit-button">Sign In</button>
-    </form>
-</div>
+</body>
