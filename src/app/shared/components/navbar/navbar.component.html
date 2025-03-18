@@ -4,14 +4,15 @@
         <h2>Dashboard</h2>
     </div>
 
-    <div class="menu-item">
+    <div class="menu-item d-flex">
+        <fa-icon class="me-2" [icon]="userIcon"></fa-icon>
         <a routerLink="/dashboard/users" routerLinkActive="active">Users</a>
     </div>
-    <div class="menu-item">
+    <div class="menu-item d-flex">
+        <fa-icon class="me-2" [icon]="productIcon"></fa-icon>
         <a routerLink="/dashboard/products" routerLinkActive="active">Products</a>
     </div>
     <div class="user-profile">
-        <i class="user-image"><fa-icon [icon]="userIcon" size="2x"></fa-icon></i>
         <button class="logout-btn" (click)="logoutUser()">Logout</button>
     </div>
 </div>

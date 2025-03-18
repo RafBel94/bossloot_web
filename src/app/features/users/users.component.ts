@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UserlistComponent } from '../../shared/components/userlist/userlist.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [UserlistComponent],
+  imports: [RouterOutlet],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })

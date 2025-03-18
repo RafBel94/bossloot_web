@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { faBagShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { AuthService } from "../../../services/auth.service";
 
 @Component({
@@ -13,6 +13,7 @@ import { AuthService } from "../../../services/auth.service";
 })
 export class NavbarComponent {
     userIcon = faCircleUser;
+    productIcon = faBagShopping;
 
     authService = inject(AuthService);
     router = inject(Router);

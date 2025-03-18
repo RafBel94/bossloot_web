@@ -4,6 +4,7 @@ import type { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 import { UserService } from '../../../services/user.service';
 import { TableUser } from '../../../interfaces/tableUser';
+import { Router } from '@angular/router';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -16,6 +17,7 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 })
 export class UserlistComponent{
   userService = inject(UserService);
+  router = inject(Router);
 
   isCollapsed = false;
   rowData: TableUser[] = [];
@@ -49,6 +51,7 @@ export class UserlistComponent{
 
   editUser(user: any) {
     console.log('Editing user:', user);
+    this.router.navigate([`/dashboard/users/profile/${user.id}`]);
   }
 
   toggleCollapse() {
