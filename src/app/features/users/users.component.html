@@ -1,61 +1,6 @@
-<div class="card filters-card" [class.collapsed]="isCollapsed">
-    <div class="card-header">
-        <h2>Filters</h2>
-        <button class="collapse-btn" (click)="toggleCollapse()">
-            <span class="arrow" [class.rotated]="isCollapsed">&#9660;</span>
-        </button>
-    </div>
-    <div class="card-body">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="role">Role:</label>
-            <select id="role" class="form-control">
-                <option value="">All</option>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-            </select>
-        </div>
-        <button type="button" class="btn btn-primary">Apply Filters</button>
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-header">
-        <h2>Users</h2>
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>John Smith</td>
-                    <td>[dirección de correo electrónico eliminada]</td>
-                    <td>Admin</td>
-                </tr>
-                <tr>
-                    <td>Jane Doe</td>
-                    <td>[dirección de correo electrónico eliminada]</td>
-                    <td>User</td>
-                </tr>
-                <tr>
-                    <td>Bob Johnson</td>
-                    <td>[dirección de correo electrónico eliminada]</td>
-                    <td>Admin</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="d-flex flex-column" style="height: calc(100vh - 50px);">
+    <app-userfilters class="mb-3" />
+    <div class="flex-grow-1" style="min-height: 0;">
+        <app-userlist />
     </div>
 </div>
