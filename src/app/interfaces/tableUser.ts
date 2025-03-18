@@ -1,11 +1,8 @@
-export interface User {
-    id: number;
+export interface TableUser {
     name: string;
     email: string;
-    role: string;
     level: number;
     points: number;
-    profile_picture: string;
     activated: boolean;
     email_confirmed: boolean;
 }
