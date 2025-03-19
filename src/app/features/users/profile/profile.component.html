@@ -1,76 +1,99 @@
-<div class="container rounded bg-white" *ngIf="user; else showLogo">
-        <div class="row">
-                <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">
-                        <input type="hidden" value="{{ user.id }}">
-                        <img class="rounded-circle mt-2" width="150px"
-                                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                        <span class="fw-bold">{{ user.name }}</span>
-                        <div class="mt-5 w-100 ps-2 pe-2">
-                                <div class="col-md-6 w-100">
-                                        <label class="form-label text-start w-100">Name</label>
-                                        <input type="text" class="form-control" placeholder="---"
-                                                value="{{ user.name }}">
+<div class="container rounded bg-white" *ngIf="editedUser; else showLogo">
+        <form [formGroup]="editedUser" (submit)="onUpdate()">
+                <div class="row">
+                        <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">
+                                <input type="hidden" [value]="editedUser.get('id')?.value">
+                                <img class="rounded-circle mt-2 mb-2" width="150px" [src]="editedUser.get('profile_picture')?.value ? editedUser.get('profile_picture')?.value : 'images/avatar-placeholder.png'" alt="Profile Picture">
+                                <span class="fw-bold">{{ editedUser.get('name')?.value }}</span>
+                                <div class="mt-5 w-100 ps-2 pe-2">
+                                        <div class="col-md-6 w-100">
+                                                <label class="form-label text-start w-100">Name</label>
+                                                <input type="text" class="form-control" placeholder="---" formControlName="name" [value]="editedUser.get('name')?.value">
+                                                <div *ngIf="editedUser.get('name')?.errors && editedUser.get('name')?.touched" class="text-danger">
+                                                        <div *ngIf="editedUser.get('name')?.errors?.['required']">Name is required.</div>
+                                                        <div *ngIf="editedUser.get('name')?.errors?.['maxlength']">Name cannot be longer than 80 characters.</div>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row mt-3 w-100">
+                                        <div class="col-md-6">
+                                                <label class="form-label text-start w-100">Email</label>
+                                                <input type="text" class="form-control" placeholder="---" [value]="editedUser.get('email')?.value" formControlName="email">
+                                                <div *ngIf="editedUser.get('email')?.errors && editedUser.get('email')?.touched" class="text-danger">
+                                                        <div *ngIf="editedUser.get('email')?.errors?.['required']">Email is required.</div>
+                                                        <div *ngIf="editedUser.get('email')?.errors?.['email']">Invalid email format.</div>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <label class="form-label text-start w-100">Mobile Phone</label>
+                                                <input type="text" class="form-control" [value]="editedUser.get('mobile_phone')?.value" placeholder="---" formControlName="mobile_phone">
+                                                <div *ngIf="editedUser.get('mobile_phone')?.errors && editedUser.get('mobile_phone')?.touched" class="text-danger">
+                                                        <div *ngIf="editedUser.get('mobile_phone')?.errors?.['pattern']">Invalid mobile phone format.</div>
+                                                </div>
+                                        </div>
                                 </div>
                         </div>
-                        <div class="row mt-3 w-100">
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100">Email</label>
-                                        <input type="text" class="form-control" placeholder="---"
-                                                value="{{ user.email }}">
+                        <div class="col-md-6 d-flex flex-column align-items-center align-content-center">
+                                <h4 class="text-center pt-4 pb-4">More Information</h4>
+                                <div class="ps-2 pe-1 mt-3 w-100">
+                                        <label class="form-label text-start w-100">Address Line 1</label>
+                                        <input type="text" class="form-control w-100" placeholder="---" [value]="editedUser.get('adress_1')?.value" formControlName="adress_1">
+                                        <div *ngIf="editedUser.get('adress_1')?.errors && editedUser.get('adress_1')?.touched" class="text-danger">
+                                                <div *ngIf="editedUser.get('adress_1')?.errors?.['maxlength']">Address cannot be longer than 255 characters.</div>
+                                        </div>
                                 </div>
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100">Mobile Phone</label>
-                                        <input type="text" class="form-control" value="{{ user.mobile_phone }}"
-                                                placeholder="---">
+                                <div class="ps-2 pe-1 pb-2 mt-3 w-100">
+                                        <label class="form-label text-start w-100">Address Line 2</label>
+                                        <input type="text" class="form-control w-100" placeholder="---" [value]="editedUser.get('adress_2')?.value" formControlName="adress_2">
+                                        <div *ngIf="editedUser.get('adress_2')?.errors && editedUser.get('adress_2')?.touched" class="text-danger">
+                                                <div *ngIf="editedUser.get('adress_2')?.errors?.['maxlength']">Address cannot be longer than 255 characters.</div>
+                                        </div>
+                                </div>
+                                <div class="row mt-3 w-100">
+                                        <div class="col-md-6">
+                                                <label class="form-label text-start w-100">Level</label>
+                                                <input type="number" min="1" max="3" class="form-control" placeholder="---" [value]="editedUser.get('level')?.value" formControlName="level">
+                                                <div *ngIf="editedUser.get('level')?.errors && editedUser.get('level')?.touched" class="text-danger">
+                                                        <div *ngIf="editedUser.get('level')?.errors?.['required']">Level is required.</div>
+                                                        <div *ngIf="editedUser.get('level')?.errors?.['pattern']">Invalid level format, only numbers allowed.</div>
+                                                        <div *ngIf="editedUser.get('level')?.errors?.['min']">Level cannot be less than 1.</div>
+                                                        <div *ngIf="editedUser.get('level')?.errors?.['max']">Level cannot be more than 3.</div>
+                                                </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <label class="form-label text-start w-100">Points</label>
+                                                <input type="number" min="0" class="form-control" [value]="editedUser.get('points')?.value" placeholder="---" formControlName="points">
+                                                <div *ngIf="editedUser.get('points')?.errors && editedUser.get('points')?.touched" class="text-danger">
+                                                        <div *ngIf="editedUser.get('points')?.errors?.['required']">Points is required.</div>
+                                                        <div *ngIf="editedUser.get('points')?.errors?.['pattern']">Invalid Points format, only numbers allowed.</div>
+                                                        <div *ngIf="editedUser.get('points')?.errors?.['min']">Points cannot be less than 0.</div>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="row ps-1 mt-4 w-100">
+                                        <div class="col-md-6">
+                                                <label class="form-label text-start w-100 d-inline pe-3">Email Confirmed</label>
+                                                <input type="checkbox" class="form-check-input d-inline" [checked]="editedUser.get('email_confirmed')?.value" formControlName="email_confirmed">
+                                        </div>
+                                        <div class="col-md-6">
+                                                <label class="form-label text-start w-100 d-inline pe-3">Account Active</label>
+                                                <input type="checkbox" class="form-check-input d-inline" [checked]="editedUser.get('activated')?.value" formControlName="activated">
+                                        </div>
+                                </div>
+                                <div class="text-danger fw-bold mt-4">
+                                        <span>{{ errorMsg }}</span>
+                                </div>
+                                <div class="row w-100 mt-4 mb-3">
+                                        <div class="col-md-6">
+                                                <button type="submit" class="btn btn-primary w-100">Accept Changes</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                                <a class="btn btn-secondary w-100" (click)="onCancel()">Cancel</a>
+                                        </div>
                                 </div>
                         </div>
                 </div>
-                <div class="col-md-6 border-end d-flex flex-column align-items-center align-content-center">
-                        <h4 class="text-center pt-4 pb-4">More Information</h4>
-                        <div class="ps-2 pe-1 mt-3 w-100">
-                                <label class="form-label text-start w-100">Address Line 1</label>
-                                <input type="text" class="form-control w-100" placeholder="---"
-                                        value="{{ user.adress_1 }}">
-                        </div>
-                        <div class="ps-2 pe-1 pb-2 mt-3 w-100">
-                                <label class="form-label text-start w-100">Address Line 2</label>
-                                <input type="text" class="form-control w-100" placeholder="---"
-                                        value="{{ user.adress_2 }}">
-                        </div>
-                        <div class="row mt-3 w-100">
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100">Level</label>
-                                        <input type="text" class="form-control" placeholder="---"
-                                                value="{{ user.level }}">
-                                </div>
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100">Points</label>
-                                        <input type="text" class="form-control" value="{{ user.points }}"
-                                                placeholder="---">
-                                </div>
-                        </div>
-                        <div class="row ps-1 mt-4 w-100">
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100 d-inline pe-3">Email Confirmed</label>
-                                        <input type="checkbox" class="form-check-input d-inline"
-                                                [checked]="user.email_confirmed">
-                                </div>
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100 d-inline pe-3">Account Active</label>
-                                        <input type="checkbox" class="form-check-input d-inline"
-                                                [checked]="user.activated">
-                                </div>
-                        </div>
-                        <div class="row w-100 m-5">
-                                <div class="col-md-6">
-                                        <a href="#" class="btn btn-primary w-100">Accept Changes</a>
-                                </div>
-                                <div class="col-md-6">
-                                        <a href="#" class="btn btn-secondary w-100" (click)="onCancel()">Cancel</a>
-                                </div>
-                        </div>
-                </div>
-        </div>
+        </form>
 </div>
 
 <ng-template #showLogo>

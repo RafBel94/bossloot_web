@@ -70,7 +70,7 @@ $background-color_8: #F44336;
     transition: background-color 0.3s;
     color: $color_2;
     text-decoration: none;
-    background-color: $background-color_2;
+    background-color: $background-color_3;
 
     a {
         text-decoration: none;
@@ -89,7 +89,7 @@ $background-color_8: #F44336;
     }
 
     &.active {
-        background-color: $background-color_4;
+        background-color: $background-color_1;
         color: $color_4;
     }
 }
