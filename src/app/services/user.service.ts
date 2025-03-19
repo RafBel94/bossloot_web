@@ -12,4 +12,8 @@ export class UserService {
   getUsers() : Observable<any> {
     return this.http.get('http://localhost:8000/api/users');
   }
+
+  getUserById(id: number) : Observable<any> {
+    return this.http.get('http://localhost:8000/api/users/' + id);
+  }
 }

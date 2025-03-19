@@ -1,6 +1,7 @@
 $color_1: #ffffff;
 $color_2: #cccccc;
 $color_3: #999;
+$color_4: #f98c4c;
 $font-family_1: 'Segoe UI', sans-serif;
 $background-color_1: #1a1a1a;
 $background-color_2: #2d2d2d;
@@ -68,20 +69,27 @@ $background-color_8: #F44336;
     cursor: pointer;
     transition: background-color 0.3s;
     color: $color_2;
+    text-decoration: none;
+    background-color: $background-color_2;
 
     a {
         text-decoration: none;
         color: inherit;
         display: block;
+        background-color: $background-color_2;
     }
 
     &:hover {
         background-color: $background-color_3;
         color: $color_1;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 12px rgba(6, 6, 6, 0.1);
+        transform: translateY(-2px) scale(1.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     &.active {
         background-color: $background-color_4;
-        color: $color_1;
+        color: $color_4;
     }
 }

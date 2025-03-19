@@ -14,6 +14,7 @@ export class AuthService {
     }
 
     logoutUser() {
+        localStorage.removeItem('bosslootUsername');
         localStorage.removeItem('bosslootUser');
         localStorage.removeItem('bosslootToken');
     }

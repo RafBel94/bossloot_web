@@ -1,27 +1,27 @@
-<div class="container rounded bg-white">
+<div class="container rounded bg-white" *ngIf="user; else showLogo">
         <div class="row">
                 <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">
+                        <input type="hidden" value="{{ user.id }}">
                         <img class="rounded-circle mt-2" width="150px"
                                 src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
-                        <span class="fw-bold">Edogaru</span>
-                        <div class="row mt-5 w-100">
-                                <div class="col-md-6">
+                        <span class="fw-bold">{{ user.name }}</span>
+                        <div class="mt-5 w-100 ps-2 pe-2">
+                                <div class="col-md-6 w-100">
                                         <label class="form-label text-start w-100">Name</label>
-                                        <input type="text" class="form-control" placeholder="---" value="">
-                                </div>
-                                <div class="col-md-6">
-                                        <label class="form-label text-start w-100">Surname</label>
-                                        <input type="text" class="form-control" value="" placeholder="---">
+                                        <input type="text" class="form-control" placeholder="---"
+                                                value="{{ user.name }}">
                                 </div>
                         </div>
                         <div class="row mt-3 w-100">
                                 <div class="col-md-6">
                                         <label class="form-label text-start w-100">Email</label>
-                                        <input type="text" class="form-control" placeholder="---" value="">
+                                        <input type="text" class="form-control" placeholder="---"
+                                                value="{{ user.email }}">
                                 </div>
                                 <div class="col-md-6">
-                                        <label class="form-label text-start w-100">Mobile Number</label>
-                                        <input type="text" class="form-control" value="" placeholder="---">
+                                        <label class="form-label text-start w-100">Mobile Phone</label>
+                                        <input type="text" class="form-control" value="{{ user.mobile_phone }}"
+                                                placeholder="---">
                                 </div>
                         </div>
                 </div>
@@ -29,30 +29,36 @@
                         <h4 class="text-center pt-4 pb-4">More Information</h4>
                         <div class="ps-2 pe-1 mt-3 w-100">
                                 <label class="form-label text-start w-100">Address Line 1</label>
-                                <input type="text" class="form-control w-100" placeholder="---" value="">
+                                <input type="text" class="form-control w-100" placeholder="---"
+                                        value="{{ user.adress_1 }}">
                         </div>
                         <div class="ps-2 pe-1 pb-2 mt-3 w-100">
                                 <label class="form-label text-start w-100">Address Line 2</label>
-                                <input type="text" class="form-control w-100" placeholder="---" value="">
+                                <input type="text" class="form-control w-100" placeholder="---"
+                                        value="{{ user.adress_2 }}">
                         </div>
                         <div class="row mt-3 w-100">
                                 <div class="col-md-6">
                                         <label class="form-label text-start w-100">Level</label>
-                                        <input type="text" class="form-control" placeholder="---" value="">
+                                        <input type="text" class="form-control" placeholder="---"
+                                                value="{{ user.level }}">
                                 </div>
                                 <div class="col-md-6">
                                         <label class="form-label text-start w-100">Points</label>
-                                        <input type="text" class="form-control" value="" placeholder="---">
+                                        <input type="text" class="form-control" value="{{ user.points }}"
+                                                placeholder="---">
                                 </div>
                         </div>
                         <div class="row ps-1 mt-4 w-100">
                                 <div class="col-md-6">
                                         <label class="form-label text-start w-100 d-inline pe-3">Email Confirmed</label>
-                                        <input type="checkbox" class="form-check-input d-inline" value="">
+                                        <input type="checkbox" class="form-check-input d-inline"
+                                                [checked]="user.email_confirmed">
                                 </div>
                                 <div class="col-md-6">
                                         <label class="form-label text-start w-100 d-inline pe-3">Account Active</label>
-                                        <input type="checkbox" class="form-check-input d-inline" value="">
+                                        <input type="checkbox" class="form-check-input d-inline"
+                                                [checked]="user.activated">
                                 </div>
                         </div>
                         <div class="row w-100 m-5">
@@ -60,9 +66,15 @@
                                         <a href="#" class="btn btn-primary w-100">Accept Changes</a>
                                 </div>
                                 <div class="col-md-6">
-                                        <a href="#" class="btn btn-secondary w-100">Cancel</a>
+                                        <a href="#" class="btn btn-secondary w-100" (click)="onCancel()">Cancel</a>
                                 </div>
                         </div>
                 </div>
         </div>
 </div>
+
+<ng-template #showLogo>
+        <div class="col-md-12 d-flex justify-content-center align-items-center">
+                <img class="rotating-logo" src="images/bossloot-logo-icon.png" alt="Logo">
+        </div>
+</ng-template>

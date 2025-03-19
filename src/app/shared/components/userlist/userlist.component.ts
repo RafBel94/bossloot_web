@@ -50,7 +50,6 @@ export class UserlistComponent{
   }
 
   editUser(user: any) {
-    console.log('Editing user:', user);
     this.router.navigate([`/dashboard/users/profile/${user.id}`]);
   }
 

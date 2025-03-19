@@ -32,6 +32,7 @@ export class LoginComponent {
       next: (res: any) => {
         if (res.success) {
           this.loginErrorMsg = '';
+          localStorage.setItem('bosslootUsername', res.data.name);
           localStorage.setItem('bosslootUser', res.data.userId);
           localStorage.setItem('bosslootToken', res.data.token);
           this.router.navigate(['/dashboard']);

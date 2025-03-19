@@ -1,18 +1,19 @@
 <div class="sidebar">
 
-    <div class="sidebar-header">
+    <div class="sidebar-header text-center">
         <h2>Dashboard</h2>
     </div>
 
-    <div class="menu-item d-flex">
+    <a class="menu-item bg-black d-flex" routerLink="/dashboard/users" routerLinkActive="active">
         <fa-icon class="me-2" [icon]="userIcon"></fa-icon>
-        <a routerLink="/dashboard/users" routerLinkActive="active">Users</a>
-    </div>
-    <div class="menu-item d-flex">
+        <span>Users</span>
+    </a>
+    <a class="menu-item bg-black d-flex" routerLink="/dashboard/products" routerLinkActive="active">
         <fa-icon class="me-2" [icon]="productIcon"></fa-icon>
-        <a routerLink="/dashboard/products" routerLinkActive="active">Products</a>
-    </div>
-    <div class="user-profile">
+        <span>Products</span>
+    </a>
+    <div class="d-flex flex-column user-profile">
+        <span class="text-white fw-bold mb-3" style="font-size: 1.2em;">Logged as: {{ userName }}</span>
         <button class="logout-btn" (click)="logoutUser()">Logout</button>
     </div>
 </div>

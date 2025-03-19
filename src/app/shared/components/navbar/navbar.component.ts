@@ -14,6 +14,7 @@ import { AuthService } from "../../../services/auth.service";
 export class NavbarComponent {
     userIcon = faCircleUser;
     productIcon = faBagShopping;
+    userName = localStorage.getItem('bosslootUsername');
 
     authService = inject(AuthService);
     router = inject(Router);
