@@ -1,7 +1,8 @@
 import { Component, inject } from "@angular/core";
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBagShopping, faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { faBagShopping } from '@fortawesome/free-solid-svg-icons/faBagShopping';
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons/faCircleUser';
 import { AuthService } from "../../../services/auth.service";
 
 @Component({
