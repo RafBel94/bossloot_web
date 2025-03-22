@@ -1,4 +1,4 @@
-<div class="container rounded bg-white" *ngIf="editedUser; else showLogo">
+<div class="container rounded bg-white" *ngIf="editedUser.get('name')?.value; else showLogo">
         <form [formGroup]="editedUser" (submit)="onUpdate()">
                 <div class="row">
                         <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">

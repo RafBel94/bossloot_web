@@ -7,10 +7,12 @@ import { Observable } from "rxjs";
 })
 export class AuthService {
 
+    baseUrl = 'https://bossloot-api-uvwil.ondigitalocean.app/api';
+
     constructor(private http: HttpClient) { }
 
     loginUser(email: string, password: string) : Observable<any> {
-        return this.http.post('http://localhost:8000/api/login', {email, password});
+        return this.http.post(this.baseUrl + '/login', {email, password});
     }
 
     logoutUser() {

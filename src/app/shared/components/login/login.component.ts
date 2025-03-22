@@ -31,9 +31,15 @@ export class LoginComponent {
     this.authService.loginUser(userData.email!, userData.password!).subscribe({
       next: (res: any) => {
         if (res.success) {
+
+          if (res.data.role !== 'admin') {
+            this.loginErrorMsg = 'You are not authorized to access this page.';
+            return;
+          }
+
           this.loginErrorMsg = '';
           localStorage.setItem('bosslootUsername', res.data.name);
-          localStorage.setItem('bosslootUser', res.data.userId);
+          localStorage.setItem('bosslootUser', res.data.id);
           localStorage.setItem('bosslootToken', res.data.token);
           this.router.navigate(['/dashboard']);
         }

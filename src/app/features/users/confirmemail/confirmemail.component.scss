@@ -1,0 +1,117 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+	background-image: url('https://img.freepik.com/free-photo/digital-art-beautiful-mountains_23-2151123686.jpg?t=st=1742151409~exp=1742155009~hmac=007574dbdbf74af71408f87da2e08827d58200139ce3f42423d9c1e00896827e&w=996');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.login-container {
+	position: relative;
+	z-index: 2;
+	width: 100%;
+	max-width: 440px;
+	background: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 24px;
+	padding: 3rem;
+	color: white;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+	transform: translateY(20px);
+	opacity: 0;
+	animation: slideIn 0.6s ease-out forwards;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 200%;
+		height: 100%;
+		background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+		transform: skewX(-15deg);
+		transition: 0.5s;
+	}
+
+	&:hover::before {
+		left: 100%;
+	}
+}
+
+@keyframes slideIn {
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.login-header {
+	text-align: center;
+	margin-bottom: 2.5rem;
+
+	h1 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+		background: linear-gradient(45deg, #fff, #ccc);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	p {
+		color: rgba(255, 255, 255, 0.7);
+		font-size: 1rem;
+	}
+}
+
+.submit-button {
+	margin-top: 1.5rem;
+	width: 100%;
+	padding: 1rem;
+	background: white;
+	color: black;
+	border: none;
+	border-radius: 12px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8), transparent);
+		transition: 0.5s;
+	}
+
+	&:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+		&::before {
+			left: 100%;
+		}
+	}
+}

@@ -7,6 +7,7 @@ import { UsersComponent } from './features/users/users.component';
 import { ProductsComponent } from './features/products/products.component';
 import { ProfileComponent } from './features/users/profile/profile.component';
 import { UserlistComponent } from './shared/components/userlist/userlist.component';
+import { ConfirmEmailComponent } from './features/users/confirmemail/confirmemail.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +19,10 @@ export const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         canActivate: [loginRedirectGuard]
+    },
+    {
+        path: 'confirm_email/:message',
+        component: ConfirmEmailComponent
     },
     {
         path: 'dashboard',
