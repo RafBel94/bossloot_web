@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './shared/components/login/login.component';
+import { LoginComponent } from './features/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { authGuard } from './guards/auth-guard.guard';
 import { loginRedirectGuard } from './guards/login-redirect.guard';
@@ -7,7 +7,7 @@ import { UsersComponent } from './features/users/users.component';
 import { ProductsComponent } from './features/products/products.component';
 import { ProfileComponent } from './features/users/profile/profile.component';
 import { UserlistComponent } from './shared/components/userlist/userlist.component';
-import { ConfirmEmailComponent } from './features/users/confirmemail/confirmemail.component';
+import { ConfirmEmailComponent } from './features/confirmemail/confirmemail.component';
 
 export const routes: Routes = [
     {

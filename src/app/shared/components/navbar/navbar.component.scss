@@ -12,12 +12,6 @@ $background-color_6: #4CAF50;
 $background-color_7: #FFC107;
 $background-color_8: #F44336;
 
-.user-image {
-    border-radius: 50%;
-    margin-bottom: 0;
-    margin-right: 20px;
-    color: aliceblue;
-}
 
 .user-profile {
     margin-top: auto;
@@ -46,9 +40,6 @@ $background-color_8: #F44336;
     background-color: $background-color_2;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 .sidebar-header {
