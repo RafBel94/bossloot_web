@@ -1,10 +1,12 @@
-<div class="container rounded bg-white" *ngIf="editedUser.get('name')?.value; else showLogo">
+<div class="container rounded bg-white border border-3 border-dark-subtle" *ngIf="editedUser.get('name')?.value; else showLogo">
         <form [formGroup]="editedUser" (submit)="onUpdate()">
                 <div class="row">
                         <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">
                                 <input type="hidden" [value]="editedUser.get('id')?.value">
-                                <img class="rounded-circle mt-2 mb-2" width="150px" [src]="editedUser.get('profile_picture')?.value ? editedUser.get('profile_picture')?.value : 'images/avatar-placeholder.png'" alt="Profile Picture">
-                                <span class="fw-bold">{{ editedUser.get('name')?.value }}</span>
+                                <div>
+                                        <img class="rounded-circle mt-2 mb-2 border border-2" width="150px" [src]="editedUser.get('profile_picture')?.value ? editedUser.get('profile_picture')?.value : 'images/avatar-placeholder.png'" alt="Profile Picture">
+                                        <input type="file" class="form-control mt-3" (change)="onFileSelected($event)" accept=".png, .jpg, .jpeg">
+                                </div>
                                 <div class="mt-5 w-100 ps-2 pe-2">
                                         <div class="col-md-6 w-100">
                                                 <label class="form-label text-start w-100">Name</label>

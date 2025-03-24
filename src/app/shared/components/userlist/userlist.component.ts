@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import type { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
-import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community';
 import { TableUser } from '../../../interfaces/tableUser';
 import { UserService } from '../../../services/user.service';
 
@@ -20,30 +20,45 @@ export class UserlistComponent {
   router = inject(Router);
   gridApi!: GridApi;
 
-  rowData: TableUser[] = [];
+  pagination = true;
+  paginationPageSize = 25;
+  paginationPageSizeSelector = [10, 25, 50, 100];
 
+  // THEME CONFIGURATION
+  theme = themeQuartz.withParams({
+    backgroundColor: "#404040",
+    foregroundColor: "rgb(255, 255, 255)",
+    headerTextColor: "rgb(255, 255, 255)",
+    headerBackgroundColor: "rgb(30, 30, 30)",
+    oddRowBackgroundColor: "rgb(0, 0, 0, 0.15)",
+    headerColumnResizeHandleColor: "rgb(154, 154, 154)",
+  });
+
+  // DATA AND HEADER CONFIGURATION
+  rowData: TableUser[] = [];
   colDefs: ColDef[] = [
-    { field: "name", filter: true },
-    { field: "email", filter: true },
-    { field: "level", filter: true },
-    { field: "points", filter: true },
-    { field: "activated", filter: true },
-    { field: "email_confirmed", headerName: 'Email Confirmed', filter: true },
+    { field: "name", filter: true, minWidth:300, maxWidth: 340},
+    { field: "email", filter: true, minWidth:320, maxWidth: 360},
+    { field: "level", filter: true, minWidth:100, maxWidth: 120},
+    { field: "points", filter: true, minWidth: 100, maxWidth: 120},
+    { field: "activated", filter: true, minWidth:120, maxWidth: 140},
+    { field: "email_confirmed", headerName: 'Email Confirmed', filter: true, minWidth:180, maxWidth: 200},
     {
       headerName: 'Actions',
       cellRenderer: (params: any) => {
         const container = document.createElement('div');
+        container.className = 'd-flex justify-content-center mt-1';
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
-        editButton.className = 'btn btn-primary btn-sm me-2';
+        editButton.className = 'btn btn-primary btn-sm me-3 w-2 ps-2 pe-2';
         editButton.addEventListener('click', () => {
           this.editUser(params.data);
         });
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.className = 'btn btn-danger btn-sm';
+        deleteButton.className = 'btn btn-danger btn-sm w-25 ps-2 pe-2';
         deleteButton.addEventListener('click', () => {
           this.deleteUser(params.data);
         });
@@ -52,9 +67,17 @@ export class UserlistComponent {
         container.appendChild(deleteButton);
 
         return container;
-      }
+      },
+      minWidth: 240
     }
   ];
+
+  // FUNCTIONS
+
+  onFilterTextBoxChanged() {
+    this.gridApi.setGridOption("quickFilterText", (document.getElementById("filter-text-box") as HTMLInputElement).value,
+    );
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;

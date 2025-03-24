@@ -28,6 +28,7 @@ export class ProfileComponent {
     points: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern(/^\d+$/)]),
     email_confirmed: new FormControl(false),
     activated: new FormControl(false),
+    profile_picture: new FormControl(''),
   });
 
   constructor() {
@@ -44,6 +45,7 @@ export class ProfileComponent {
           points: res.data.points,
           email_confirmed: res.data.email_confirmed,
           activated: res.data.activated,
+          profile_picture: res.data.profile_picture
         });
         this.cdr.detectChanges();
         console.log(res.data);
@@ -54,11 +56,15 @@ export class ProfileComponent {
     });
   }
 
+  onFileSelected($event: Event) {
+    throw new Error('Method not implemented.');
+  }
+
   onUpdate() {
     if (!confirm('Are you sure you want to update the user?')) {
       return;
     }
-    
+
     if (this.editedUser.invalid) {
       this.errorMsg = 'Please fix all the errors before updating an user.';
       return;
