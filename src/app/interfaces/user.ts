@@ -2,13 +2,12 @@ export interface User {
     id: number;
     name: string;
     email: string;
-    role: string;
-    adress_1: string;
-    adress_2: string;
-    mobile_phone: string;
+    mobile_phone: string | null;
+    adress_1: string | null;
+    adress_2: string | null;
     level: number;
     points: number;
     email_confirmed: boolean;
     activated: boolean;
-    profile_picture: string;
+    profile_picture: string | null;
 }

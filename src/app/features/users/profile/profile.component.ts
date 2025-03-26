@@ -3,6 +3,8 @@ import { UserService } from '../../../services/user.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { takeUntil } from 'rxjs';
+import { User } from '../../../interfaces/user';
 
 @Component({
   selector: 'app-profile',
@@ -18,8 +20,10 @@ export class ProfileComponent {
   userService = inject(UserService);
   selectedFile: File | null = null;
   errorMsg = '';
+  userId = 0;
+  isLoading = true;
 
-  editedUser = new FormGroup({
+  uploadForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.maxLength(80)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     mobile_phone: new FormControl('', [Validators.pattern(/^[0-9]{9}$/)]),
@@ -33,28 +37,23 @@ export class ProfileComponent {
   });
 
   constructor() {
-    const userId = Number(this.route.snapshot.params['id']);
-    this.userService.getUserById(userId).subscribe({
-      next: (res: any) => {
-        this.editedUser.patchValue({
-          name: res.data.name,
-          email: res.data.email,
-          mobile_phone: res.data.mobile_phone,
-          adress_1: res.data.adress_1,
-          adress_2: res.data.adress_2,
-          level: res.data.level,
-          points: res.data.points,
-          email_confirmed: res.data.email_confirmed,
-          activated: res.data.activated,
-          profile_picture: res.data.profile_picture
-        });
-        this.cdr.detectChanges();
-        console.log(res.data);
-      },
-      error: (err: any) => {
-        console.log(err);
-      }
-    });
+    this.userId = this.route.snapshot.params['id'];
+    this.loadUserData();
+  }
+
+  private loadUserData(): void {
+    this.userService.getUserById(this.userId)
+      .subscribe({
+        next: (res: { data: User }) => {
+          this.uploadForm.patchValue(res.data);
+          this.isLoading = false;
+          this.cdr.detectChanges();
+        },
+        error: (err) => {
+          console.error('Error loading user:', err);
+          this.isLoading = false;
+        }
+      });
   }
 
   onFileSelected(event: Event): void {
@@ -64,7 +63,7 @@ export class ProfileComponent {
 
       const reader = new FileReader();
       reader.onload = (e: any) => {
-        this.editedUser.patchValue({
+        this.uploadForm.patchValue({
           profile_picture: e.target.result
         });
       };
@@ -76,43 +75,23 @@ export class ProfileComponent {
     if (!confirm('Are you sure you want to update the user?')) {
       return;
     }
+    this.isLoading = true;
 
-    if (this.editedUser.invalid) {
+    if (this.uploadForm.invalid) {
       this.errorMsg = 'Please fix all the errors before updating an user.';
+      this.isLoading = false;
       return;
     }
 
-    const userId = Number(this.route.snapshot.params['id']);
-    const formData = new FormData();
-    const formValues = this.editedUser.getRawValue();
+    const formData = this.prepareFormData();
 
-    // Required fields
-    formData.append('_method', 'PUT');
-    formData.append('name', formValues.name ?? '');
-    formData.append('email', formValues.email ?? '');
-    formData.append('level', (formValues.level ?? 1).toString());
-    formData.append('points', (formValues.points ?? 0).toString());
-
-    // Send booleans as '1'/'0' which Laravel can easily convert
-    formData.append('email_confirmed', formValues.email_confirmed ? '1' : '0');
-    formData.append('activated', formValues.activated ? '1' : '0');
-
-    // Optional fields - always send but can be empty
-    formData.append('mobile_phone', formValues.mobile_phone ?? '');
-    formData.append('adress_1', formValues.adress_1 ?? '');
-    formData.append('adress_2', formValues.adress_2 ?? '');
-
-    // Profile Image
-    if (this.selectedFile) {
-      formData.append('profile_picture', this.selectedFile);
-    }
-
-    this.userService.updateUser(userId, formData).subscribe({
+    this.userService.updateUser(this.userId, formData).subscribe({
       next: (res: any) => {
         this.errorMsg = '';
         this.router.navigate(['/dashboard/users']);
       },
       error: (err: any) => {
+        this.isLoading = false;
         console.error('Full error:', err);
         if (err.error?.errors) {
           this.errorMsg = Object.values(err.error.errors).flat().join('\n');
@@ -121,6 +100,28 @@ export class ProfileComponent {
         }
       }
     });
+  }
+
+  private prepareFormData(): FormData {
+    const formData = new FormData();
+    const formValues = this.uploadForm.getRawValue();
+
+    formData.append('_method', 'PUT');
+    formData.append('name', formValues.name ?? '');
+    formData.append('email', formValues.email ?? '');
+    formData.append('level', String(formValues.level ?? 1));
+    formData.append('points', String(formValues.points ?? 0));
+    formData.append('email_confirmed', formValues.email_confirmed ? '1' : '0');
+    formData.append('activated', formValues.activated ? '1' : '0');
+    formData.append('mobile_phone', formValues.mobile_phone ?? '');
+    formData.append('adress_1', formValues.adress_1 ?? '');
+    formData.append('adress_2', formValues.adress_2 ?? '');
+
+    if (this.selectedFile) {
+      formData.append('profile_picture', this.selectedFile);
+    }
+
+    return formData;
   }
 
   onCancel() {
