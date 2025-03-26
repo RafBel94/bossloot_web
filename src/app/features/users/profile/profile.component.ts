@@ -16,6 +16,7 @@ export class ProfileComponent {
   router = inject(Router);
   cdr = inject(ChangeDetectorRef);
   userService = inject(UserService);
+  selectedFile: File | null = null;
   errorMsg = '';
 
   editedUser = new FormGroup({
@@ -56,8 +57,19 @@ export class ProfileComponent {
     });
   }
 
-  onFileSelected($event: Event) {
-    throw new Error('Method not implemented.');
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.editedUser.patchValue({
+          profile_picture: e.target.result
+        });
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
 
   onUpdate() {
@@ -71,13 +83,42 @@ export class ProfileComponent {
     }
 
     const userId = Number(this.route.snapshot.params['id']);
-    this.userService.updateUser(userId, this.editedUser.value).subscribe({
+    const formData = new FormData();
+    const formValues = this.editedUser.getRawValue();
+
+    // Required fields
+    formData.append('_method', 'PUT');
+    formData.append('name', formValues.name ?? '');
+    formData.append('email', formValues.email ?? '');
+    formData.append('level', (formValues.level ?? 1).toString());
+    formData.append('points', (formValues.points ?? 0).toString());
+
+    // Send booleans as '1'/'0' which Laravel can easily convert
+    formData.append('email_confirmed', formValues.email_confirmed ? '1' : '0');
+    formData.append('activated', formValues.activated ? '1' : '0');
+
+    // Optional fields - always send but can be empty
+    formData.append('mobile_phone', formValues.mobile_phone ?? '');
+    formData.append('adress_1', formValues.adress_1 ?? '');
+    formData.append('adress_2', formValues.adress_2 ?? '');
+
+    // Profile Image
+    if (this.selectedFile) {
+      formData.append('profile_picture', this.selectedFile);
+    }
+
+    this.userService.updateUser(userId, formData).subscribe({
       next: (res: any) => {
         this.errorMsg = '';
         this.router.navigate(['/dashboard/users']);
       },
       error: (err: any) => {
-        this.errorMsg = err.error.data.error;
+        console.error('Full error:', err);
+        if (err.error?.errors) {
+          this.errorMsg = Object.values(err.error.errors).flat().join('\n');
+        } else {
+          this.errorMsg = err.message || 'Error updating user';
+        }
       }
     });
   }

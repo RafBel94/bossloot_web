@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  baseUrl = 'https://bossloot-api-uvwil.ondigitalocean.app/api';
+  baseUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +19,12 @@ export class UserService {
     return this.http.get(this.baseUrl + '/users/' + id);
   }
 
-  updateUser(id: number, data: any) : Observable<any> {
-    return this.http.put(this.baseUrl + '/users/' + id, data);
+  updateUser(id: number, formData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/users/${id}`, formData, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
   }
 
   deleteUser(id: number) : Observable<any> {
