@@ -1,121 +1,151 @@
-<div class="container rounded bg-white border border-3 border-dark-subtle" *ngIf="isLoading == false; else showLogo">
+<div class="container rounded bg-white border border-3 border-dark-subtle" *ngIf="!isLoading; else showLogo">
     <form [formGroup]="uploadForm" (submit)="onUpdate()">
         <div class="row">
             <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">
-                <input type="hidden" [value]="uploadForm.get('id')?.value">
                 <div>
                     <img class="rounded-circle mt-2 mb-2 border border-2" width="150px"
-                        [src]="uploadForm.get('profile_picture')?.value ? uploadForm.get('profile_picture')?.value : 'images/avatar-placeholder.png'"
+                        [src]="uploadForm.value.profile_picture || 'images/avatar-placeholder.png'"
                         alt="Profile Picture">
                     <input type="file" class="form-control mt-3" (change)="onFileSelected($event)"
                         accept=".png, .jpg, .jpeg">
                 </div>
+                
+                <!-- Name Field -->
                 <div class="mt-5 w-100 ps-2 pe-2">
-                    <div class="col-md-6 w-100">
-                        <label class="form-label text-start w-100">Name</label>
-                        <input type="text" class="form-control" placeholder="---" formControlName="name"
-                            [value]="uploadForm.get('name')?.value">
-                        <div *ngIf="uploadForm.get('name')?.errors && uploadForm.get('name')?.touched"
-                            class="text-danger">
-                            <div *ngIf="uploadForm.get('name')?.errors?.['required']">Name is required.</div>
-                            <div *ngIf="uploadForm.get('name')?.errors?.['maxlength']">Name cannot be longer than 80
-                                characters.</div>
+                    <label class="form-label text-start w-100">Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+                    @if (uploadForm.controls.name.invalid && uploadForm.controls.name.touched) {
+                        <div class="text-danger">
+                            @if (uploadForm.controls.name.errors?.['required']) {
+                                <div>Name is required.</div>
+                            }
+                            @if (uploadForm.controls.name.errors?.['maxlength']) {
+                                <div>Name cannot be longer than 80 characters.</div>
+                            }
                         </div>
-                    </div>
+                    }
                 </div>
+                
+                <!-- Email and Phone -->
                 <div class="row mt-3 w-100">
                     <div class="col-md-6">
                         <label class="form-label text-start w-100">Email</label>
-                        <input type="text" class="form-control" placeholder="---"
-                            [value]="uploadForm.get('email')?.value" formControlName="email">
-                        <div *ngIf="uploadForm.get('email')?.errors && uploadForm.get('email')?.touched"
-                            class="text-danger">
-                            <div *ngIf="uploadForm.get('email')?.errors?.['required']">Email is required.</div>
-                            <div *ngIf="uploadForm.get('email')?.errors?.['email']">Invalid email format.</div>
-                        </div>
+                        <input type="text" class="form-control" formControlName="email">
+                        @if (uploadForm.controls.email.invalid && uploadForm.controls.email.touched) {
+                            <div class="text-danger">
+                                @if (uploadForm.controls.email.errors?.['required']) {
+                                    <div>Email is required.</div>
+                                }
+                                @if (uploadForm.controls.email.errors?.['email']) {
+                                    <div>Invalid email format.</div>
+                                }
+                            </div>
+                        }
                     </div>
                     <div class="col-md-6">
                         <label class="form-label text-start w-100">Mobile Phone</label>
-                        <input type="text" class="form-control" [value]="uploadForm.get('mobile_phone')?.value"
-                            placeholder="---" formControlName="mobile_phone">
-                        <div *ngIf="uploadForm.get('mobile_phone')?.errors && uploadForm.get('mobile_phone')?.touched"
-                            class="text-danger">
-                            <div *ngIf="uploadForm.get('mobile_phone')?.errors?.['pattern']">Invalid mobile phone
-                                format.</div>
-                        </div>
+                        <input type="text" class="form-control" formControlName="mobile_phone">
+                        @if (uploadForm.controls.mobile_phone.invalid && uploadForm.controls.mobile_phone.touched) {
+                            <div class="text-danger">
+                                @if (uploadForm.controls.mobile_phone.errors?.['pattern']) {
+                                    <div>Invalid mobile phone format (9 digits).</div>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
+            
+            <!-- Right Column -->
             <div class="col-md-6 d-flex flex-column align-items-center align-content-center">
                 <h4 class="text-center pt-4 pb-4">More Information</h4>
+                
+                <!-- Address Fields -->
                 <div class="ps-2 pe-1 mt-3 w-100">
                     <label class="form-label text-start w-100">Address Line 1</label>
-                    <input type="text" class="form-control w-100" placeholder="---"
-                        [value]="uploadForm.get('adress_1')?.value" formControlName="adress_1">
-                    <div *ngIf="uploadForm.get('adress_1')?.errors && uploadForm.get('adress_1')?.touched"
-                        class="text-danger">
-                        <div *ngIf="uploadForm.get('adress_1')?.errors?.['maxlength']">Address cannot be longer than 255
-                            characters.</div>
-                    </div>
+                    <input type="text" class="form-control w-100" formControlName="adress_1">
+                    @if (uploadForm.controls.adress_1.invalid && uploadForm.controls.adress_1.touched) {
+                        <div class="text-danger">
+                            <div>Address cannot be longer than 255 characters.</div>
+                        </div>
+                    }
                 </div>
+                
                 <div class="ps-2 pe-1 pb-2 mt-3 w-100">
                     <label class="form-label text-start w-100">Address Line 2</label>
-                    <input type="text" class="form-control w-100" placeholder="---"
-                        [value]="uploadForm.get('adress_2')?.value" formControlName="adress_2">
-                    <div *ngIf="uploadForm.get('adress_2')?.errors && uploadForm.get('adress_2')?.touched"
-                        class="text-danger">
-                        <div *ngIf="uploadForm.get('adress_2')?.errors?.['maxlength']">Address cannot be longer than 255
-                            characters.</div>
-                    </div>
+                    <input type="text" class="form-control w-100" formControlName="adress_2">
+                    @if (uploadForm.controls.adress_2.invalid && uploadForm.controls.adress_2.touched) {
+                        <div class="text-danger">
+                            <div>Address cannot be longer than 255 characters.</div>
+                        </div>
+                    }
                 </div>
+                
+                <!-- Level and Points -->
                 <div class="row mt-3 w-100">
                     <div class="col-md-6">
                         <label class="form-label text-start w-100">Level</label>
-                        <input type="number" min="1" max="3" class="form-control" placeholder="---"
-                            [value]="uploadForm.get('level')?.value" formControlName="level">
-                        <div *ngIf="uploadForm.get('level')?.errors && uploadForm.get('level')?.touched"
-                            class="text-danger">
-                            <div *ngIf="uploadForm.get('level')?.errors?.['required']">Level is required.</div>
-                            <div *ngIf="uploadForm.get('level')?.errors?.['pattern']">Invalid level format, only numbers
-                                allowed.</div>
-                            <div *ngIf="uploadForm.get('level')?.errors?.['min']">Level cannot be less than 1.</div>
-                            <div *ngIf="uploadForm.get('level')?.errors?.['max']">Level cannot be more than 3.</div>
-                        </div>
+                        <input type="number" min="1" max="3" class="form-control" formControlName="level">
+                        @if (uploadForm.controls.level.invalid && uploadForm.controls.level.touched) {
+                            <div class="text-danger">
+                                @if (uploadForm.controls.level.errors?.['required']) {
+                                    <div>Level is required.</div>
+                                }
+                                @if (uploadForm.controls.level.errors?.['min'] || uploadForm.controls.level.errors?.['max']) {
+                                    <div>Level must be between 1 and 3.</div>
+                                }
+                            </div>
+                        }
                     </div>
                     <div class="col-md-6">
                         <label class="form-label text-start w-100">Points</label>
-                        <input type="number" min="0" class="form-control" [value]="uploadForm.get('points')?.value"
-                            placeholder="---" formControlName="points">
-                        <div *ngIf="uploadForm.get('points')?.errors && uploadForm.get('points')?.touched"
-                            class="text-danger">
-                            <div *ngIf="uploadForm.get('points')?.errors?.['required']">Points is required.</div>
-                            <div *ngIf="uploadForm.get('points')?.errors?.['pattern']">Invalid Points format, only
-                                numbers allowed.</div>
-                            <div *ngIf="uploadForm.get('points')?.errors?.['min']">Points cannot be less than 0.</div>
-                        </div>
+                        <input type="number" min="0" class="form-control" formControlName="points">
+                        @if (uploadForm.controls.points.invalid && uploadForm.controls.points.touched) {
+                            <div class="text-danger">
+                                @if (uploadForm.controls.points.errors?.['required']) {
+                                    <div>Points is required.</div>
+                                }
+                                @if (uploadForm.controls.points.errors?.['min']) {
+                                    <div>Points cannot be negative.</div>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
-                <div class="row ps-1 mt-4 w-100">
-                    <div class="col-md-6">
-                        <label class="form-label text-start w-100 d-inline pe-3">Email Confirmed</label>
-                        <input type="checkbox" class="form-check-input d-inline"
-                            [formControl]="uploadForm.controls.email_confirmed">
+                
+                <!-- Checkboxes -->
+                <div class="row ps-1 mt-4 ms-2 w-100">
+                    <div class="col-md-6 form-check form-switch">
+                        <input type="checkbox" class="form-check-input" id="emailConfirmed" formControlName="email_confirmed">
+                        <label class="form-check-label" for="emailConfirmed">Email Confirmed</label>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label text-start w-100 d-inline pe-3">Account Active</label>
-                        <input type="checkbox" class="form-check-input d-inline"
-                            [formControl]="uploadForm.controls.activated">
+                    <div class="col-md-6 form-check form-switch">
+                        <input type="checkbox" class="form-check-input" id="accountActive" formControlName="activated">
+                        <label class="form-check-label" for="accountActive">Account Active</label>
                     </div>
                 </div>
-                <div class="text-danger fw-bold mt-4">
-                    <span>{{ errorMsg }}</span>
-                </div>
+                
+                <!-- Error Message -->
+                @if (errorMsg) {
+                    <div class="alert alert-danger mt-3 w-100">
+                        {{ errorMsg }}
+                    </div>
+                }
+                
+                <!-- Buttons -->
                 <div class="row w-100 mt-4 mb-3">
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary w-100">Accept Changes</button>
+                        <button type="submit" class="btn btn-primary w-100" [disabled]="uploadForm.invalid || isLoading">
+                            @if (isLoading) {
+                                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                                <span role="status">Updating...</span>
+                            } @else {
+                                <span>Accept Changes</span>
+                            }
+                        </button>
                     </div>
                     <div class="col-md-6">
-                        <a class="btn btn-secondary w-100" (click)="onCancel()">Cancel</a>
+                        <button type="button" class="btn btn-secondary w-100" (click)="onCancel()">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -124,7 +154,7 @@
 </div>
 
 <ng-template #showLogo>
-    <div class="col-md-12 d-flex justify-content-center align-items-center">
-        <img class="rotating-logo" src="images/bossloot-logo-icon.png" alt="Logo">
+    <div class="col-md-12 d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <img class="rotating-logo" src="images/bossloot-logo-icon.png" alt="Loading..." width="100">
     </div>
 </ng-template>
