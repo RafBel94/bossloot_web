@@ -1,4 +1,4 @@
-<div class="container rounded bg-white border border-3 border-dark-subtle" *ngIf="!isLoading; else showLogo">
+<div class="container rounded bg-white border-gradient" *ngIf="!isLoading; else showLogo">
     <form [formGroup]="uploadForm" (submit)="onUpdate()">
         <div class="row">
             <div class="col-md-6 border-end d-flex flex-column align-items-center text-center p-4">
@@ -154,7 +154,10 @@
 </div>
 
 <ng-template #showLogo>
-    <div class="col-md-12 d-flex justify-content-center align-items-center" style="height: 80vh;">
-        <img class="rotating-logo" src="images/bossloot-logo-icon.png" alt="Loading..." width="100">
+    <div class="d-flex loading-card justify-content-center align-items-center mx-auto" style="max-width: 25rem; max-height: 25rem;">
+        <div class="d-flex flex-column">
+            <img class="rotating-logo mx-auto mb-4" src="images/bossloot-logo-icon.png" alt="Loading...">
+            <h2>Loading user...</h2>
+        </div>
     </div>
 </ng-template>

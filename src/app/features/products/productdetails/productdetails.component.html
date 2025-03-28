@@ -1,0 +1,9 @@
+<div class="container rounded bg-white border-gradient" *ngIf="!isLoading; else showLogo">
+    <app-ramform/>
+</div>
+
+<ng-template #showLogo>
+    <div class="col-md-12 d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <img class="rotating-logo" src="images/bossloot-logo-icon.png" alt="Loading..." width="100">
+    </div>
+</ng-template>

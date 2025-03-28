@@ -1,28 +1,35 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { themeQuartz, type ColDef, type GridApi, type GridReadyEvent } from 'ag-grid-community';
+import { TableProduct } from '../../../interfaces/tableProduct';
+import { ProductService } from '../../../services/product.service';
 import { AgGridAngular } from 'ag-grid-angular';
-import type { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
-import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-community';
-import { TableUser } from '../../../interfaces/tableUser';
-import { UserService } from '../../../services/user.service';
-
-ModuleRegistry.registerModules([AllCommunityModule]);
+import { CommonModule } from '@angular/common';
+import { Product } from '../../../models/products/Product';
 
 @Component({
-  selector: 'app-userlist',
-  standalone: true,
-  imports: [AgGridAngular],
-  templateUrl: './userlist.component.html',
-  styleUrl: './userlist.component.scss'
+  selector: 'app-productlist',
+  imports: [AgGridAngular, CommonModule],
+  templateUrl: './productlist.component.html',
+  styleUrl: './productlist.component.scss'
 })
-export class UserlistComponent {
-  userService = inject(UserService);
+export class ProductlistComponent {
+  productService = inject(ProductService);
   router = inject(Router);
   gridApi!: GridApi;
+  isLoading = true;
+  productList: Product[] = [];
 
   pagination = true;
   paginationPageSize = 25;
   paginationPageSizeSelector = [10, 25, 50, 100];
+
+  constructor() {
+    this.productService.getProducts().subscribe(response => {
+      this.productList = response.data;
+      this.isLoading = false;
+    });
+  }
 
   // THEME CONFIGURATION
   theme = themeQuartz.withParams({
@@ -35,14 +42,14 @@ export class UserlistComponent {
   });
 
   // DATA AND HEADER CONFIGURATION
-  rowData: TableUser[] = [];
+  rowData: TableProduct[] = [];
   colDefs: ColDef[] = [
-    { field: "name", filter: true, minWidth:300, maxWidth: 340},
-    { field: "email", filter: true, minWidth:320, maxWidth: 360},
-    { field: "level", filter: true, minWidth:100, maxWidth: 120},
-    { field: "points", filter: true, minWidth: 100, maxWidth: 120},
-    { field: "activated", filter: true, minWidth:120, maxWidth: 140},
-    { field: "email_confirmed", headerName: 'Email Confirmed', filter: true, minWidth:180, maxWidth: 200},
+    { field: "name", filter: true, minWidth: 280, maxWidth: 320 },
+    { field: "category", filter: true, minWidth: 160, maxWidth: 160},
+    { field: "model", filter: true, minWidth: 280, maxWidth: 320 },
+    { field: "brand", filter: true, minWidth: 170, maxWidth: 180 },
+    { field: "price", filter: true, minWidth: 100, maxWidth: 120 },
+    { field: "quantity", filter: true, minWidth: 100, maxWidth: 120 },
     {
       headerName: 'Actions',
       cellRenderer: (params: any) => {
@@ -51,16 +58,16 @@ export class UserlistComponent {
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
-        editButton.className = 'btn btn-primary btn-sm me-3 w-2 ps-2 pe-2';
+        editButton.className = 'btn btn-primary btn-sm me-3 w-25 ps-2 pe-2';
         editButton.addEventListener('click', () => {
-          this.editUser(params.data);
+          this.editProduct(params.data);
         });
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
         deleteButton.className = 'btn btn-danger btn-sm w-25 ps-2 pe-2';
         deleteButton.addEventListener('click', () => {
-          this.deleteUser(params.data);
+          this.deleteProduct(params.data);
         });
 
         container.appendChild(editButton);
@@ -81,25 +88,22 @@ export class UserlistComponent {
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
-    this.userService.getUsers().subscribe(response => {
-      this.rowData = response.data;
-      this.gridApi.setGridOption('rowData', this.rowData);
-    });
+    this.gridApi.setGridOption('rowData', this.productList);
   }
 
-  editUser(user: any) {
-    this.router.navigate([`/dashboard/users/profile/${user.id}`]);
+  editProduct(product: any) {
+    this.router.navigate([`/dashboard/products/profile/${product.id}`]);
   }
 
-  deleteUser(user: any) {
-    if (!confirm('Are you sure you want to delete the user?')) {
+  deleteProduct(product: any) {
+    if (!confirm('Are you sure you want to delete this product?')) {
       return;
     }
 
-    this.userService.deleteUser(user.id).subscribe({
+    this.productService.deleteProduct(product.id).subscribe({
       next: (res: any) => {
         if (this.gridApi) {
-          this.gridApi.applyTransaction({ remove: [user] });
+          this.gridApi.applyTransaction({ remove: [product] });
         }
       },
       error: (err: any) => {
@@ -107,5 +111,4 @@ export class UserlistComponent {
       }
     })
   }
-
 }

@@ -6,8 +6,10 @@ import { loginRedirectGuard } from './guards/login-redirect.guard';
 import { UsersComponent } from './features/users/users.component';
 import { ProductsComponent } from './features/products/products.component';
 import { ProfileComponent } from './features/users/profile/profile.component';
-import { UserlistComponent } from './shared/components/userlist/userlist.component';
+import { UserlistComponent } from './features/users/userlist/userlist.component';
 import { ConfirmEmailComponent } from './features/confirmemail/confirmemail.component';
+import { ProductlistComponent } from './features/products/productlist/productlist.component';
+import { ProductdetailsComponent } from './features/products/productdetails/productdetails.component';
 
 export const routes: Routes = [
     {
@@ -38,7 +40,15 @@ export const routes: Routes = [
                     { path: 'profile/:id', component: ProfileComponent }
                 ]
             },
-            { path: 'products', component: ProductsComponent },
+            { 
+                path: 'products',
+                component: ProductsComponent,
+                children: [
+                    { path: '', redirectTo: 'list', pathMatch: 'full' },
+                    { path: 'list', component: ProductlistComponent },
+                    { path: 'details/:id', component: ProductdetailsComponent }
+                ]
+            },
             { path: '', redirectTo: 'users', pathMatch: 'full' }
         ]
     },
