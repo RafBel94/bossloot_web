@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-  baseUrl = 'http://localhost:8000/api';
+  baseUrl = 'bossloot-kbsiw.ondigitalocean.app/api';
 
   constructor(private http: HttpClient) { }
 

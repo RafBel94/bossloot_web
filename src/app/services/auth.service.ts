@@ -7,7 +7,7 @@ import { Observable } from "rxjs";
 })
 export class AuthService {
 
-    baseUrl = 'https://bossloot-api-uvwil.ondigitalocean.app/api';
+    baseUrl = 'bossloot-kbsiw.ondigitalocean.app/api';
 
     constructor(private http: HttpClient) { }
 

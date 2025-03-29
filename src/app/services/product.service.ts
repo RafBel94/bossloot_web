@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = 'http://localhost:8000/api';
+  baseUrl = 'bossloot-kbsiw.ondigitalocean.app/api';
 
   constructor(private http: HttpClient) { }
 
