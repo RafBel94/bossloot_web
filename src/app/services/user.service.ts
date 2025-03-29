@@ -1,26 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  baseUrl = 'bossloot-kbsiw.ondigitalocean.app/api';
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getUsers() : Observable<any> {
-    return this.http.get(this.baseUrl + '/users');
+    return this.http.get(this.baseUrl + '/api/users');
   }
 
   getUserById(id: number) : Observable<any> {
-    return this.http.get(this.baseUrl + '/users/' + id);
+    return this.http.get(this.baseUrl + '/api/users/' + id);
   }
 
   updateUser(id: number, formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/users/${id}`, formData, {
+    return this.http.post(`${this.baseUrl}/api/users/${id}`, formData, {
       headers: {
         'Accept': 'application/json'
       }
@@ -28,6 +29,6 @@ export class UserService {
   }
 
   deleteUser(id: number) : Observable<any> {
-    return this.http.delete(this.baseUrl + '/users/' + id);
+    return this.http.delete(this.baseUrl + '/api/users/' + id);
   }
 }

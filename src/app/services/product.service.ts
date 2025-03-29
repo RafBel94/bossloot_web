@@ -1,25 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  baseUrl = 'bossloot-kbsiw.ondigitalocean.app/api';
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<any> {
-    return this.http.get(this.baseUrl + '/products');
+    return this.http.get(this.baseUrl + '/api/products');
   }
 
   getProductById(id: number): Observable<any> {
-    return this.http.get(this.baseUrl + '/products/' + id);
+    return this.http.get(this.baseUrl + '/api/products/' + id);
   }
 
   updateProduct(id: number, formData: FormData): Observable<any> {
-    return this.http.post(`${this.baseUrl}/products/${id}`, formData, {
+    return this.http.post(`${this.baseUrl}/api/products/${id}`, formData, {
       headers: {
         'Accept': 'application/json'
       }
@@ -27,6 +28,6 @@ export class ProductService {
   }
 
   deleteProduct(id: number): Observable<any> {
-    return this.http.delete(this.baseUrl + '/products/' + id);
+    return this.http.delete(this.baseUrl + '/api/products/' + id);
   }
 }
