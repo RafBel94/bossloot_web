@@ -1,4 +1,4 @@
-export class Product {
+export class SimpleProduct {
     name: string;
     description: string;
     category: string;
@@ -22,7 +22,7 @@ export class Product {
         on_offer: boolean,
         discount: number,
         featured: boolean,
-        image: string,
+        image: string
     ) {
         this.name = name;
         this.description = description;
@@ -35,5 +35,6 @@ export class Product {
         this.discount = discount;
         this.featured = featured;
         this.image = image;
+
     }
 }

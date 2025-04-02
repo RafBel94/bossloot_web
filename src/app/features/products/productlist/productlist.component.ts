@@ -1,11 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { AgGridAngular } from 'ag-grid-angular';
 import { themeQuartz, type ColDef, type GridApi, type GridReadyEvent } from 'ag-grid-community';
 import { TableProduct } from '../../../interfaces/tableProduct';
+import { SimpleProduct } from '../../../models/products/SimpleProduct';
 import { ProductService } from '../../../services/product.service';
-import { AgGridAngular } from 'ag-grid-angular';
-import { CommonModule } from '@angular/common';
-import { Product } from '../../../models/products/Product';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-productlist',
@@ -18,7 +19,7 @@ export class ProductlistComponent {
   router = inject(Router);
   gridApi!: GridApi;
   isLoading = true;
-  productList: Product[] = [];
+  productList: SimpleProduct[] = [];
 
   pagination = true;
   paginationPageSize = 25;
@@ -45,11 +46,26 @@ export class ProductlistComponent {
   rowData: TableProduct[] = [];
   colDefs: ColDef[] = [
     { field: "name", filter: true, minWidth: 280, maxWidth: 320 },
-    { field: "category", filter: true, minWidth: 160, maxWidth: 160},
+    { field: "category", filter: true, minWidth: 160, maxWidth: 160 },
     { field: "model", filter: true, minWidth: 280, maxWidth: 320 },
     { field: "brand", filter: true, minWidth: 170, maxWidth: 180 },
     { field: "price", filter: true, minWidth: 100, maxWidth: 120 },
     { field: "quantity", filter: true, minWidth: 100, maxWidth: 120 },
+    { 
+      field: "on_offer", 
+      headerName: 'On Offer', 
+      filter: true, 
+      minWidth: 100, 
+      maxWidth: 120,
+      cellRenderer: (params: any) => {
+        const container = document.createElement('div');
+        const icon = document.createElement('i');
+        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
+        container.appendChild(icon);
+        return container;
+      }
+    },
     {
       headerName: 'Actions',
       cellRenderer: (params: any) => {
@@ -92,7 +108,7 @@ export class ProductlistComponent {
   }
 
   editProduct(product: any) {
-    this.router.navigate([`/dashboard/products/profile/${product.id}`]);
+    this.router.navigate([`/dashboard/products/details/${product.id}`]);
   }
 
   deleteProduct(product: any) {

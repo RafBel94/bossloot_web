@@ -1,10 +1,7 @@
 import { Product } from "./Product";
 
-export class RamProduct extends Product {
-    speed: number;
-    memory: number;
-    memory_type: string;
-    latency: number;
+export class CaseProduct extends Product {
+    
 
     public constructor(
         name: string,
@@ -18,15 +15,8 @@ export class RamProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
-        speed: number,
-        memory: number,
-        memory_type: string,
-        latency: number
     ) {
         super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
-        this.speed = speed;
-        this.memory = memory;
-        this.memory_type = memory_type;
-        this.latency = latency;
+        
     }
 }
