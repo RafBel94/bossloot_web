@@ -7,10 +7,11 @@ import { TableProduct } from '../../../interfaces/tableProduct';
 import { SimpleProduct } from '../../../models/products/SimpleProduct';
 import { ProductService } from '../../../services/product.service';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
 
 @Component({
   selector: 'app-productlist',
-  imports: [AgGridAngular, CommonModule],
+  imports: [AgGridAngular, LoadingLogoComponent],
   templateUrl: './productlist.component.html',
   styleUrl: './productlist.component.scss'
 })
@@ -107,6 +108,10 @@ export class ProductlistComponent {
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridApi.setGridOption('rowData', this.productList);
+  }
+
+  onCreateProduct() {
+    
   }
 
   editProduct(product: any) {

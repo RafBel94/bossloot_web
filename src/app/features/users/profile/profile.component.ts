@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
 import { User } from '../../../interfaces/user';
+import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LoadingLogoComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

@@ -6,13 +6,14 @@ import { AllCommunityModule, ModuleRegistry, themeQuartz } from 'ag-grid-communi
 import { TableUser } from '../../../interfaces/tableUser';
 import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-userlist',
   standalone: true,
-  imports: [AgGridAngular, CommonModule],
+  imports: [AgGridAngular, CommonModule, LoadingLogoComponent],
   templateUrl: './userlist.component.html',
   styleUrl: './userlist.component.scss'
 })

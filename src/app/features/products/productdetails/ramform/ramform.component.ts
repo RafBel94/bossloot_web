@@ -1,12 +1,14 @@
-import { Component, inject, Inject, Input } from '@angular/core';
-import { RamProduct } from '../../../../models/products/RamProduct';
+import { Component, inject, Input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RamProduct } from '../../../../models/products/RamProduct';
 import { ProductService } from '../../../../services/product.service';
+import { LoadingLogoComponent } from '../../../../shared/components/loading-logo/loading-logo.component';
+import { RamformTableComponent } from './ramform-table/ramform-table.component';
 
 @Component({
   selector: 'app-ramform',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, RamformTableComponent, LoadingLogoComponent],
   templateUrl: './ramform.component.html',
   styleUrl: './ramform.component.scss'
 })
@@ -69,7 +71,7 @@ export class RamformComponent {
     }
   }
 
-  onUpdate() {
+  onSubmit() {
     if (this.uploadForm.untouched) {
       alert('No changes made to the form. Navigating back to the list.');
       this.router.navigate(['/dashboard/products/list']);
@@ -84,27 +86,45 @@ export class RamformComponent {
 
     const formData = this.prepareFormData();
 
-    this.productService.updateProduct(this.id, formData).subscribe({
-      next: (res: any) => {
-        this.router.navigate(['/dashboard/products/list']);
-      },
-      error: (err: any) => {
-        this.isLoading = false;
-        console.error('Full error:', err);
-        if (err.error?.errors) {
-          this.errorMessage = Object.values(err.error.errors).flat().join('\n');
-        } else {
-          this.errorMessage = err.message || 'Error updating user';
+    if (this.id){
+      this.productService.updateProduct(this.id, formData).subscribe({
+        next: (res: any) => {
+          this.router.navigate(['/dashboard/products/list']);
+        },
+        error: (err: any) => {
+          this.isLoading = false;
+          console.error('Update error:', err);
+          if (err.error?.errors) {
+            this.errorMessage = Object.values(err.error.errors).flat().join('\n');
+          } else {
+            this.errorMessage = err.message || 'Error updating product';
+          }
         }
-      }
-    });
+      });
+    } else {
+      this.productService.addProduct(formData).subscribe({
+        next: (res: any) => {
+          this.router.navigate(['/dashboard/products/list']);
+        },
+        error: (err: any) => {
+          this.isLoading = false;
+          console.error('Create error:', err);
+          if (err.error?.errors) {
+            this.errorMessage = Object.values(err.error.errors).flat().join('\n');
+          } else {
+            this.errorMessage = err.message || 'Error creating product';
+          }
+        }
+      });
+    }
+    
   }
 
   private prepareFormData(): FormData {
     const formData = new FormData();
     const formValues = this.uploadForm.getRawValue();
 
-    formData.append('_method', 'PUT');
+    formData.append('_method', this.id? 'PUT' : 'POST');
     formData.append('name', formValues.name ?? '');
     formData.append('description', formValues.description ?? '');
     formData.append('category', formValues.category ?? '');

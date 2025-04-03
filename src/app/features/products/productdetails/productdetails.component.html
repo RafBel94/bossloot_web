@@ -1,18 +1,13 @@
-
-<div class="d-flex h-100 w-100" *ngIf="!isLoading; else showLogo">
-    <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-        <div class="w-75">
-            <app-ramform *ngIf="finalProduct?.category === 'ram'" [productData]="finalProduct"></app-ramform>
+@if (!isLoading) {
+    <div class="d-flex h-100 w-100">
+        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+            <div class="w-75">
+                @if (finalProduct?.category == 'ram'){
+                    <app-ramform [productData]="finalProduct"></app-ramform>
+                }
+            </div>
         </div>
     </div>
-</div>
-
-<ng-template #showLogo>
-    <div class="d-flex loading-card justify-content-center align-items-center mx-auto"
-        style="max-width: 25rem; max-height: 25rem;">
-        <div class="d-flex flex-column">
-            <img class="rotating-logo mx-auto mb-4" src="images/bossloot-logo-icon.png" alt="Loading...">
-            <h2>Loading product...</h2>
-        </div>
-    </div>
-</ng-template>
+} @else {
+    <app-loading-logo/>
+}

@@ -1,14 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, Injector } from '@angular/core';
+import { Component, inject, Injector } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../models/products/Product';
-import { ProductService } from '../../../services/product.service';
-import { RamformComponent } from "./ramform/ramform.component";
 import { RamProduct } from '../../../models/products/RamProduct';
+import { ProductService } from '../../../services/product.service';
+import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
+import { RamformComponent } from "./ramform/ramform.component";
 
 @Component({
   selector: 'app-productdetails',
-  imports: [CommonModule, RamformComponent],
+  imports: [RamformComponent, LoadingLogoComponent],
   templateUrl: './productdetails.component.html',
   styleUrl: './productdetails.component.scss'
 })

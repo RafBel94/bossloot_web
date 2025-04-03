@@ -19,6 +19,14 @@ export class ProductService {
     return this.http.get(this.baseUrl + '/api/products/' + id);
   }
 
+  addProduct(formData: FormData): Observable<any> {
+    return this.http.post(this.baseUrl + '/api/products', formData, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+  }
+
   updateProduct(id: number, formData: FormData): Observable<any> {
     return this.http.post(`${this.baseUrl}/api/products/${id}`, formData, {
       headers: {
