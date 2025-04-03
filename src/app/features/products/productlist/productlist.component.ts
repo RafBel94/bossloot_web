@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import { themeQuartz, type ColDef, type GridApi, type GridReadyEvent } from 'ag-grid-community';
@@ -19,6 +19,7 @@ export class ProductlistComponent {
   router = inject(Router);
   gridApi!: GridApi;
   isLoading = true;
+  cdr = inject(ChangeDetectorRef);
   productList: SimpleProduct[] = [];
 
   pagination = true;
@@ -29,6 +30,7 @@ export class ProductlistComponent {
     this.productService.getProducts().subscribe(response => {
       this.productList = response.data;
       this.isLoading = false;
+      this.cdr.detectChanges();
     });
   }
 

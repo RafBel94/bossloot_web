@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
 import type { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
@@ -21,12 +21,14 @@ export class UserlistComponent {
   router = inject(Router);
   gridApi!: GridApi;
   isLoading = true;
+  cdr = inject(ChangeDetectorRef);
   userList: TableUser[] = [];
 
   constructor() {
     this.userService.getUsers().subscribe(response => {
       this.userList = response.data;
       this.isLoading = false;
+      this.cdr.detectChanges();
     });
   }
 
