@@ -111,11 +111,11 @@ export class ProductlistComponent {
   }
 
   onCreateProduct() {
-    
+    this.router.navigate(['/dashboard/products/new']);
   }
 
   editProduct(product: any) {
-    this.router.navigate([`/dashboard/products/details/${product.id}`]);
+    this.router.navigate([`/dashboard/products/edit/${product.id}`]);
   }
 
   deleteProduct(product: any) {

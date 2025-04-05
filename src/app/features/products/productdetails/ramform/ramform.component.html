@@ -1,287 +1,73 @@
-@if (!isLoading) {
-    <div class="card w-100 p-4">
-        <form #f [formGroup]="uploadForm" (submit)="onSubmit()">
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
 
-            <!-- IMAGE -->
-            <div class="d-flex flex-column justify-content-center align-items-center w-100">
-                <img class="rounded-3 border border-2 mb-4"
-                    [src]="uploadForm.value.image || 'images/product-placeholder.png'" width="200px"
-                    alt="Component Image" />
-                    <input type="file" class="form-control w-50 mt-3" (change)="onFileSelected($event)"
-                    accept=".png, .jpg, .jpeg">
-            </div>
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
 
-            <!-- SEPARATOR -->
-            <div class="d-flex align-items-center w-100 mt-2">
-                <div class="flex-grow-1 border-bottom border-2"></div>
-                <h2 class="mx-3 mt-3 mb-4 text-center">General Specifications</h2>
-                <div class="flex-grow-1 border-bottom border-2"></div>
-            </div>
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
 
-            <!-- PRODUCT INFORMATION -->
-            <div class="d-flex justify-content-center mt-2">
-
-                <!-- COLUMN LEFT -->
-                <div class="d-flex flex-column align-items-center w-50">
-
-                    <!-- NAME FIELD -->
-                    <div class="mb-3 w-75">
-                        <label class="form-label" for="name">Name:</label>
-                        <input class="form-control" id="name" type="text" formControlName="name">
-                        <div class="text-danger">
-                            @if (uploadForm.controls['name'].errors?.['required']) {
-                                <div>Name is required.</div>
-                            }
-                            @if (uploadForm.controls['name'].errors?.['maxlength']) {
-                                <div>Name cannot be longer than 60 characters.</div>
-                            }
-                        </div>
-                    </div>
-
-                    <!-- MODEL FIELD -->
-                    <div class="mb-3 w-75">
-                        <label class="form-label" for="model">Model:</label>
-                        <input class="form-control" id="model" type="text"
-                            formControlName="model">
-                        <div class="text-danger">
-                            @if (uploadForm.controls['model'].errors?.['required']) {
-                                <div>Model is required.</div>
-                            }
-                            @if (uploadForm.controls['model'].errors?.['maxlength']) {
-                                <div>Model cannot be longer than 60 characters.</div>
-                            }
-                        </div>
-                    </div>
-                    
-                </div>
-
-
-                <!-- COLUMN RIGHT -->
-                <div class="d-flex flex-column align-items-center w-50">
-                    <!-- BRAND FIELD -->
-                    <div class="mb-3 w-75">
-                        <label class="form-label" for="brand">Brand:</label>
-                        <input class="form-control" id="brand" type="text"
-                            formControlName="brand">
-                        <div class="text-danger">
-                            @if (uploadForm.controls['brand'].errors?.['required']) {
-                                <div>Brand is required.</div>
-                            }
-                            @if (uploadForm.controls['brand'].errors?.['maxlength']) {
-                                <div>Brand cannot be longer than 60 characters.</div>
-                            }
-                        </div>
-                    </div>
+            <!-- SPEED FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="speed">Speed:</label>
+                <input class="form-control" id="speed" type="number" min="800" max="6000" formControlName="speed">
+                <div class="text-danger">
+                    @if (uploadForm.controls['speed'].errors?.['required']) {
+                    <div>Speed is required.</div>
+                    }
+                    @if (uploadForm.controls['speed'].errors?.['min']) {
+                    <div>Speed cannot be lower than 800.</div>
+                    }
+                    @if (uploadForm.controls['speed'].errors?.['max']) {
+                    <div>Speed cannot be higher than 6000.</div>
+                    }
                 </div>
             </div>
 
-            <!-- DESCRIPTION FIELD -->
-            <div class="d-flex justify-content-center align-items-center w-100 mt-3">
-                <div class="d-flex w-75 mb-3">
-                    <div class="w-100">
-                        <label class="form-label" for="description">Description:</label>
-                        <textarea class="form-control" id="description" type="text" formControlName="description"
-                            rows="3"></textarea>
-                        <div class="text-danger">
-                            @if (uploadForm.controls['description'].errors?.['required']) {
-                                <div>Description is required.</div>
-                            }
-                            @if (uploadForm.controls['description'].errors?.['maxlength']) {
-                                <div>Description cannot be longer than 255 characters.</div>
-                            }
-                        </div>
-                    </div>
+            <!-- LATENCY FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="latency">Latency:</label>
+                <input class="form-control" id="latency" type="number" min="7" max="40" formControlName="latency">
+                <div class="text-danger">
+                    @if (uploadForm.controls['latency'].errors?.['required']) {
+                    <div>Latency is required.</div>
+                    }
+                    @if (uploadForm.controls['latency'].errors?.['min']) {
+                    <div>Latency cannot be lower than 7.</div>
+                    }
+                    @if (uploadForm.controls['latency'].errors?.['max']) {
+                    <div>Latency cannot be higher than 40.</div>
+                    }
                 </div>
             </div>
 
-            <!-- BOTTOM GENERAL SPEC ZONE -->
-            <div class="d-flex flex-column justify-content-center">
-                <div class="d-flex justify-content-evenly w-100 mt-3">
-
-                    <!-- PRICE FIELD -->
-                    <div class="d-flex p-1">
-                        <div class="d-flex flex-column">
-                            <label class="form-label mt-1 me-2" for="price">Price:</label>
-                            <input class="form-control" id="price" type="number" min="1" max="99999" formControlName="price" />
-                            <div class="text-danger">
-                                @if (uploadForm.controls['price'].errors?.['required']) {
-                                    <div>Price is required.</div>
-                                }
-                                @if (uploadForm.controls['price'].errors?.['min']) {
-                                    <div>Price cannot be lower than 1.</div>
-                                }
-                                @if (uploadForm.controls['price'].errors?.['max']) {
-                                    <div>Price cannot be higher than 99999.</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DISCOUNT FIELD -->
-                    <div class="d-flex p-1">
-                        <div class="d-flex flex-column">
-                            <label class="form-label mt-1 me-2" for="discount">Discount:</label>
-                            <input class="form-control" id="discount" type="number" min="0" max="100" formControlName="discount" />
-                            <div class="text-danger">
-                                @if (uploadForm.controls['discount'].errors?.['required']) {
-                                    <div>Discount is required.</div>
-                                }
-                                @if (uploadForm.controls['discount'].errors?.['min']) {
-                                    <div>Discount cannot be lower than 0.</div>
-                                }
-                                @if (uploadForm.controls['discount'].errors?.['max']) {
-                                    <div>Discount cannot be higher than 100.</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- QUANTITY FIELD -->
-                    <div class="d-flex p-1">
-                        <div class="d-flex flex-column">
-                            <label class="form-label mt-1 me-2" for="stock">Stock:</label>
-                            <input class="form-control" id="stock" type="number" min="0" formControlName="quantity" />
-                            <div class="text-danger">
-                                @if (uploadForm.controls['quantity'].errors?.['required']) {
-                                    <div>Stock is required.</div>
-                                }
-                                @if (uploadForm.controls['quantity'].errors?.['min']) {
-                                    <div>Stock cannot be lower than 0.</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-evenly mx-auto w-50 mt-5 border border-2">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox" id="on_offer" formControlName="on_offer" />
-                        <label class="form-label mt-2" for="on_offer">On Offer</label>
-                    </div>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox" id="featured" formControlName="featured" />
-                        <label class="form-label mt-2" for="featured">Featured</label>
-                    </div>
-                </div>
-
-                <!-- SEPARATOR -->
-                <div class="d-flex align-items-center w-100 mt-4">
-                    <div class="flex-grow-1 border-bottom border-2"></div>
-                    <h2 class="mx-3 mt-3 mb-4 text-center">Technical Specifications</h2>
-                    <div class="flex-grow-1 border-bottom border-2"></div>
-                </div>
+        </div>
 
 
-                <!-- SPECIFICATIONS SECTION -->
-                <div class="d-flex justify-content-center mt-2">
-
-                    <!-- COLUMN LEFT -->
-                    <div class="d-flex flex-column align-items-center w-50">
-        
-                        <!-- SPEED FIELD -->
-                        <div class="mb-3 w-75">
-                            <label class="form-label" for="speed">Speed:</label>
-                            <input class="form-control" id="speed" type="number" min="800" max="6000" formControlName="speed">
-                            <div class="text-danger">
-                                @if (uploadForm.controls['speed'].errors?.['required']) {
-                                    <div>Speed is required.</div>
-                                }
-                                @if (uploadForm.controls['speed'].errors?.['min']) {
-                                    <div>Speed cannot be lower than 800.</div>
-                                }
-                                @if (uploadForm.controls['speed'].errors?.['max']) {
-                                    <div>Speed cannot be higher than 6000.</div>
-                                }
-                            </div>
-                        </div>
-        
-                        <!-- LATENCY FIELD -->
-                        <div class="mb-3 w-75">
-                            <label class="form-label" for="latency">Latency:</label>
-                            <input class="form-control" id="latency" type="number" min="7" max="40" formControlName="latency">
-                            <div class="text-danger">
-                                @if (uploadForm.controls['latency'].errors?.['required']) {
-                                    <div>Latency is required.</div>
-                                }
-                                @if (uploadForm.controls['latency'].errors?.['min']) {
-                                    <div>Latency cannot be lower than 7.</div>
-                                }
-                                @if (uploadForm.controls['latency'].errors?.['max']) {
-                                    <div>Latency cannot be higher than 40.</div>
-                                }
-                            </div>
-                        </div>
-                        
-                    </div>
-        
-        
-                    <!-- COLUMN RIGHT -->
-                    <div class="d-flex flex-column align-items-center w-50">
-                        <!-- BRAND FIELD -->
-                        <div class="mb-3 w-75">
-                            <label class="form-label" for="memory">Memory:</label>
-                            <select id="memory" class="form-select" formControlName="memory">
-                                <option id="4" value="4">4 GB</option>
-                                <option id="8" value="8">8 GB</option>
-                                <option id="16" value="16">16 GB</option>
-                                <option id="32" value="32">32 GB</option>
-                                <option id="64" value="64">64 GB</option>
-                                <option id="128" value="128">128 GB</option>
-                                <option id="256" value="256">256 GB</option>
-                            </select>
-                        </div>
-        
-                        <!-- CATEGORY FIELD -->
-                        <div class="mb-3 w-75">
-                            <label class="form-label" for="memory_type">Memory Type:</label>
-                            <select id="memory_type" class="form-select" formControlName="memory_type">
-                                <option id="DDR3" value="DDR3">DDR3</option>
-                                <option id="DDR4" value="DDR4">DDR4</option>
-                                <option id="DDR5" value="DDR5">DDR5</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SEPARATOR -->
-                <div class="d-flex align-items-center w-100 mt-4">
-                    <div class="flex-grow-1 border-bottom border-2"></div>
-                    <h2 class="mx-3 mt-3 mb-4 text-center">Resume</h2>
-                    <div class="flex-grow-1 border-bottom border-2"></div>
-                </div>
-
-                <!-- RESUME BOX -->
-                <app-ramform-table [uploadForm]="uploadForm"/>
-
-                <!-- ERROR MESSAGE SECTION -->
-                @if (!uploadForm.valid) {
-                    <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
-                        <span class="fw-bold mx-auto">Please resolve the errors before submitting</span>
-                    </div>
-                }
-                @if (errorMessage) {
-                    <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
-                        <span class="fw-bold mx-auto">{{ errorMessage }}</span>
-                    </div>
-                }
-                    
-
-                <!-- BUTTONS -->
-                <div class="d-flex mx-auto w-50 mt-3">
-                    <div class="d-flex justify-content-center w-100 mt-3">
-                        <button class="btn btn-primary" type="submit" [disabled]="!uploadForm.valid">{{ submitButtonText }}</button>
-                    </div>
-                    <div class="d-flex justify-content-center w-100 mt-3">
-                        <button class="btn btn-warning" type="button" (click)="onReset()">Reset</button>
-                    </div>
-                    <div class="d-flex justify-content-center w-100 mt-3">
-                        <button class="btn text-white" type="button" style="background-color: #828282" (click)="onReturn()">Return</button>
-                    </div>
-                </div>
-                
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+            <!-- BRAND FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="memory">Memory:</label>
+                <select id="memory" class="form-select" formControlName="memory">
+                    <option id="4" value="4">4 GB</option>
+                    <option id="8" value="8">8 GB</option>
+                    <option id="16" value="16">16 GB</option>
+                    <option id="32" value="32">32 GB</option>
+                    <option id="64" value="64">64 GB</option>
+                    <option id="128" value="128">128 GB</option>
+                    <option id="256" value="256">256 GB</option>
+                </select>
             </div>
-        </form>
+
+            <!-- CATEGORY FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="memory_type">Memory Type:</label>
+                <select id="memory_type" class="form-select" formControlName="memory_type">
+                    <option id="DDR3" value="DDR3">DDR3</option>
+                    <option id="DDR4" value="DDR4">DDR4</option>
+                    <option id="DDR5" value="DDR5">DDR5</option>
+                </select>
+            </div>
+        </div>
     </div>
-} @else {
-    <app-loading-logo/>
-}
+</div>

@@ -2,9 +2,7 @@
     <div class="d-flex h-100 w-100">
         <div class="w-100 h-100 d-flex align-items-center justify-content-center">
             <div class="w-75">
-                @if (finalProduct?.category == 'ram'){
-                    <app-ramform [productData]="finalProduct"></app-ramform>
-                }
+                <app-productform [productData]="product"/>
             </div>
         </div>
     </div>
