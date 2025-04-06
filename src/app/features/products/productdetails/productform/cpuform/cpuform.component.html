@@ -1,0 +1,114 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- SOCKET FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="socket">Socket:</label>
+                <input class="form-control" id="socket" type="text" formControlName="socket">
+                <div class="text-danger">
+                    @if (uploadForm.controls['socket'].errors?.['required']) {
+                    <div>Socket is required.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- CORE COUNT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="core_count">Core Count:</label>
+                <select id="core_count" class="form-select" formControlName="core_count">
+                    <option id="1" value="1">1 Core</option>
+                    <option id="2" value="2">2 Cores</option>
+                    <option id="4" value="4">4 Cores</option>
+                    <option id="8" value="8">8 Cores</option>
+                    <option id="12" value="12">12 Cores</option>
+                    <option id="16" value="16">16 Cores</option>
+                </select>
+            </div>
+
+            <!-- THREAD COUNT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="thread_count">Thread Count:</label>
+                <select id="thread_count" class="form-select" formControlName="thread_count">
+                    <option id="1" value="1">1 Thread</option>
+                    <option id="2" value="2">2 Threads</option>
+                    <option id="4" value="4">4 Threads</option>
+                    <option id="8" value="8">8 Threads</option>
+                    <option id="12" value="12">12 Threads</option>
+                    <option id="16" value="16">16 Threads</option>
+                    <option id="24" value="24">24 Threads</option>
+                    <option id="32" value="32">32 Threads</option>
+                </select>
+            </div>
+
+            <!-- CONSUMPTION FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="consumption">Consumption:</label>
+                <input class="form-control" id="consumption" type="number" min="5" max="500" formControlName="consumption">
+                <div class="text-danger">
+                    @if (uploadForm.controls['consumption'].errors?.['required']) {
+                    <div>Consumption is required.</div>
+                    }
+                    @if (uploadForm.controls['consumption'].errors?.['min']) {
+                    <div>Consumption cannot be lower than 5.</div>
+                    }
+                    @if (uploadForm.controls['consumption'].errors?.['max']) {
+                    <div>Consumption cannot be higher than 300.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- INTEGRATED GRAPHICS CHECKBOX -->
+            <div class="mb-3 w-75">
+                <div class="d-flex align-items-center">
+                    <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox"
+                        id="integrated_graphics" formControlName="integrated_graphics" />
+                    <label class="form-label mt-2" for="integrated_graphics">Has integrated graphics</label>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+            <!-- BASE CLOCK FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="base_clock">Base clock speed (Mhz):</label>
+                <input class="form-control" id="base_clock" type="number" min="800" max="8000" formControlName="base_clock">
+                <div class="text-danger">
+                    @if (uploadForm.controls['base_clock'].errors?.['required']) {
+                    <div>Base clock speed is required.</div>
+                    }
+                    @if (uploadForm.controls['base_clock'].errors?.['min']) {
+                    <div>Base clock speed cannot be lower than 800.</div>
+                    }
+                    @if (uploadForm.controls['base_clock'].errors?.['max']) {
+                    <div>Base clock speed cannot be higher than 8000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- BOOST CLOCK FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="boost_clock">Boost clock speed (Mhz):</label>
+                <input class="form-control" id="boost_clock" type="number" min="800" max="8000" formControlName="boost_clock">
+                <div class="text-danger">
+                    @if (uploadForm.controls['boost_clock'].errors?.['required']) {
+                    <div>Boost clock speed is required.</div>
+                    }
+                    @if (uploadForm.controls['boost_clock'].errors?.['min']) {
+                    <div>Boost clock speed cannot be lower than 800.</div>
+                    }
+                    @if (uploadForm.controls['boost_clock'].errors?.['max']) {
+                    <div>Boost clock speed cannot be higher than 8000.</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

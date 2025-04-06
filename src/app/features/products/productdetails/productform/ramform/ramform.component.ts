@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RamProduct } from '../../../../models/products/RamProduct';
+import { RamProduct } from '../../../../../models/products/RamProduct';
 
 @Component({
   selector: 'app-ramform',
@@ -19,12 +19,12 @@ export class RamformComponent {
     ));
 
     this.uploadForm.addControl('memory', new FormControl(
-      this.productData?.memory || 0,
+      this.productData?.memory || 4,
       [Validators.required, Validators.max(256)]
     ));
 
     this.uploadForm.addControl('memory_type', new FormControl(
-      this.productData?.memory_type || '',
+      this.productData?.memory_type || 'DDR4',
       [Validators.required]
     ));
 

@@ -198,6 +198,9 @@
         @if(category == 'ram'){
             <app-ramform [productData]="productData" [uploadForm]="uploadForm" />
         }
+        @if(category == 'cpu'){
+            <app-cpuform [productData]="productData" [uploadForm]="uploadForm" />
+        }
 
         <!-- RESUME TABLE SEPARATOR -->
         <div class="d-flex align-items-center w-100 mt-4">
@@ -208,6 +211,9 @@
 
         @if(category == 'ram'){
             <app-ramform-table [uploadForm]="uploadForm"/>
+        }
+        @if(category == 'cpu'){
+            <app-cpuform-table [uploadForm]="uploadForm"/>
         }
 
         <!-- ERROR MESSAGE SECTION -->

@@ -3,12 +3,14 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../../services/product.service';
 import { formUtils } from '../../../../utils/productFormUtils';
-import { RamformTableComponent } from "../ramform/ramform-table/ramform-table.component";
-import { RamformComponent } from "../ramform/ramform.component";
+import { RamformComponent } from './ramform/ramform.component';
+import { RamformTableComponent } from './ramform/ramform-table/ramform-table.component';
+import { CpuformComponent } from './cpuform/cpuform.component';
+import { CpuformTableComponent } from "./cpuform/cpuform-table/cpuform-table.component";
 
 @Component({
   selector: 'app-productform',
-  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent],
+  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent],
   templateUrl: './productform.component.html',
   styleUrl: './productform.component.scss'
 })
@@ -23,16 +25,16 @@ export class ProductformComponent {
   selectedFile: File | null = null;
   errorMessage = '';
   id = null;
-  category: string = 'ram';
+  category: string | null = null;
   isLoading = false;
 
   constructor() {
     this.id = this.route.snapshot.params['id'] ?? null;
     this.submitButtonText = this.id ? 'Update' : 'Create';
-    this.category = this.productData?.category ? this.productData.category : 'ram';
   }
 
   ngOnInit() {
+    this.category = this.productData?.category ?? 'cpu';
     this.initForm();
     this.setupOfferDiscountLogic();
   }
@@ -41,7 +43,7 @@ export class ProductformComponent {
     this.uploadForm = new FormGroup({
       name: new FormControl(this.productData?.name || '', [Validators.required, Validators.maxLength(60)]),
       description: new FormControl(this.productData?.description || '', [Validators.required, Validators.maxLength(255)]),
-      category: new FormControl(this.productData?.category || 'ram', [Validators.required, Validators.maxLength(60)]),
+      category: new FormControl(this.productData?.category || 'cpu', [Validators.required, Validators.maxLength(60)]),
       model: new FormControl(this.productData?.model || '', [Validators.required, Validators.maxLength(60)]),
       brand: new FormControl(this.productData?.brand || '', [Validators.required, Validators.maxLength(60)]),
       price: new FormControl(this.productData?.price || 0, [Validators.required, Validators.min(1), Validators.max(99999)]),
