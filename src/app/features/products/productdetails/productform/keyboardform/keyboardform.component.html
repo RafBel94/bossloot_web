@@ -1,0 +1,92 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="type">Type:</label>
+                <select id="type" class="form-select" formControlName="type">
+                    <option id="Mechanical" [value]="'Mechanical'">Mechanical</option>
+                    <option id="Membrane" [value]="'Membrane'">Membrane</option>
+                    <option id="Hybrid" [value]="'Hybrid'">Hybrid</option>
+                </select>
+            </div>
+
+            <!-- SWITCH TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="switch_type">Switch type:</label>
+                <select id="switch_type" class="form-select" formControlName="switch_type">
+                    <option id="Red" [value]="'Red'">Red</option>
+                    <option id="Brown" [value]="'Brown'">Brown</option>
+                    <option id="Blue" [value]="'Blue'">Blue</option>
+                    <option id="Yellow" [value]="'Yellow'">Yellow</option>
+                </select>
+            </div>
+
+            <!-- WIDTH FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="width">Width (mm):</label>
+                <input class="form-control" id="width" type="number" min="250" max="450"
+                        formControlName="width">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['width'].errors?.['required']) {
+                        <div>Width is required.</div>
+                        }
+                        @if (uploadForm.controls['width'].errors?.['min']) {
+                        <div>Width cannot be lower than 250.</div>
+                        }
+                        @if (uploadForm.controls['width'].errors?.['max']) {
+                        <div>Width cannot be higher than 450.</div>
+                        }
+                    </div>
+            </div>
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- HEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="height">Height (mm):</label>
+                <input class="form-control" id="height" type="number" min="30" max="60"
+                    formControlName="height">
+                <div class="text-danger">
+                    @if (uploadForm.controls['height'].errors?.['required']) {
+                    <div>Height is required.</div>
+                    }
+                    @if (uploadForm.controls['height'].errors?.['min']) {
+                    <div>Height cannot be lower than 30.</div>
+                    }
+                    @if (uploadForm.controls['height'].errors?.['max']) {
+                    <div>Height cannot be higher than 60.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="weight">Weight (g):</label>
+                    <input class="form-control" id="weight" type="number" min="600" max="4000"
+                        formControlName="weight">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['weight'].errors?.['required']) {
+                        <div>Weight is required.</div>
+                        }
+                        @if (uploadForm.controls['weight'].errors?.['min']) {
+                        <div>Weight cannot be lower than 600.</div>
+                        }
+                        @if (uploadForm.controls['weight'].errors?.['max']) {
+                        <div>Weight cannot be higher than 4000.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

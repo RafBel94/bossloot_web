@@ -123,101 +123,38 @@
             <tr>
                 <td>
                     <div class="d-flex align-items-center">
-                        <span>Memory</span>
-                        @if (uploadForm.controls['memory'].errors) {
+                        <span>Type</span>
+                        @if (uploadForm.controls['type'].errors) {
                             <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
                         }
                     </div>
                 </td>
                 <td>
-                    @if(uploadForm.controls['memory'].errors?.['required']) {
-                        <span class="fw-bold text-danger">Memory is required</span>
-                    } @else if(uploadForm.controls['memory'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Memory cannot be lower than 2</span>
-                    } @else if(uploadForm.controls['memory'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Memory cannot be higher than 24</span>
+                    @if(uploadForm.controls['type'].errors?.['required']) {
+                        <span class="fw-bold text-danger">Type is required</span>
                     } @else {
-                        {{ uploadForm.get('memory')?.value }} GB
+                        {{ uploadForm.get('type')?.value }}
                     }
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="d-flex align-items-center">
-                        <span>Memory type</span>
-                        @if (uploadForm.controls['memory_type'].errors) {
+                        <span>Fan RPM</span>
+                        @if (uploadForm.controls['fan_rpm'].errors) {
                             <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
                         }
                     </div>
                 </td>
                 <td>
-                    @if(uploadForm.controls['memory_type'].errors?.['required']) {
-                        <span class="fw-bold text-danger">Memory type is required</span>
+                    @if(uploadForm.controls['fan_rpm'].errors?.['required']) {
+                        <span class="fw-bold text-danger">Fan RPM is required</span>
+                    } @else if(uploadForm.controls['fan_rpm'].errors?.['min']) {
+                        <span class="fw-bold text-danger">Fan RPM cannot be lower than 1000</span>
+                    } @else if(uploadForm.controls['fan_rpm'].errors?.['max']) {
+                        <span class="fw-bold text-danger">Fan RPM cannot be higher than 3000</span>
                     } @else {
-                        {{ uploadForm.get('memory_type')?.value }}
-                    }
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <span>Base clock speed</span>
-                        @if (uploadForm.controls['core_clock'].errors) {
-                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
-                        }
-                    </div>
-                </td>
-                <td>
-                    @if(uploadForm.controls['core_clock'].errors?.['required']) {
-                        <span class="fw-bold text-danger">Base clock speed is required</span>
-                    } @else if(uploadForm.controls['core_clock'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Base clock cannot be lower than 800</span>
-                    } @else if(uploadForm.controls['core_clock'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Base clock cannot be higher than 8000</span>
-                    } @else {
-                        {{ uploadForm.get('core_clock')?.value }} MHz
-                    }
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <span>Boost clock speed</span>
-                        @if (uploadForm.controls['boost_clock'].errors) {
-                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
-                        }
-                    </div>
-                </td>
-                <td>
-                    @if(uploadForm.controls['boost_clock'].errors?.['required']) {
-                        <span class="fw-bold text-danger">Boost speed is required</span>
-                    } @else if(uploadForm.controls['boost_clock'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Boost cannot be lower than 800</span>
-                    } @else if(uploadForm.controls['boost_clock'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Boost cannot be higher than 8000</span>
-                    } @else {
-                        {{ uploadForm.get('boost_clock')?.value }} MHz
-                    }
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <span>Length</span>
-                        @if (uploadForm.controls['length'].errors) {
-                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
-                        }
-                    </div>
-                </td>
-                <td>
-                    @if(uploadForm.controls['length'].errors?.['required']) {
-                        <span class="fw-bold text-danger">Length is required</span>
-                    } @else if(uploadForm.controls['length'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Length cannot be lower than 80</span>
-                    } @else if(uploadForm.controls['length'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Length cannot be higher than 400</span>
-                    } @else {
-                        {{ uploadForm.get('length')?.value }} mm
+                        {{ uploadForm.get('fan_rpm')?.value }} RPM
                     }
                 </td>
             </tr>
@@ -234,11 +171,70 @@
                     @if(uploadForm.controls['consumption'].errors?.['required']) {
                         <span class="fw-bold text-danger">Consumption is required</span>
                     } @else if(uploadForm.controls['consumption'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Consumption cannot be lower than 25</span>
+                        <span class="fw-bold text-danger">Consumption cannot be lower than 5</span>
                     } @else if(uploadForm.controls['consumption'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Consumption cannot be higher than 300</span>
+                        <span class="fw-bold text-danger">Consumption cannot be higher than 50</span>
                     } @else {
                         {{ uploadForm.get('consumption')?.value }} W
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <span>Socket support</span>
+                        @if (uploadForm.controls['socket_support'].errors) {
+                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
+                        }
+                    </div>
+                </td>
+                <td>
+                    @if(uploadForm.controls['socket_support'].errors?.['required']) {
+                        <span class="fw-bold text-danger">Socket support is required</span>
+                    } @else {
+                        {{ uploadForm.get('socket_support')?.value }}
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <span>Width</span>
+                        @if (uploadForm.controls['width'].errors) {
+                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
+                        }
+                    </div>
+                </td>
+                <td>
+                    @if(uploadForm.controls['width'].errors?.['required']) {
+                        <span class="fw-bold text-danger">Width is required</span>
+                    } @else if(uploadForm.controls['width'].errors?.['min']) {
+                        <span class="fw-bold text-danger">Width cannot be lower than 100</span>
+                    } @else if(uploadForm.controls['width'].errors?.['max']) {
+                        <span class="fw-bold text-danger">Width cannot be higher than 300</span>
+                    } @else {
+                        {{ uploadForm.get('width')?.value }} mm
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <span>Height</span>
+                        @if (uploadForm.controls['height'].errors) {
+                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
+                        }
+                    </div>
+                </td>
+                <td>
+                    @if(uploadForm.controls['height'].errors?.['required']) {
+                        <span class="fw-bold text-danger">Height is required</span>
+                    } @else if(uploadForm.controls['height'].errors?.['min']) {
+                        <span class="fw-bold text-danger">Height cannot be lower than 100</span>
+                    } @else if(uploadForm.controls['height'].errors?.['max']) {
+                        <span class="fw-bold text-danger">Height cannot be higher than 300</span>
+                    } @else {
+                        {{ uploadForm.get('height')?.value }} mm
                     }
                 </td>
             </tr>

@@ -314,6 +314,18 @@
         @if(category == 'case'){
         <app-caseform [productData]="productData" [uploadForm]="uploadForm" />
         }
+        @if(category == 'cooler'){
+        <app-coolerform [productData]="productData" [uploadForm]="uploadForm" />
+        }
+        @if(category == 'display'){
+        <app-displayform [productData]="productData" [uploadForm]="uploadForm" />
+        }
+        @if(category == 'keyboard'){
+        <app-keyboardform [productData]="productData" [uploadForm]="uploadForm" />
+        }
+        @if(category == 'mouse'){
+        <app-mouseform [productData]="productData" [uploadForm]="uploadForm" />
+        }
 
         <!-- RESUME TABLE SEPARATOR -->
         <div class="d-flex align-items-center w-100 mt-4">
@@ -342,6 +354,18 @@
         }
         @if(category == 'case'){
         <app-caseform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'cooler'){
+        <app-coolerform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'display'){
+        <app-displayform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'keyboard'){
+        <app-keyboardform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'mouse'){
+        <app-mouseform-table [uploadForm]="uploadForm" />
         }
 
         <!-- ERROR MESSAGE SECTION -->

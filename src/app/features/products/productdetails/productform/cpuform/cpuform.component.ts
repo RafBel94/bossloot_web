@@ -13,19 +13,21 @@ export class CpuformComponent {
   @Input() uploadForm!: FormGroup;
 
   ngOnInit() {
-    this.uploadForm.addControl('socket', new FormControl(this.productData?.socket || '', [Validators.required]));
+    this.uploadForm.addControl('socket', new FormControl(this.productData?.socket || 'AM4', [Validators.required]));
 
     this.uploadForm.addControl('core_count', new FormControl(this.productData?.core_count || 1, [Validators.required, Validators.min(1), Validators.max(16)]));
 
     this.uploadForm.addControl('thread_count', new FormControl(this.productData?.thread_count || 1, [Validators.required, Validators.min(1) , Validators.max(32)]));
 
-    this.uploadForm.addControl('base_clock', new FormControl(this.productData?.base_clock || 0, [Validators.required, Validators.min(800), Validators.max(8000)]));
+    this.uploadForm.addControl('base_clock', new FormControl(this.productData?.base_clock || 800, [Validators.required, Validators.min(800), Validators.max(8000)]));
 
-    this.uploadForm.addControl('boost_clock', new FormControl(this.productData?.boost_clock || 0, [Validators.required, Validators.min(800), Validators.max(8000)]));
+    this.uploadForm.addControl('boost_clock', new FormControl(this.productData?.boost_clock || 800, [Validators.required, Validators.min(800), Validators.max(8000)]));
 
-    this.uploadForm.addControl('consumption', new FormControl(this.productData?.consumption || 0, [Validators.required, Validators.min(5), Validators.max(500)]));
+    this.uploadForm.addControl('consumption', new FormControl(this.productData?.consumption || 45, [Validators.required, Validators.min(5), Validators.max(500)]));
 
     this.uploadForm.addControl('integrated_graphics', new FormControl(this.productData?.integrated_graphics || false, [Validators.required]));
+
+    this.setupSocketDropdownLogic();
   }
 
   ngOnDestroy() {
@@ -37,4 +39,18 @@ export class CpuformComponent {
     this.uploadForm.removeControl('consumption');
     this.uploadForm.removeControl('integrated_graphics');
   }
+
+  setupSocketDropdownLogic() {
+    const socketControl = this.uploadForm.get('socket')!;
+    const brandControl = this.uploadForm.get('brand')!;
+
+    brandControl.valueChanges.subscribe((selectedBrand: string) => {
+      if (selectedBrand === 'AMD') {
+        socketControl.setValue('AM4');
+      } else if (selectedBrand === 'Intel') {
+        socketControl.setValue('LGA1200');
+      }
+    });
+  }
 }
+

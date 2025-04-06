@@ -1,0 +1,197 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- RESOLUTION FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="resolution">Resolution:</label>
+                <select id="resolution" class="form-select" formControlName="resolution">
+                    <option [value]="'1920x1080'">1920x1080</option>
+                    <option [value]="'2560x1440'">2560x1440</option>
+                    <option [value]="'3440x1440'">3440x1440</option>
+                    <option [value]="'3840x2160'">3840x2160</option>
+                </select>
+            </div>
+
+            <!-- REFRESH RATE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="refresh_rate">Refresh rate:</label>
+                <select id="refresh_rate" class="form-select" formControlName="refresh_rate">
+                    <option id="30" [value]="30">30 </option>
+                    <option id="60" [value]="60">60</option>
+                    <option id="90" [value]="90">90</option>
+                    <option id="120" [value]="120">120</option>
+                    <option id="144" [value]="144">144</option>
+                    <option id="165" [value]="165">165</option>
+                    <option id="240" [value]="240">240</option>
+                </select>
+            </div>
+
+            <!-- RESPONSE TIME FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="response_time">Response time (Hz):</label>
+                <input class="form-control" id="response_time" type="number" min="1" max="10"
+                    formControlName="response_time">
+                <div class="text-danger">
+                    @if (uploadForm.controls['response_time'].errors?.['required']) {
+                    <div>Response time is required.</div>
+                    }
+                    @if (uploadForm.controls['response_time'].errors?.['min']) {
+                    <div>Response time cannot be lower than 1.</div>
+                    }
+                    @if (uploadForm.controls['response_time'].errors?.['max']) {
+                    <div>Response time cannot be higher than 10.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- PANEL TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="panel_type">Panel type:</label>
+                <select id="panel_type" class="form-select" formControlName="panel_type">
+                    <option id="IPS" [value]="'IPS'">IPS</option>
+                    <option id="VA" [value]="'VA'">VA</option>
+                    <option id="OLED" [value]="'OLED'">OLED</option>
+                </select>
+            </div>
+
+            <!-- ASPECT RATIO FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="aspect_ratio">Aspect ratio:</label>
+                <select id="aspect_ratio" class="form-select" formControlName="aspect_ratio">
+                    <option id="16:9" [value]="'16:9'">16:9</option>
+                    <option id="21:9" [value]="'21:9'">21:9</option>
+                    <option id="32:9" [value]="'32:9'">32:9</option>
+                </select>
+            </div>
+
+            <!-- BRIGHTNESS FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="brightness">Brightness:</label>
+                <input class="form-control" id="brightness" type="number" min="100" max="1000"
+                    formControlName="brightness">
+                <div class="text-danger">
+                    @if (uploadForm.controls['brightness'].errors?.['required']) {
+                    <div>Brightness is required.</div>
+                    }
+                    @if (uploadForm.controls['brightness'].errors?.['min']) {
+                    <div>Brightness cannot be lower than 100.</div>
+                    }
+                    @if (uploadForm.controls['brightness'].errors?.['max']) {
+                    <div>Brightness cannot be higher than 1000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- CURVED CHECKBOX -->
+            <div class="mb-3 w-75">
+                <div class="d-flex align-items-center">
+                    <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox"
+                        id="curved" formControlName="curved" />
+                    <label class="form-label mt-2" for="curved">Curved</label>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- CONTRAST RATIO FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="contrast_ratio">Contrast ratio:</label>
+                <select id="contrast_ratio" class="form-select" formControlName="contrast_ratio">
+                    <option id="1000:1" [value]="'1000:1'">1000:1</option>
+                    <option id="3000:1" [value]="'3000:1'">3000:1</option>
+                </select>
+            </div>
+
+            <!-- SYNC TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="sync_type">Sync type:</label>
+                <select id="sync_type" class="form-select" formControlName="sync_type">
+                    <option id="G-Sync" [value]="'G-Sync'">G-Sync</option>
+                    <option id="FreeSync" [value]="'FreeSync'">FreeSync</option>
+                    <option id="V-Sync" [value]="'V-Sync'">V-Sync</option>
+                </select>
+            </div>
+
+            <!-- HDMI PORTS FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="hdmi_ports">HDMI ports:</label>
+                <input class="form-control" id="hdmi_ports" type="number" min="1" max="5"
+                    formControlName="hdmi_ports">
+                <div class="text-danger">
+                    @if (uploadForm.controls['hdmi_ports'].errors?.['required']) {
+                    <div>HDMI ports is required.</div>
+                    }
+                    @if (uploadForm.controls['hdmi_ports'].errors?.['min']) {
+                    <div>HDMI ports cannot be lower than 1.</div>
+                    }
+                    @if (uploadForm.controls['hdmi_ports'].errors?.['max']) {
+                    <div>HDMI ports cannot be higher than 5.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- DISPLAY PORTS FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="display_ports">Display ports:</label>
+                <input class="form-control" id="display_ports" type="number" min="1" max="5"
+                    formControlName="display_ports">
+                <div class="text-danger">
+                    @if (uploadForm.controls['display_ports'].errors?.['required']) {
+                    <div>Display ports is required.</div>
+                    }
+                    @if (uploadForm.controls['display_ports'].errors?.['min']) {
+                    <div>Display ports cannot be lower than 1.</div>
+                    }
+                    @if (uploadForm.controls['display_ports'].errors?.['max']) {
+                    <div>Display ports cannot be higher than 5.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- INCHES FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="inches">Inches:</label>
+                <input class="form-control" id="inches" type="number" min="10" max="50"
+                    formControlName="inches">
+                <div class="text-danger">
+                    @if (uploadForm.controls['inches'].errors?.['required']) {
+                    <div>Inches is required.</div>
+                    }
+                    @if (uploadForm.controls['inches'].errors?.['min']) {
+                    <div>Inches cannot be lower than 10.</div>
+                    }
+                    @if (uploadForm.controls['inches'].errors?.['max']) {
+                    <div>Inches cannot be higher than 50.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="weight">Weight (Kg):</label>
+                <input class="form-control" id="weight" type="number" min="1" max="20"
+                    formControlName="weight">
+                <div class="text-danger">
+                    @if (uploadForm.controls['weight'].errors?.['required']) {
+                    <div>Weight is required.</div>
+                    }
+                    @if (uploadForm.controls['weight'].errors?.['min']) {
+                    <div>Weight cannot be lower than 1.</div>
+                    }
+                    @if (uploadForm.controls['weight'].errors?.['max']) {
+                    <div>Weight cannot be higher than 20.</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

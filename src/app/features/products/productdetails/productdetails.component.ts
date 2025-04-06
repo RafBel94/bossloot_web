@@ -77,7 +77,7 @@ export class ProductdetailsComponent {
       case 'display':
         return new DisplayProduct(product.name,product.description,product.category,product.model,product.brand,product.price,product.quantity,product.on_offer,product.discount,product.featured,product.image,product.specs.resolution,product.specs.refresh_rate,product.specs.response_time,product.specs.panel_type,product.specs.aspect_ratio,product.specs.curved,product.specs.brightness,product.specs.contrast_ratio,product.specs.sync_type,product.specs.hdmi_ports,product.specs.display_ports,product.specs.inches,product.specs.weight);
       case 'keyboard':
-        return new KeyboardProduct(product.name,product.description,product.category,product.model,product.brand,product.price,product.quantity,product.on_offer,product.discount,product.featured,product.image,product.specs.switch_type,product.specs.width,product.specs.height,product.specs.weight);
+        return new KeyboardProduct(product.name,product.description,product.category,product.model,product.brand,product.price,product.quantity,product.on_offer,product.discount,product.featured,product.image,product.specs.type,product.specs.switch_type,product.specs.width,product.specs.height,product.specs.weight);
       case 'mouse':
         return new MouseProduct(product.name, product.description, product.category, product.model, product.brand, product.price, product.quantity, product.on_offer, product.discount, product.featured, product.image, product.specs.dpi, product.specs.sensor, product.specs.buttons, product.specs.bluetooth, product.specs.weight);
       case 'cooler':

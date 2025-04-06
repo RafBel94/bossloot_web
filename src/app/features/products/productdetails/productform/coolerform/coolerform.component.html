@@ -1,0 +1,115 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="type">Type:</label>
+                <select id="type" class="form-select" formControlName="type">
+                    <option id="Air" [value]="'Air'">Air</option>
+                    <option id="Liquid" [value]="'Liquid'">Liquid</option>
+                </select>
+            </div>
+
+            <!-- FAN RPM FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="fan_rpm">Fan RPM:</label>
+                <input class="form-control" id="fan_rpm" type="number" min="1000" max="3000" formControlName="fan_rpm">
+                <div class="text-danger">
+                    @if (uploadForm.controls['fan_rpm'].errors?.['required']) {
+                    <div>Fan RPM is required.</div>
+                    }
+                    @if (uploadForm.controls['fan_rpm'].errors?.['min']) {
+                    <div>Fan RPM cannot be lower than 1000.</div>
+                    }
+                    @if (uploadForm.controls['fan_rpm'].errors?.['max']) {
+                    <div>Fan RPM cannot be higher than 3000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- SOCKET SUPPORT FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="rpm">Socket support:</label>
+                    <select id="socket_support" class="form-select" formControlName="socket_support">
+                        <option id="AM4" [value]="'AM4'">AM4</option>
+                        <option id="AM5" [value]="'AM5'">AM5</option>
+                        <option id="SP3" [value]="'SP3'">SP3</option>
+                        <option id="SP5" [value]="'SP5'">SP5</option>
+                        <option id="LGA1200" [value]="'LGA1200'">LGA1200</option>
+                        <option id="LGA1700" [value]="'LGA1700'">LGA1700</option>
+                        <option id="LGA2066" [value]="'LGA2066'">LGA2066</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- CONSUMPTION FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="consumption">Consumption (W):</label>
+                <input class="form-control" id="consumption" type="number" min="5" max="50"
+                    formControlName="consumption">
+                <div class="text-danger">
+                    @if (uploadForm.controls['consumption'].errors?.['required']) {
+                    <div>Consumption is required.</div>
+                    }
+                    @if (uploadForm.controls['consumption'].errors?.['min']) {
+                    <div>Consumption cannot be lower than 5.</div>
+                    }
+                    @if (uploadForm.controls['consumption'].errors?.['max']) {
+                    <div>Consumption cannot be higher than 50.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WIDTH FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="width">Width (mm):</label>
+                    <input class="form-control" id="width" type="number" min="100" max="300"
+                        formControlName="width">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['width'].errors?.['required']) {
+                        <div>Width is required.</div>
+                        }
+                        @if (uploadForm.controls['width'].errors?.['min']) {
+                        <div>Width cannot be lower than 100.</div>
+                        }
+                        @if (uploadForm.controls['width'].errors?.['max']) {
+                        <div>Width cannot be higher than 300.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- HEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="height">Height (mm):</label>
+                    <input class="form-control" id="height" type="number" min="100" max="300"
+                        formControlName="height">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['height'].errors?.['required']) {
+                        <div>Height is required.</div>
+                        }
+                        @if (uploadForm.controls['height'].errors?.['min']) {
+                        <div>Height cannot be lower than 100.</div>
+                        }
+                        @if (uploadForm.controls['height'].errors?.['max']) {
+                        <div>Height cannot be higher than 300.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

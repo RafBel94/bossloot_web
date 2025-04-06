@@ -35,13 +35,13 @@
             <!-- LENGTH FIELD -->
             <div class="mb-3 w-75">
                 <label class="form-label" for="length">Length (mm):</label>
-                <input class="form-control" id="length" type="number" min="30" max="400" formControlName="length">
+                <input class="form-control" id="length" type="number" min="80" max="400" formControlName="length">
                 <div class="text-danger">
                     @if (uploadForm.controls['length'].errors?.['required']) {
                     <div>Length is required.</div>
                     }
                     @if (uploadForm.controls['length'].errors?.['min']) {
-                    <div>Length cannot be lower than 30.</div>
+                    <div>Length cannot be lower than 80.</div>
                     }
                     @if (uploadForm.controls['length'].errors?.['max']) {
                     <div>Length cannot be higher than 400.</div>
@@ -92,13 +92,13 @@
             <!-- CONSUMPTION FIELD -->
             <div class="mb-3 w-75">
                 <label class="form-label" for="consumption">Consumption (W):</label>
-                <input class="form-control" id="consumption" type="number" min="5" max="500" formControlName="consumption">
+                <input class="form-control" id="consumption" type="number" min="25" max="500" formControlName="consumption">
                 <div class="text-danger">
                     @if (uploadForm.controls['consumption'].errors?.['required']) {
                     <div>Consumption is required.</div>
                     }
                     @if (uploadForm.controls['consumption'].errors?.['min']) {
-                    <div>Consumption cannot be lower than 5.</div>
+                    <div>Consumption cannot be lower than 25.</div>
                     }
                     @if (uploadForm.controls['consumption'].errors?.['max']) {
                     <div>Consumption cannot be higher than 300.</div>

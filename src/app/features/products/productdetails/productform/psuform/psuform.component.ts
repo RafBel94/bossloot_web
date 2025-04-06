@@ -15,7 +15,7 @@ export class PsuformComponent {
   ngOnInit() {
     this.uploadForm.addControl('efficiency_rating', new FormControl(this.productData?.efficiency_rating || '80+ Bronze', [Validators.required]));
 
-    this.uploadForm.addControl('wattage', new FormControl(this.productData?.wattage || 0, [Validators.required, Validators.min(100), Validators.max(1500)]));
+    this.uploadForm.addControl('wattage', new FormControl(this.productData?.wattage || 100, [Validators.required, Validators.min(100), Validators.max(1500)]));
 
     this.uploadForm.addControl('modular', new FormControl(this.productData?.modular || false, [Validators.required]));
 

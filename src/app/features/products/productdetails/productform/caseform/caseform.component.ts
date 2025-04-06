@@ -31,9 +31,9 @@ export class CaseformComponent {
 
     this.uploadForm.addControl('depth', new FormControl(this.productData?.depth || 180, [Validators.required, Validators.min(150), Validators.max(300)]));
 
-    this.uploadForm.addControl('width', new FormControl(this.productData?.width || 210, [Validators.required, Validators.min(300), Validators.max(800)]));
+    this.uploadForm.addControl('width', new FormControl(this.productData?.width || 300, [Validators.required, Validators.min(300), Validators.max(800)]));
 
-    this.uploadForm.addControl('height', new FormControl(this.productData?.height || 120, [Validators.required, Validators.min(300), Validators.max(800)]));
+    this.uploadForm.addControl('height', new FormControl(this.productData?.height || 300, [Validators.required, Validators.min(300), Validators.max(800)]));
 
     this.uploadForm.addControl('weight', new FormControl(this.productData?.weight || 7, [Validators.required, Validators.min(2), Validators.max(20)]));
   }

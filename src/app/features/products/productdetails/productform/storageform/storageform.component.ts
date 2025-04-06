@@ -15,13 +15,13 @@ export class StorageformComponent {
   ngOnInit() {
     this.uploadForm.addControl('type', new FormControl(this.productData?.type || 'SSD', [Validators.required]));
 
-    this.uploadForm.addControl('capacity', new FormControl(this.productData?.capacity || 0, [Validators.required, Validators.min(120), Validators.max(32000)]));
+    this.uploadForm.addControl('capacity', new FormControl(this.productData?.capacity || 120, [Validators.required, Validators.min(120), Validators.max(32000)]));
 
     this.uploadForm.addControl('rpm', new FormControl(this.productData?.rpm || 0, [Validators.min(0), Validators.max(7200)]));
 
-    this.uploadForm.addControl('read_speed', new FormControl(this.productData?.read_speed || 0, [Validators.required, Validators.min(100), Validators.max(14000)]));
+    this.uploadForm.addControl('read_speed', new FormControl(this.productData?.read_speed || 3000, [Validators.required, Validators.min(100), Validators.max(14000)]));
 
-    this.uploadForm.addControl('write_speed', new FormControl(this.productData?.write_speed || 0, [Validators.required, Validators.min(100), Validators.max(12000)]));
+    this.uploadForm.addControl('write_speed', new FormControl(this.productData?.write_speed || 2000, [Validators.required, Validators.min(100), Validators.max(12000)]));
 
     this.setupRPMLogic();
   }

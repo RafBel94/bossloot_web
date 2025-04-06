@@ -1,0 +1,87 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- DPI FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="dpi">DPI:</label>
+                <input class="form-control" id="dpi" type="number" min="600" max="20000" formControlName="dpi">
+                <div class="text-danger">
+                    @if (uploadForm.controls['dpi'].errors?.['required']) {
+                    <div>DPI is required.</div>
+                    }
+                    @if (uploadForm.controls['dpi'].errors?.['min']) {
+                    <div>DPI cannot be lower than 600.</div>
+                    }
+                    @if (uploadForm.controls['dpi'].errors?.['max']) {
+                    <div>DPI cannot be higher than 20000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- SENSOR FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="sensor">Sensor:</label>
+                <select id="sensor" class="form-select" formControlName="sensor">
+                    <option id="Optical" [value]="'Optical'">Optical</option>
+                    <option id="Laser" [value]="'Laser'">Laser</option>
+                </select>
+            </div>
+
+            <!-- BLUETOOTH CHECKBOX -->
+            <div class="mb-3 w-75">
+                <div class="d-flex align-items-center">
+                    <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox"
+                        id="bluetooth" formControlName="bluetooth" />
+                    <label class="form-label mt-2" for="bluetooth">Wireless</label>
+                </div>
+            </div>
+            
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- BUTTONS FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="buttons">Buttons:</label>
+                <input class="form-control" id="buttons" type="number" min="2" max="20" formControlName="buttons">
+                <div class="text-danger">
+                    @if (uploadForm.controls['buttons'].errors?.['required']) {
+                    <div>Buttons is required.</div>
+                    }
+                    @if (uploadForm.controls['buttons'].errors?.['min']) {
+                    <div>Buttons cannot be lower than 2.</div>
+                    }
+                    @if (uploadForm.controls['buttons'].errors?.['max']) {
+                    <div>Buttons cannot be higher than 20.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="weight">Weight (g):</label>
+                    <input class="form-control" id="weight" type="number" min="50" max="150" formControlName="weight">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['weight'].errors?.['required']) {
+                        <div>Weight is required.</div>
+                        }
+                        @if (uploadForm.controls['weight'].errors?.['min']) {
+                        <div>Weight cannot be lower than 50.</div>
+                        }
+                        @if (uploadForm.controls['weight'].errors?.['max']) {
+                        <div>Weight cannot be higher than 150.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -154,7 +154,7 @@
                     } @else if(uploadForm.controls['capacity'].errors?.['max']) {
                         <span class="fw-bold text-danger">Capacity cannot be higher than 32000</span>
                     } @else {
-                        {{ uploadForm.get('latency')?.value }} GB
+                        {{ uploadForm.get('capacity')?.value }} GB
                     }
                 </td>
             </tr>
