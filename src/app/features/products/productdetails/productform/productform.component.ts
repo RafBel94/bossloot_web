@@ -7,10 +7,14 @@ import { RamformComponent } from './ramform/ramform.component';
 import { RamformTableComponent } from './ramform/ramform-table/ramform-table.component';
 import { CpuformComponent } from './cpuform/cpuform.component';
 import { CpuformTableComponent } from "./cpuform/cpuform-table/cpuform-table.component";
+import { GpuformComponent } from './gpuform/gpuform.component';
+import { GpuformTableComponent } from './gpuform/gpuform-table/gpuform-table.component';
+import { MotherboardformComponent } from "./motherboardform/motherboardform.component";
+import { MotherboardformTableComponent } from "./motherboardform/motherboardform-table/motherboardform-table.component";
 
 @Component({
   selector: 'app-productform',
-  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent],
+  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent, GpuformComponent, GpuformTableComponent, MotherboardformComponent, MotherboardformTableComponent],
   templateUrl: './productform.component.html',
   styleUrl: './productform.component.scss'
 })

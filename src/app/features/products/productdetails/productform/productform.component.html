@@ -59,22 +59,120 @@
                 <!-- BRAND FIELD -->
                 <div class="mb-3 w-75">
                     <label class="form-label" for="brand">Brand:</label>
-                    <input class="form-control" id="brand" type="text" formControlName="brand">
-                    <div class="text-danger">
-                        @if (uploadForm.controls['brand'].errors?.['required']) {
-                        <div>Brand is required.</div>
+                    <select id="brand" class="form-select" formControlName="brand">
+                        @if(category == 'ram'){
+                            <option value="corsair">Corsair</option>
+                            <option value="kingston">Kingston</option>
+                            <option value="crucial">Crucial</option>
+                            <option value="gskill">G.Skill</option>
+                            <option value="adata">ADATA</option>
+                            <option value="patriot">Patriot</option>
+                            <option value="hyperx">HyperX</option>
                         }
-                        @if (uploadForm.controls['brand'].errors?.['maxlength']) {
-                        <div>Brand cannot be longer than 60 characters.</div>
+                        @if(category == 'cpu'){
+                            <option value="amd">AMD</option>
+                            <option value="intel">Intel</option>
                         }
-                    </div>
+                        @if(category == 'gpu'){
+                            <option value="amd">AMD</option>
+                            <option value="nvidia">NVidia</option>
+                            <option value="intel">Intel</option>
+                            <option value="msi">MSI</option>
+                            <option value="asus">ASUS</option>
+                            <option value="gigabyte">GIGABYTE</option>
+                            <option value="zotac">Zotac</option>
+                            <option value="pny">PNY</option>
+                            <option value="asrock">ASRock</option>
+                            <option value="sapphire">Sapphire</option>
+                            <option value="powercolor">Powercolor</option>
+                        }
+                        @if(category == 'motherboard'){
+                            <option value="msi">MSI</option>
+                            <option value="asus">ASUS</option>
+                            <option value="gigabyte">GIGABYTE</option>
+                            <option value="asrock">ASRock</option>
+                        }
+                        @if(category == 'psu'){
+                            <option value="corsair">Corsair</option>
+                            <option value="seasonic">Seasonic</option>
+                            <option value="evga">EVGA</option>
+                            <option value="bequiet">Be quiet!</option>
+                            <option value="nzxt">NZXT</option>
+                            <option value="coolermaster">Cooler Master</option>
+                            <option value="thermaltake">Thermaltake</option>
+                            <option value="msi">MSI</option>
+                            <option value="silverstone">SilverStone</option>
+                            <option value="gigabyte">Gigabyte</option>
+                            <option value="deepcool">Deepcool</option>
+                        }
+                        @if(category == 'case'){
+                            <option value="corsair">Corsair</option>
+                            <option value="nzxt">NZXT</option>
+                            <option value="coolermaster">Cooler Master</option>
+                            <option value="thermaltake">Thermaltake</option>
+                            <option value="antec">Antec</option>
+                            <option value="silverstone">SilverStone</option>
+                            <option value="deepcool">Deepcool</option>
+                            <option value="msi">MSI</option>
+                            <option value="asus">ASUS</option>
+                            <option value="aerocool">Aerocool</option>
+                        }
+                        @if(category == 'cooler'){
+                            <option value="noctua">Noctua</option>
+                            <option value="corsair">Corsair</option>
+                            <option value="nzxt">NZXT</option>
+                            <option value="coolermaster">Cooler Master</option>
+                            <option value="bequiet">Be Quiet!</option>
+                            <option value="arctic">Arctic</option>
+                            <option value="thermaltake">Thermaltake</option>
+                            <option value="deepcool">Deepcool</option>
+                        }
+                        @if(category == 'display'){
+                            <option value="samsung">Samsung</option>
+                            <option value="lg">LG</option>
+                            <option value="dell">Dell</option>
+                            <option value="asus">ASUS</option>
+                            <option value="acer">Acer</option>
+                            <option value="hp">HP</option>
+                            <option value="benq">BenQ</option>
+                            <option value="msi">MSI</option>
+                            <option value="gigabyte">Gigabyte</option>
+                            <option value="philips">Philips</option>
+                            <option value="aoc">AOC</option>
+                            <option value="lenovo">Lenovo</option>
+                        }
+                        @if(category == 'storage'){
+                            <option value="samsung">Samsung</option>
+                            <option value="western-digital">Western Digital</option>
+                            <option value="crucial">Crucial</option>
+                            <option value="sk-hynix">SK Hynix</option>
+                            <option value="kingston">Kingston</option>
+                            <option value="seagate">Seagate</option>
+                            <option value="corsair">Corsair</option>
+                            <option value="adata">ADATA</option>
+                            <option value="sabrent">Sabrent</option>
+                            <option value="pny">PNY</option>
+                            <option value="lexar">Lexar</option>
+                        }
+                        @if(category == 'keyboard' || category == 'mouse'){
+                            <option value="corsair">Corsair</option>
+                            <option value="logitech">Logitech</option>
+                            <option value="razer">Razer</option>
+                            <option value="steelseries">SteelSeries</option>
+                            <option value="glorious">Glorious PC Gaming Race</option>
+                            <option value="keychron">Keychron</option>
+                            <option value="hyperx">HyperX</option>
+                            <option value="fnatic">Fnatic</option>
+                        }
+                    </select>
                 </div>
 
                 <!-- CATEGORY DROPDOWN -->
                 @if (!productData){
                 <div class="mb-3 w-75">
                     <label class="form-label" for="category">Category:</label>
-                    <select class="form-select" id="category" type="text" formControlName="category" (change)="onCategoryChange($event)">
+                    <select class="form-select" id="category" type="text" formControlName="category"
+                        (change)="onCategoryChange($event)">
                         <option id="cpu" value="cpu">Processing Unit</option>
                         <option id="ram" value="ram">RAM</option>
                         <option id="gpu" value="gpu">Graphics Card</option>
@@ -196,10 +294,16 @@
 
         <!-- SPECIFICATIONS COMPONENT -->
         @if(category == 'ram'){
-            <app-ramform [productData]="productData" [uploadForm]="uploadForm" />
+        <app-ramform [productData]="productData" [uploadForm]="uploadForm" />
         }
         @if(category == 'cpu'){
-            <app-cpuform [productData]="productData" [uploadForm]="uploadForm" />
+        <app-cpuform [productData]="productData" [uploadForm]="uploadForm" />
+        }
+        @if(category == 'gpu'){
+        <app-gpuform [productData]="productData" [uploadForm]="uploadForm" />
+        }
+        @if(category == 'motherboard'){
+        <app-motherboardform [productData]="productData" [uploadForm]="uploadForm" />
         }
 
         <!-- RESUME TABLE SEPARATOR -->
@@ -210,10 +314,16 @@
         </div>
 
         @if(category == 'ram'){
-            <app-ramform-table [uploadForm]="uploadForm"/>
+        <app-ramform-table [uploadForm]="uploadForm" />
         }
         @if(category == 'cpu'){
-            <app-cpuform-table [uploadForm]="uploadForm"/>
+        <app-cpuform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'gpu'){
+        <app-gpuform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'motherboard'){
+        <app-motherboardform-table [uploadForm]="uploadForm" />
         }
 
         <!-- ERROR MESSAGE SECTION -->

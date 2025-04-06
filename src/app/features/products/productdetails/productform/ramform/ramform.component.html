@@ -8,7 +8,7 @@
 
             <!-- SPEED FIELD -->
             <div class="mb-3 w-75">
-                <label class="form-label" for="speed">Speed:</label>
+                <label class="form-label" for="speed">Speed (MHz):</label>
                 <input class="form-control" id="speed" type="number" min="800" max="6000" formControlName="speed">
                 <div class="text-danger">
                     @if (uploadForm.controls['speed'].errors?.['required']) {
@@ -25,7 +25,7 @@
 
             <!-- LATENCY FIELD -->
             <div class="mb-3 w-75">
-                <label class="form-label" for="latency">Latency:</label>
+                <label class="form-label" for="latency">Latency (CL):</label>
                 <input class="form-control" id="latency" type="number" min="7" max="40" formControlName="latency">
                 <div class="text-danger">
                     @if (uploadForm.controls['latency'].errors?.['required']) {

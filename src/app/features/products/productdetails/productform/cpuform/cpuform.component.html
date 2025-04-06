@@ -9,12 +9,18 @@
             <!-- SOCKET FIELD -->
             <div class="mb-3 w-75">
                 <label class="form-label" for="socket">Socket:</label>
-                <input class="form-control" id="socket" type="text" formControlName="socket">
-                <div class="text-danger">
-                    @if (uploadForm.controls['socket'].errors?.['required']) {
-                    <div>Socket is required.</div>
+                <select id="socket" class="form-select" formControlName="socket">
+                    @if(uploadForm.controls['brand'].value == 'AMD'){
+                        <option value="AM4">AM4</option>
+                        <option value="AM5">AM5</option>
+                        <option value="SP3">SP3</option>
+                        <option value="SP5">SP5</option>
+                    } @else {
+                        <option value="LGA1200">LGA1200</option>
+                        <option value="LGA1700">LGA1700</option>
+                        <option value="LGA2066">LGA2066</option>
                     }
-                </div>
+                </select>
             </div>
 
             <!-- CORE COUNT FIELD -->
@@ -47,8 +53,9 @@
 
             <!-- CONSUMPTION FIELD -->
             <div class="mb-3 w-75">
-                <label class="form-label" for="consumption">Consumption:</label>
-                <input class="form-control" id="consumption" type="number" min="5" max="500" formControlName="consumption">
+                <label class="form-label" for="consumption">Consumption (W):</label>
+                <input class="form-control" id="consumption" type="number" min="5" max="500"
+                    formControlName="consumption">
                 <div class="text-danger">
                     @if (uploadForm.controls['consumption'].errors?.['required']) {
                     <div>Consumption is required.</div>
@@ -79,7 +86,8 @@
             <!-- BASE CLOCK FIELD -->
             <div class="mb-3 w-75">
                 <label class="form-label" for="base_clock">Base clock speed (Mhz):</label>
-                <input class="form-control" id="base_clock" type="number" min="800" max="8000" formControlName="base_clock">
+                <input class="form-control" id="base_clock" type="number" min="800" max="8000"
+                    formControlName="base_clock">
                 <div class="text-danger">
                     @if (uploadForm.controls['base_clock'].errors?.['required']) {
                     <div>Base clock speed is required.</div>
@@ -96,7 +104,8 @@
             <!-- BOOST CLOCK FIELD -->
             <div class="mb-3 w-75">
                 <label class="form-label" for="boost_clock">Boost clock speed (Mhz):</label>
-                <input class="form-control" id="boost_clock" type="number" min="800" max="8000" formControlName="boost_clock">
+                <input class="form-control" id="boost_clock" type="number" min="800" max="8000"
+                    formControlName="boost_clock">
                 <div class="text-danger">
                     @if (uploadForm.controls['boost_clock'].errors?.['required']) {
                     <div>Boost clock speed is required.</div>

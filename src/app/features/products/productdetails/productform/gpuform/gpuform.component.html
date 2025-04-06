@@ -1,0 +1,110 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- MEMORY FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="memory">Memory (GB):</label>
+                <input class="form-control" id="memory" type="number" min="2" max="24" formControlName="memory">
+                <div class="text-danger">
+                    @if (uploadForm.controls['memory'].errors?.['required']) {
+                    <div>Memory is required.</div>
+                    }
+                    @if (uploadForm.controls['memory'].errors?.['min']) {
+                    <div>Memory cannot be lower than 2.</div>
+                    }
+                    @if (uploadForm.controls['memory'].errors?.['max']) {
+                    <div>Memory cannot be higher than 24.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- MEMORY TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="memory_type">Memory type:</label>
+                <select id="memory_type" class="form-select" formControlName="memory_type">
+                    <option id="GDDR5" value="GDDR5">GDDR5</option>
+                    <option id="GDDR6" value="GDDR6">GDDR6</option>
+                </select>
+            </div>
+
+            <!-- LENGTH FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="length">Length (mm):</label>
+                <input class="form-control" id="length" type="number" min="30" max="400" formControlName="length">
+                <div class="text-danger">
+                    @if (uploadForm.controls['length'].errors?.['required']) {
+                    <div>Length is required.</div>
+                    }
+                    @if (uploadForm.controls['length'].errors?.['min']) {
+                    <div>Length cannot be lower than 30.</div>
+                    }
+                    @if (uploadForm.controls['length'].errors?.['max']) {
+                    <div>Length cannot be higher than 400.</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+            <!-- BASE CLOCK FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="core_clock">Base clock speed (Mhz):</label>
+                <input class="form-control" id="core_clock" type="number" min="800" max="8000"
+                    formControlName="core_clock">
+                <div class="text-danger">
+                    @if (uploadForm.controls['core_clock'].errors?.['required']) {
+                    <div>Base clock speed is required.</div>
+                    }
+                    @if (uploadForm.controls['core_clock'].errors?.['min']) {
+                    <div>Base clock speed cannot be lower than 800.</div>
+                    }
+                    @if (uploadForm.controls['core_clock'].errors?.['max']) {
+                    <div>Base clock speed cannot be higher than 8000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- BOOST CLOCK FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="boost_clock">Boost clock speed (Mhz):</label>
+                <input class="form-control" id="boost_clock" type="number" min="800" max="8000"
+                    formControlName="boost_clock">
+                <div class="text-danger">
+                    @if (uploadForm.controls['boost_clock'].errors?.['required']) {
+                    <div>Boost clock speed is required.</div>
+                    }
+                    @if (uploadForm.controls['boost_clock'].errors?.['min']) {
+                    <div>Boost clock speed cannot be lower than 800.</div>
+                    }
+                    @if (uploadForm.controls['boost_clock'].errors?.['max']) {
+                    <div>Boost clock speed cannot be higher than 8000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- CONSUMPTION FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="consumption">Consumption (W):</label>
+                <input class="form-control" id="consumption" type="number" min="5" max="500" formControlName="consumption">
+                <div class="text-danger">
+                    @if (uploadForm.controls['consumption'].errors?.['required']) {
+                    <div>Consumption is required.</div>
+                    }
+                    @if (uploadForm.controls['consumption'].errors?.['min']) {
+                    <div>Consumption cannot be lower than 5.</div>
+                    }
+                    @if (uploadForm.controls['consumption'].errors?.['max']) {
+                    <div>Consumption cannot be higher than 300.</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
