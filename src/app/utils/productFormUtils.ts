@@ -72,7 +72,7 @@ export class formUtils {
             case 'case':
                 formData.append('case_type', formValues.case_type ?? '');
                 formData.append('form_factor_support', formValues.form_factor_support ?? '');
-                formData.append('side_panel', formValues.side_panel ? '1' : '0');
+                formData.append('tempered_glass', formValues.tempered_glass ? '1' : '0');
                 formData.append('expansion_slots', String(formValues.expansion_slots ?? 0));
                 formData.append('max_gpu_length', String(formValues.max_gpu_length ?? 0));
                 formData.append('max_cpu_cooler_height', String(formValues.max_cpu_cooler_height ?? 0));

@@ -11,14 +11,14 @@
                 <label class="form-label" for="socket">Socket:</label>
                 <select id="socket" class="form-select" formControlName="socket">
                     @if(uploadForm.controls['brand'].value == 'AMD'){
-                        <option value="AM4">AM4</option>
-                        <option value="AM5">AM5</option>
-                        <option value="SP3">SP3</option>
-                        <option value="SP5">SP5</option>
+                        <option [value]="'AM4'">AM4</option>
+                        <option [value]="'AM5'">AM5</option>
+                        <option [value]="'SP3'">SP3</option>
+                        <option [value]="'SP5'">SP5</option>
                     } @else {
-                        <option value="LGA1200">LGA1200</option>
-                        <option value="LGA1700">LGA1700</option>
-                        <option value="LGA2066">LGA2066</option>
+                        <option [value]="'LGA1200'">LGA1200</option>
+                        <option [value]="'LGA1700'">LGA1700</option>
+                        <option [value]="'LGA2066'">LGA2066</option>
                     }
                 </select>
             </div>
@@ -27,12 +27,12 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="core_count">Core Count:</label>
                 <select id="core_count" class="form-select" formControlName="core_count">
-                    <option id="1" value="1">1 Core</option>
-                    <option id="2" value="2">2 Cores</option>
-                    <option id="4" value="4">4 Cores</option>
-                    <option id="8" value="8">8 Cores</option>
-                    <option id="12" value="12">12 Cores</option>
-                    <option id="16" value="16">16 Cores</option>
+                    <option id="1" [value]="1">1 Core</option>
+                    <option id="2" [value]="2">2 Cores</option>
+                    <option id="4" [value]="4">4 Cores</option>
+                    <option id="8" [value]="8">8 Cores</option>
+                    <option id="12" [value]="12">12 Cores</option>
+                    <option id="16" [value]="16">16 Cores</option>
                 </select>
             </div>
 
@@ -40,14 +40,14 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="thread_count">Thread Count:</label>
                 <select id="thread_count" class="form-select" formControlName="thread_count">
-                    <option id="1" value="1">1 Thread</option>
-                    <option id="2" value="2">2 Threads</option>
-                    <option id="4" value="4">4 Threads</option>
-                    <option id="8" value="8">8 Threads</option>
-                    <option id="12" value="12">12 Threads</option>
-                    <option id="16" value="16">16 Threads</option>
-                    <option id="24" value="24">24 Threads</option>
-                    <option id="32" value="32">32 Threads</option>
+                    <option id="1" [value]="1">1 Thread</option>
+                    <option id="2" [value]="2">2 Threads</option>
+                    <option id="4" [value]="4">4 Threads</option>
+                    <option id="8" [value]="8">8 Threads</option>
+                    <option id="12" [value]="12">12 Threads</option>
+                    <option id="16" [value]="16">16 Threads</option>
+                    <option id="24" [value]="24">24 Threads</option>
+                    <option id="32" [value]="32">32 Threads</option>
                 </select>
             </div>
 

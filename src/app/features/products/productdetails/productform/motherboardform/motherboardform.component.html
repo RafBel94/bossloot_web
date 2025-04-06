@@ -10,13 +10,13 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="socket">Socket:</label>
                 <select id="socket" class="form-select" formControlName="socket">
-                    <option value="AM4">AM4</option>
-                    <option value="AM5">AM5</option>
-                    <option value="SP3">SP3</option>
-                    <option value="SP5">SP5</option>
-                    <option value="LGA1200">LGA1200</option>
-                    <option value="LGA1700">LGA1700</option>
-                    <option value="LGA2066">LGA2066</option>
+                    <option [value]="'AM4'">AM4</option>
+                    <option [value]="'AM5'">AM5</option>
+                    <option [value]="'SP3'">SP3</option>
+                    <option [value]="'SP5'">SP5</option>
+                    <option [value]="'LGA1200'">LGA1200</option>
+                    <option [value]="'LGA1700'">LGA1700</option>
+                    <option [value]="'LGA2066'">LGA2066</option>
                 </select>
             </div>
 
@@ -24,9 +24,10 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="form_factor">Form factor:</label>
                 <select id="form_factor" class="form-select" formControlName="form_factor">
-                    <option id="ATX" value="ATX">ATX</option>
-                    <option id="MINI-ATX" value="MINI-ATX">MINI-ATX</option>
-                    <option id="MICRO-ATX" value="MICRO-ATX">MICRO-ATX</option>
+                    <option id="ATX" [value]="'ATX'">ATX</option>
+                    <option id="MICRO-ATX" [value]="'E-ATX'">E-ATX</option>
+                    <option id="MINI-ATX" [value]="'Mini-ITX'">MINI-ITX</option>
+                    <option id="MICRO-ATX" [value]="'Micro-ATX'">MICRO-ATX</option>
                 </select>
             </div>
 
@@ -35,10 +36,10 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="memory_max">Maximum RAM memory:</label>
                     <select id="memory_max" class="form-select" formControlName="memory_max">
-                        <option id="32" value="32">32</option>
-                        <option id="64" value="64">64</option>
-                        <option id="128" value="128">128</option>
-                        <option id="256" value="256">256</option>
+                        <option id="32" [value]="32">32</option>
+                        <option id="64" [value]="64">64</option>
+                        <option id="128" [value]="128">128</option>
+                        <option id="256" [value]="256">256</option>
                     </select>
                 </div>
             </div>
@@ -48,9 +49,9 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="memory_slots">RAM Slots:</label>
                     <select id="memory_slots" class="form-select" formControlName="memory_slots">
-                        <option id="2" value="2">2</option>
-                        <option id="4" value="4">4</option>
-                        <option id="8" value="8">8</option>
+                        <option id="2" [value]="2">2</option>
+                        <option id="4" [value]="4">4</option>
+                        <option id="8" [value]="8">8</option>
                     </select>
                 </div>
             </div>
@@ -60,9 +61,9 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="memory_type">RAM memory type:</label>
                     <select id="memory_type" class="form-select" formControlName="memory_type">
-                        <option id="DDR3" value="DDR3">DDR3</option>
-                        <option id="DDR4" value="DDR4">DDR4</option>
-                        <option id="DDR5" value="DDR5">DDR5</option>
+                        <option id="DDR3" [value]="'DDR3'">DDR3</option>
+                        <option id="DDR4" [value]="'DDR4'">DDR4</option>
+                        <option id="DDR5" [value]="'DDR5'">DDR5</option>
                     </select>
                 </div>
             </div>
@@ -72,22 +73,22 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="memory_speed">Maximum RAM speed:</label>
                     <select id="memory_speed" class="form-select" formControlName="memory_speed">
-                        <option value="1066">1066</option>
-                        <option value="1333">1333</option>
-                        <option value="1600">1600</option>
-                        <option value="1866">1866</option>
-                        <option value="2133">2133</option>
-                        <option value="2400">2400</option>
-                        <option value="2666">2666</option>
-                        <option value="3000">3000</option>
-                        <option value="3200">3200</option>
-                        <option value="3600">3600</option>
-                        <option value="4800">4800</option>
-                        <option value="5200">5200</option>
-                        <option value="5600">5600</option>
-                        <option value="6000">6000</option>
-                        <option value="6400">6400</option>
-                        <option value="7200">7200</option>
+                        <option [value]="1066">1066</option>
+                        <option [value]="1333">1333</option>
+                        <option [value]="1600">1600</option>
+                        <option [value]="1866">1866</option>
+                        <option [value]="2133">2133</option>
+                        <option [value]="2400">2400</option>
+                        <option [value]="2666">2666</option>
+                        <option [value]="3000">3000</option>
+                        <option [value]="3200">3200</option>
+                        <option [value]="3600">3600</option>
+                        <option [value]="4800">4800</option>
+                        <option [value]="5200">5200</option>
+                        <option [value]="5600">5600</option>
+                        <option [value]="6000">6000</option>
+                        <option [value]="6400">6400</option>
+                        <option [value]="7200">7200</option>
                     </select>
                 </div>
             </div>
@@ -97,10 +98,10 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="lan">LAN:</label>
                     <select id="lan" class="form-select" formControlName="lan">
-                        <option id="1gbe" value="1GbE">1 GbE</option>
-                        <option id="2.5gbe" value="2.5GbE">2.5 GbE</option>
-                        <option id="5gbe" value="5GbE">5 GbE</option>
-                        <option id="10gbe" value="10GbE">10 GbE</option>
+                        <option id="1gbe" [value]="'1GbE'">1 GbE</option>
+                        <option id="2.5gbe" [value]="'2.5GbE'">2.5 GbE</option>
+                        <option id="5gbe" [value]="'5GbE'">5 GbE</option>
+                        <option id="10gbe" [value]="'10GbE'">10 GbE</option>
                     </select>
                 </div>
             </div>
@@ -128,28 +129,28 @@
                     || uploadForm.get('socket')?.value == 'AM5'
                     || uploadForm.get('socket')?.value == 'SP3'
                     || uploadForm.get('socket')?.value == 'SP4'){
-                    <option value="X570">X570</option>
-                    <option value="B550">B550</option>
-                    <option value="A520">A520</option>
-                    <option value="X470">X470</option>
-                    <option value="X670E">X670E</option>
-                    <option value="X670">X670</option>
-                    <option value="B650E">B650E</option>
-                    <option value="B650">B650</option>
-                    <option value="A620">A620</option>
+                    <option [value]="'X570'">X570</option>
+                    <option [value]="'B550'">B550</option>
+                    <option [value]="'A520'">A520</option>
+                    <option [value]="'X470'">X470</option>
+                    <option [value]="'X670E'">X670E</option>
+                    <option [value]="'X670'">X670</option>
+                    <option [value]="'B650E'">B650E</option>
+                    <option [value]="'B650'">B650</option>
+                    <option [value]="'A620'">A620</option>
                     } @else {
-                    <option value="Z490">Z490</option>
-                    <option value="H470">H470</option>
-                    <option value="B460">B460</option>
-                    <option value="H410">H410</option>
-                    <option value="Z690">Z690</option>
-                    <option value="H670">H670</option>
-                    <option value="B660">B660</option>
-                    <option value="H610">H610</option>
-                    <option value="Z790">Z790</option>
-                    <option value="H770">H770</option>
-                    <option value="B760">B760</option>
-                    <option value="H610">H610</option>
+                    <option [value]="'Z490'">Z490</option>
+                    <option [value]="'H470'">H470</option>
+                    <option [value]="'B460'">B460</option>
+                    <option [value]="'H410'">H410</option>
+                    <option [value]="'Z690'">Z690</option>
+                    <option [value]="'H670'">H670</option>
+                    <option [value]="'B660'">B660</option>
+                    <option [value]="'H610'">H610</option>
+                    <option [value]="'Z790'">Z790</option>
+                    <option [value]="'H770'">H770</option>
+                    <option [value]="'B760'">B760</option>
+                    <option [value]="'H610'">H610</option>
                     }
                 </select>
             </div>
@@ -159,10 +160,10 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="sata_ports">SATA Ports:</label>
                     <select id="sata_ports" class="form-select" formControlName="sata_ports">
-                        <option id="2" value="2">2</option>
-                        <option id="4" value="4">4</option>
-                        <option id="6" value="6">6</option>
-                        <option id="8" value="8">8</option>
+                        <option id="2" [value]="2">2</option>
+                        <option id="4" [value]="4">4</option>
+                        <option id="6" [value]="6">6</option>
+                        <option id="8" [value]="8">8</option>
                     </select>
                 </div>
             </div>
@@ -172,10 +173,10 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="m_2_slots">M2 Slots:</label>
                     <select id="m_2_slots" class="form-select" formControlName="m_2_slots">
-                        <option id="0" value="0">0</option>
-                        <option id="1" value="1">1</option>
-                        <option id="2" value="2">2</option>
-                        <option id="3" value="3">3</option>
+                        <option id="0" [value]="0">0</option>
+                        <option id="1" [value]="1">1</option>
+                        <option id="2" [value]="2">2</option>
+                        <option id="3" [value]="3">3</option>
                     </select>
                 </div>
             </div>
@@ -185,10 +186,10 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="pcie_slots">PCI-E Slots:</label>
                     <select id="pcie_slots" class="form-select" formControlName="pcie_slots">
-                        <option id="1" value="1">1</option>
-                        <option id="2" value="2">2</option>
-                        <option id="3" value="3">3</option>
-                        <option id="4" value="4">4</option>
+                        <option id="1" [value]="1">1</option>
+                        <option id="2" [value]="2">2</option>
+                        <option id="3" [value]="3">3</option>
+                        <option id="4" [value]="4">4</option>
                     </select>
                 </div>
             </div>
@@ -218,9 +219,9 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="audio">Audio:</label>
                     <select id="audio" class="form-select" formControlName="audio">
-                        <option id="realtek_alc1200" value="realtek_alc1200">Realtek ALC1200</option>
-                        <option id="realtek_alc1220" value="realtek_alc1220">Realtek ALC1220</option>
-                        <option id="realtek_alc887" value="realtek_alc887">Realtek ALC887</option>
+                        <option id="realtek_alc1200" [value]="'Realtek ALC1200'">Realtek ALC1200</option>
+                        <option id="realtek_alc1220" [value]="'Realtek ALC1220'">Realtek ALC1220</option>
+                        <option id="realtek_alc887" [value]="'Realtek ALC887'">Realtek ALC887</option>
                     </select>
                 </div>
             </div>

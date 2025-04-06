@@ -3,7 +3,7 @@ import { Product } from "./Product";
 export class CaseProduct extends Product {
     public caseType: string;
     public formFactorSupport: string;
-    public sidePanel: boolean;
+    public temperedGlass: boolean;
     public expansionSlots: number;
     public maxGpuLength: number;
     public maxCpuCoolerHeight: number;
@@ -28,7 +28,7 @@ export class CaseProduct extends Product {
         image: string,
         caseType: string,
         formFactorSupport: string,
-        sidePanel: boolean,
+        temperedGlass: boolean,
         expansionSlots: number,
         maxGpuLength: number,
         maxCpuCoolerHeight: number,
@@ -42,7 +42,7 @@ export class CaseProduct extends Product {
         super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
         this.caseType = caseType;
         this.formFactorSupport = formFactorSupport;
-        this.sidePanel = sidePanel;
+        this.temperedGlass = temperedGlass;
         this.expansionSlots = expansionSlots;
         this.maxGpuLength = maxGpuLength;
         this.maxCpuCoolerHeight = maxCpuCoolerHeight;

@@ -1,0 +1,199 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- CASE TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="case_type">Case type:</label>
+                <select id="case_type" class="form-select" formControlName="case_type">
+                    <option id="Mid_Tower" value="Mid Tower">Mid Tower</option>
+                    <option id="Full_Tower" value="Full Tower">Full Tower</option>
+                    <option id="Mini_Tower" value="Mini Tower">Mini Tower</option>
+                    <option id="Small_Form Factor" value="Small Form Factor">Small Form Factor</option>
+                </select>
+            </div>
+
+            <!-- FORM FACTOR SUPPORT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="form_factor_support">Form factor support:</label>
+                <select id="form_factor_support" class="form-select" formControlName="form_factor_support">
+                    <option id="ATX" value="ATX">ATX</option>
+                    <option id="Micro-ATX" value="Micro-ATX">Micro-ATX</option>
+                    <option id="Mini-ITX" value="Mini-ITX">Mini-ITX</option>
+                    <option id="E-ATX" value="E-ATX">E-ATX</option>
+                </select>
+            </div>
+
+            <!-- EXPANSION SLOTS FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="expansion_slots">Expansion slots:</label>
+                <input class="form-control" id="expansion_slots" type="number" min="0" max="9"
+                    formControlName="expansion_slots">
+                <div class="text-danger">
+                    @if (uploadForm.controls['expansion_slots'].errors?.['required']) {
+                    <div>Expansion slots is required.</div>
+                    }
+                    @if (uploadForm.controls['expansion_slots'].errors?.['min']) {
+                    <div>Expansion slots cannot be lower than 0.</div>
+                    }
+                    @if (uploadForm.controls['expansion_slots'].errors?.['max']) {
+                    <div>Expansion slots cannot be higher than 9.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- MAX CPU LENGHT -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="max_gpu_length">Maximum GPU length:</label>
+                <input class="form-control" id="max_gpu_length" type="number" min="260" max="420"
+                    formControlName="max_gpu_length">
+                <div class="text-danger">
+                    @if (uploadForm.controls['max_gpu_length'].errors?.['required']) {
+                    <div>Maximum GPU length is required.</div>
+                    }
+                    @if (uploadForm.controls['max_gpu_length'].errors?.['min']) {
+                    <div>Maximum GPU length cannot be lower than 260.</div>
+                    }
+                    @if (uploadForm.controls['max_gpu_length'].errors?.['max']) {
+                    <div>Maximum GPU length cannot be higher than 420.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- MAX CPU COOLER HEIGHT -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="max_cpu_cooler_height">Maximum CPU cooler height:</label>
+                <input class="form-control" id="max_cpu_cooler_height" type="number" min="145" max="180"
+                    formControlName="max_cpu_cooler_height">
+                <div class="text-danger">
+                    @if (uploadForm.controls['max_cpu_cooler_height'].errors?.['required']) {
+                    <div>Maximum CPU cooler height is required.</div>
+                    }
+                    @if (uploadForm.controls['max_cpu_cooler_height'].errors?.['min']) {
+                    <div>Maximum CPU cooler height cannot be lower than 145.</div>
+                    }
+                    @if (uploadForm.controls['max_cpu_cooler_height'].errors?.['max']) {
+                    <div>Maximum CPU cooler height cannot be higher than 180.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- TEMPERED GLASS CHECKBOX -->
+            <div class="mb-3 w-75">
+                <div class="d-flex align-items-center">
+                    <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox"
+                        id="tempered_glass" formControlName="tempered_glass" />
+                    <label class="form-label mt-2" for="tempered_glass">Tempered glass</label>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- EXTRA FANS CONNECTORS FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="extra_fans_connectors">Extra fans connectors:</label>
+                <input class="form-control" id="extra_fans_connectors" type="number" min="2" max="10"
+                    formControlName="extra_fans_connectors">
+                <div class="text-danger">
+                    @if (uploadForm.controls['extra_fans_connectors'].errors?.['required']) {
+                    <div>Extra fans connectors is required.</div>
+                    }
+                    @if (uploadForm.controls['extra_fans_connectors'].errors?.['min']) {
+                    <div>Extra fans connectors cannot be lower than 2.</div>
+                    }
+                    @if (uploadForm.controls['extra_fans_connectors'].errors?.['max']) {
+                    <div>Extra fans connectors cannot be higher than 10.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- DEPTH FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="depth">Depth:</label>
+                <input class="form-control" id="depth" type="number" min="150" max="300"
+                    formControlName="depth">
+                <div class="text-danger">
+                    @if (uploadForm.controls['depth'].errors?.['required']) {
+                    <div>Depth is required.</div>
+                    }
+                    @if (uploadForm.controls['depth'].errors?.['min']) {
+                    <div>Depth cannot be lower than 150.</div>
+                    }
+                    @if (uploadForm.controls['depth'].errors?.['max']) {
+                    <div>Depth cannot be higher than 300.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WIDTH FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="width">Width:</label>
+                <input class="form-control" id="width" type="number" min="300" max="800"
+                    formControlName="width">
+                <div class="text-danger">
+                    @if (uploadForm.controls['width'].errors?.['required']) {
+                    <div>Width is required.</div>
+                    }
+                    @if (uploadForm.controls['width'].errors?.['min']) {
+                    <div>Width cannot be lower than 300.</div>
+                    }
+                    @if (uploadForm.controls['width'].errors?.['max']) {
+                    <div>Width cannot be higher than 800.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- HEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="height">Height:</label>
+                <input class="form-control" id="height" type="number" min="300" max="800"
+                    formControlName="height">
+                <div class="text-danger">
+                    @if (uploadForm.controls['height'].errors?.['required']) {
+                    <div>Height is required.</div>
+                    }
+                    @if (uploadForm.controls['height'].errors?.['min']) {
+                    <div>Height cannot be lower than 300.</div>
+                    }
+                    @if (uploadForm.controls['height'].errors?.['max']) {
+                    <div>Height cannot be higher than 800.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WEIGHT FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="weight">Weight:</label>
+                <input class="form-control" id="weight" type="number" min="2" max="20"
+                    formControlName="weight">
+                <div class="text-danger">
+                    @if (uploadForm.controls['weight'].errors?.['required']) {
+                    <div>Weight is required.</div>
+                    }
+                    @if (uploadForm.controls['weight'].errors?.['min']) {
+                    <div>Weight cannot be lower than 2.</div>
+                    }
+                    @if (uploadForm.controls['weight'].errors?.['max']) {
+                    <div>Weight cannot be higher than 12.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- RADIATOR SUPPORT CHECKBOX -->
+            <div class="mb-3 w-75">
+                <div class="d-flex align-items-center">
+                    <input class="form-check-inline" style="width: 1.5rem; height: 1.5rem;" type="checkbox"
+                        id="radiator_support" formControlName="radiator_support" />
+                    <label class="form-label mt-2" for="radiator_support">Supports radiator</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

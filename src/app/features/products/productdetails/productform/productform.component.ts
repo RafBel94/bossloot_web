@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../../services/product.service';
@@ -13,10 +13,14 @@ import { MotherboardformComponent } from "./motherboardform/motherboardform.comp
 import { MotherboardformTableComponent } from "./motherboardform/motherboardform-table/motherboardform-table.component";
 import { StorageformComponent } from "./storageform/storageform.component";
 import { StorageformTableComponent } from "./storageform/storageform-table/storageform-table.component";
+import { PsuformComponent } from "./psuform/psuform.component";
+import { PsuformTableComponent } from "./psuform/psuform-table/psuform-table.component";
+import { CaseformComponent } from "./caseform/caseform.component";
+import { CaseformTableComponent } from "./caseform/caseform-table/caseform-table.component";
 
 @Component({
   selector: 'app-productform',
-  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent, GpuformComponent, GpuformTableComponent, MotherboardformComponent, MotherboardformTableComponent, StorageformComponent, StorageformTableComponent],
+  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent, GpuformComponent, GpuformTableComponent, MotherboardformComponent, MotherboardformTableComponent, StorageformComponent, StorageformTableComponent, PsuformComponent, PsuformTableComponent, CaseformComponent, CaseformTableComponent],
   templateUrl: './productform.component.html',
   styleUrl: './productform.component.scss'
 })
@@ -33,6 +37,7 @@ export class ProductformComponent {
   id = null;
   category: string | null = null;
   isLoading = false;
+  cdr = inject(ChangeDetectorRef);
 
   constructor() {
     this.id = this.route.snapshot.params['id'] ?? null;
@@ -49,7 +54,7 @@ export class ProductformComponent {
     this.uploadForm = new FormGroup({
       name: new FormControl(this.productData?.name || '', [Validators.required, Validators.maxLength(60)]),
       description: new FormControl(this.productData?.description || '', [Validators.required, Validators.maxLength(255)]),
-      category: new FormControl(this.productData?.category || 'cpu', [Validators.required, Validators.maxLength(60)]),
+      category: new FormControl(this.productData?.category || '', [Validators.required, Validators.maxLength(60)]),
       model: new FormControl(this.productData?.model || '', [Validators.required, Validators.maxLength(60)]),
       brand: new FormControl(this.productData?.brand || '', [Validators.required, Validators.maxLength(60)]),
       price: new FormControl(this.productData?.price || 0, [Validators.required, Validators.min(1), Validators.max(99999)]),
@@ -59,7 +64,6 @@ export class ProductformComponent {
       featured: new FormControl(this.productData?.featured || false, [Validators.required]),
       image: new FormControl(this.productData?.image || ''),
     });
-
   }
 
   private setupOfferDiscountLogic() {

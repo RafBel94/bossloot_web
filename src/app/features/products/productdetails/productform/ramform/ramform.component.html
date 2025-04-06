@@ -49,13 +49,13 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="memory">Memory:</label>
                 <select id="memory" class="form-select" formControlName="memory">
-                    <option id="4" value="4">4 GB</option>
-                    <option id="8" value="8">8 GB</option>
-                    <option id="16" value="16">16 GB</option>
-                    <option id="32" value="32">32 GB</option>
-                    <option id="64" value="64">64 GB</option>
-                    <option id="128" value="128">128 GB</option>
-                    <option id="256" value="256">256 GB</option>
+                    <option id="4" [value]="4">4 GB</option>
+                    <option id="8" [value]="8">8 GB</option>
+                    <option id="16" [value]="16">16 GB</option>
+                    <option id="32" [value]="32">32 GB</option>
+                    <option id="64" [value]="64">64 GB</option>
+                    <option id="128" [value]="128">128 GB</option>
+                    <option id="256" [value]="256">256 GB</option>
                 </select>
             </div>
 
@@ -63,9 +63,9 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="memory_type">Memory Type:</label>
                 <select id="memory_type" class="form-select" formControlName="memory_type">
-                    <option id="DDR3" value="DDR3">DDR3</option>
-                    <option id="DDR4" value="DDR4">DDR4</option>
-                    <option id="DDR5" value="DDR5">DDR5</option>
+                    <option id="DDR3" [value]="'DDR3'">DDR3</option>
+                    <option id="DDR4" [value]="'DDR4'">DDR4</option>
+                    <option id="DDR5" [value]="'DDR5'">DDR5</option>
                 </select>
             </div>
         </div>
