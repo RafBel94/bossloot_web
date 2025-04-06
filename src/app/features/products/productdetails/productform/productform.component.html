@@ -305,6 +305,9 @@
         @if(category == 'motherboard'){
         <app-motherboardform [productData]="productData" [uploadForm]="uploadForm" />
         }
+        @if(category == 'storage'){
+        <app-storageform [productData]="productData" [uploadForm]="uploadForm" />
+        }
 
         <!-- RESUME TABLE SEPARATOR -->
         <div class="d-flex align-items-center w-100 mt-4">
@@ -324,6 +327,9 @@
         }
         @if(category == 'motherboard'){
         <app-motherboardform-table [uploadForm]="uploadForm" />
+        }
+        @if(category == 'storage'){
+        <app-storageform-table [uploadForm]="uploadForm" />
         }
 
         <!-- ERROR MESSAGE SECTION -->

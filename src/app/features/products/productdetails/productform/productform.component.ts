@@ -11,10 +11,12 @@ import { GpuformComponent } from './gpuform/gpuform.component';
 import { GpuformTableComponent } from './gpuform/gpuform-table/gpuform-table.component';
 import { MotherboardformComponent } from "./motherboardform/motherboardform.component";
 import { MotherboardformTableComponent } from "./motherboardform/motherboardform-table/motherboardform-table.component";
+import { StorageformComponent } from "./storageform/storageform.component";
+import { StorageformTableComponent } from "./storageform/storageform-table/storageform-table.component";
 
 @Component({
   selector: 'app-productform',
-  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent, GpuformComponent, GpuformTableComponent, MotherboardformComponent, MotherboardformTableComponent],
+  imports: [FormsModule, ReactiveFormsModule, RamformComponent, RamformTableComponent, CpuformComponent, CpuformTableComponent, GpuformComponent, GpuformTableComponent, MotherboardformComponent, MotherboardformTableComponent, StorageformComponent, StorageformTableComponent],
   templateUrl: './productform.component.html',
   styleUrl: './productform.component.scss'
 })

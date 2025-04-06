@@ -1,0 +1,97 @@
+<div [formGroup]="uploadForm" class="card w-100 p-4 border-0">
+
+    <!-- SPECIFICATIONS SECTION -->
+    <div class="d-flex justify-content-center mt-2">
+
+        <!-- COLUMN LEFT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- TYPE FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="type">Type:</label>
+                <select id="type" class="form-select" formControlName="type">
+                    <option id="SSD" value="SSD">SSD</option>
+                    <option id="HDD" value="HDD">HDD</option>
+                    <option id="NVMe" value="NVMe">NVMe</option>
+                    <option id="NVMe_M.2" value="NVMe_M.2">NVMe M.2</option>
+                </select>
+            </div>
+
+            <!-- CAPACITY FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="capacity">Capacity:</label>
+                <select id="capacity" class="form-select" formControlName="capacity">
+                    <option id="120" value="120">120 GBs</option>
+                    <option id="250" value="250">250 GBs</option>
+                    <option id="500" value="500">500 GBs</option>
+                    <option id="1000" value="1000">1000 GBs</option>
+                    <option id="2000" value="2000">2000 GBs</option>
+                    <option id="4000" value="4000">4000 GBs</option>
+                </select>
+            </div>
+
+            <!-- RPM FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="rpm">RPM:</label>
+                    <input class="form-control" id="rpm" type="number" min="0" max="7200"
+                        formControlName="rpm">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['rpm'].errors?.['required']) {
+                        <div>RPM is required.</div>
+                        }
+                        @if (uploadForm.controls['rpm'].errors?.['min']) {
+                        <div>RPM cannot be lower than 0.</div>
+                        }
+                        @if (uploadForm.controls['rpm'].errors?.['max']) {
+                        <div>RPM cannot be higher than 7200.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- COLUMN RIGHT -->
+        <div class="d-flex flex-column align-items-center w-50">
+
+            <!-- READ SPEED FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="read_speed">Read speed:</label>
+                <input class="form-control" id="read_speed" type="number" min="100" max="14000"
+                    formControlName="read_speed">
+                <div class="text-danger">
+                    @if (uploadForm.controls['read_speed'].errors?.['required']) {
+                    <div>Read speed is required.</div>
+                    }
+                    @if (uploadForm.controls['read_speed'].errors?.['min']) {
+                    <div>Read speed cannot be lower than 100.</div>
+                    }
+                    @if (uploadForm.controls['read_speed'].errors?.['max']) {
+                    <div>Read speed cannot be higher than 14000.</div>
+                    }
+                </div>
+            </div>
+
+            <!-- WRITE SPEED FIELD -->
+            <div class="mb-3 w-75">
+                <div class="mb-3 w-75">
+                    <label class="form-label" for="write_speed">Write speed:</label>
+                    <input class="form-control" id="write_speed" type="number" min="100" max="12000"
+                        formControlName="write_speed">
+                    <div class="text-danger">
+                        @if (uploadForm.controls['write_speed'].errors?.['required']) {
+                        <div>Write speed is required.</div>
+                        }
+                        @if (uploadForm.controls['write_speed'].errors?.['min']) {
+                        <div>Write speed cannot be lower than 100.</div>
+                        }
+                        @if (uploadForm.controls['write_speed'].errors?.['max']) {
+                        <div>Write speed cannot be higher than 12000.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
