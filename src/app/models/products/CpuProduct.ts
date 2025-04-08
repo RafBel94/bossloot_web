@@ -21,6 +21,7 @@ export class CpuProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
+        points: number,
         socket: string,
         core_count: number,
         thread_count: number,
@@ -29,7 +30,7 @@ export class CpuProduct extends Product {
         consumption: number,
         integrated_graphics: boolean
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
+        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
         this.socket = socket;
         this.core_count = core_count;
         this.thread_count = thread_count;

@@ -105,6 +105,27 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <span>Points</span>
+                        @if (uploadForm.controls['points'].errors) {
+                            <span class="btn btn-danger ms-2 pt-0 pb-0">Error</span>
+                        }
+                    </div>
+                </td>
+                <td>
+                    @if(uploadForm.controls['points'].errors?.['required']) {
+                        <span class="fw-bold text-danger">Points is required</span>
+                    } @else if(uploadForm.controls['points'].errors?.['min']) {
+                        <span class="fw-bold text-danger">Points cannot be lower than 0</span>
+                    } @else if(uploadForm.controls['points'].errors?.['max']) {
+                        <span class="fw-bold text-danger">Points cannot be higher than 2000</span>
+                    } @else {
+                        {{ uploadForm.get('points')?.value }}
+                    }
+                </td>
+            </tr>
+            <tr>
                 <td>Discount</td>
                 <td>{{ uploadForm.get('on_offer')?.value ? uploadForm.get('discount')?.value + ' %' : 'Not on offer' }}</td>
             </tr>

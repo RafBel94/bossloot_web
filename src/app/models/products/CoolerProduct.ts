@@ -20,6 +20,7 @@ export class CoolerProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
+        points: number,
         type: string,
         fan_rpm: number,
         consumption: number,
@@ -27,7 +28,7 @@ export class CoolerProduct extends Product {
         width: number,
         height: number
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
+        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
         this.type = type;
         this.fan_rpm = fan_rpm;
         this.consumption = consumption;

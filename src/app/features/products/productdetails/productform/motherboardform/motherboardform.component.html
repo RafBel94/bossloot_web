@@ -25,8 +25,8 @@
                 <label class="form-label" for="form_factor">Form factor:</label>
                 <select id="form_factor" class="form-select" formControlName="form_factor">
                     <option id="ATX" [value]="'ATX'">ATX</option>
-                    <option id="MICRO-ATX" [value]="'E-ATX'">E-ATX</option>
-                    <option id="MINI-ATX" [value]="'Mini-ITX'">MINI-ITX</option>
+                    <option id="E-ATX" [value]="'E-ATX'">E-ATX</option>
+                    <option id="MINI-ITX" [value]="'Mini-ITX'">MINI-ITX</option>
                     <option id="MICRO-ATX" [value]="'Micro-ATX'">MICRO-ATX</option>
                 </select>
             </div>
@@ -219,9 +219,12 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="audio">Audio:</label>
                     <select id="audio" class="form-select" formControlName="audio">
+                        <option id="realtek_alc887" [value]="'Realtek ALC887'">Realtek ALC887</option>
+                        <option id="realtek_alc892" [value]="'Realtek ALC892'">Realtek ALC892</option>
+                        <option id="realtek_alc1150" [value]="'Realtek ALC1150'">Realtek ALC1150</option>
                         <option id="realtek_alc1200" [value]="'Realtek ALC1200'">Realtek ALC1200</option>
                         <option id="realtek_alc1220" [value]="'Realtek ALC1220'">Realtek ALC1220</option>
-                        <option id="realtek_alc887" [value]="'Realtek ALC887'">Realtek ALC887</option>
+                        <option id="realtek_alc4080" [value]="'Realtek ALC4080'">Realtek ALC4080</option>
                     </select>
                 </div>
             </div>

@@ -113,6 +113,7 @@ export class formUtils {
                 formData.append('weight', String(formValues.weight ?? 0));
                 break;
             case 'keyboard':
+                formData.append('type', formValues.type ?? '');
                 formData.append('switch_type', formValues.switch_type ?? '');
                 formData.append('width', String(formValues.width ?? 0));
                 formData.append('height', String(formValues.height ?? 0));

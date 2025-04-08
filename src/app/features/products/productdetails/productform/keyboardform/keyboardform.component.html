@@ -20,10 +20,33 @@
             <div class="mb-3 w-75">
                 <label class="form-label" for="switch_type">Switch type:</label>
                 <select id="switch_type" class="form-select" formControlName="switch_type">
-                    <option id="Red" [value]="'Red'">Red</option>
-                    <option id="Brown" [value]="'Brown'">Brown</option>
-                    <option id="Blue" [value]="'Blue'">Blue</option>
-                    <option id="Yellow" [value]="'Yellow'">Yellow</option>
+                    <optgroup label="Linear">
+                        <option id="CherryMXRed" [value]="'Cherry MX Red'">Cherry MX Red</option>
+                        <option id="GateronRed" [value]="'Gateron Red'">Gateron Red</option>
+                        <option id="KailhRed" [value]="'Kailh Red'">Kailh Red</option>
+                    </optgroup>
+                    <optgroup label="Tactile">
+                        <option id="CherryMXBrown" [value]="'Cherry MX Brown'">Cherry MX Brown</option>
+                        <option id="ZealiosV2" [value]="'Zealios V2'">Zealios V2</option>
+                        <option id="HolyPanda" [value]="'Holy Panda'">Holy Panda</option>
+                    </optgroup>
+                    <optgroup label="Clicky">
+                        <option id="CherryMXBlue" [value]="'Cherry MX Blue'">Cherry MX Blue</option>
+                        <option id="KailhBOXWhite" [value]="'Kailh BOX White'">Kailh BOX White</option>
+                        <option id="RazerGreen" [value]="'Razer Green'">Razer Green</option>
+                    </optgroup>
+                    <optgroup label="Speed">
+                        <option id="CherryMXSpeedSilver" [value]="'Cherry MX Speed Silver'">Cherry MX Speed Silver</option>
+                        <option id="KailhSpeed" [value]="'Kailh Speed'">Kailh Speed</option>
+                    </optgroup>
+                    <optgroup label="Silent">
+                        <option id="CherryMXSilentRed" [value]="'Cherry MX Silent Red'">Cherry MX Silent Red</option>
+                        <option id="SilentBlack" [value]="'Silent Black'">Silent Black</option>
+                    </optgroup>
+                    <optgroup label="Low profile">
+                        <option id="CherryMXLowProfileRed" [value]="'Cherry MX Low Profile Red'">Cherry MX Low Profile Red</option>
+                        <option id="KailhChoc" [value]="'Kailh Choc'">Kailh Choc</option>
+                    </optgroup>
                 </select>
             </div>
 

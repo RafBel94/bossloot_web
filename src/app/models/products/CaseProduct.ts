@@ -26,6 +26,7 @@ export class CaseProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
+        points: number,
         caseType: string,
         formFactorSupport: string,
         temperedGlass: boolean,
@@ -39,7 +40,7 @@ export class CaseProduct extends Product {
         height: number,
         weight: number
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
+        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
         this.caseType = caseType;
         this.formFactorSupport = formFactorSupport;
         this.temperedGlass = temperedGlass;

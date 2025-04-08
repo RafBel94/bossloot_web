@@ -27,6 +27,7 @@ export class DisplayProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
+        points: number,
         resolution: string,
         refresh_rate: number,
         response_time: number,
@@ -41,7 +42,7 @@ export class DisplayProduct extends Product {
         inches: number,
         weight: number
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
+        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
         this.resolution = resolution;
         this.refresh_rate = refresh_rate;
         this.response_time = response_time;

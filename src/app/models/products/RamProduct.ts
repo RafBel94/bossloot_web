@@ -18,12 +18,13 @@ export class RamProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
+        points: number,
         speed: number,
         memory: number,
         memory_type: string,
         latency: number
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
+        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
         this.speed = speed;
         this.memory = memory;
         this.memory_type = memory_type;

@@ -13,7 +13,7 @@ export class KeyboardformComponent {
   @Input() uploadForm!: FormGroup;
 
   ngOnInit() {
-    this.uploadForm.addControl('type', new FormControl(this.productData?.switch_type || 'Mechanical', [Validators.required]));
+    this.uploadForm.addControl('type', new FormControl(this.productData?.type || 'Mechanical', [Validators.required]));
 
     this.uploadForm.addControl('switch_type', new FormControl(this.productData?.switch_type || 'Red', [Validators.required]));
 

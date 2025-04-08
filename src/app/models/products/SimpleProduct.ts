@@ -10,6 +10,7 @@ export class SimpleProduct {
     discount: number;
     featured: boolean;
     image: string;
+    points: number;
 
     public constructor(
         name: string,
@@ -22,7 +23,8 @@ export class SimpleProduct {
         on_offer: boolean,
         discount: number,
         featured: boolean,
-        image: string
+        image: string,
+        points: number,
     ) {
         this.name = name;
         this.description = description;
@@ -35,6 +37,6 @@ export class SimpleProduct {
         this.discount = discount;
         this.featured = featured;
         this.image = image;
-
+        this.points = points;
     }
 }

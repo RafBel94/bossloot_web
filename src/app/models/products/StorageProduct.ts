@@ -19,13 +19,14 @@ export class StorageProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
+        points: number,
         type: string,
         capacity: number,
         rpm: number,
         read_speed: number,
         write_speed: number,
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image);
+        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
         this.type = type;
         this.capacity = capacity;
         this.rpm = rpm;
