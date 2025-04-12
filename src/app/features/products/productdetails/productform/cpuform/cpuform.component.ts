@@ -19,15 +19,13 @@ export class CpuformComponent {
 
     this.uploadForm.addControl('thread_count', new FormControl(this.productData?.thread_count || 1, [Validators.required, Validators.min(1) , Validators.max(32)]));
 
-    this.uploadForm.addControl('base_clock', new FormControl(this.productData?.base_clock || 800, [Validators.required, Validators.min(800), Validators.max(8000)]));
+    this.uploadForm.addControl('base_clock', new FormControl(this.productData?.base_clock || 1, [Validators.required, Validators.min(1), Validators.max(8)]));
 
-    this.uploadForm.addControl('boost_clock', new FormControl(this.productData?.boost_clock || 800, [Validators.required, Validators.min(800), Validators.max(8000)]));
+    this.uploadForm.addControl('boost_clock', new FormControl(this.productData?.boost_clock || 1, [Validators.required, Validators.min(1), Validators.max(8)]));
 
     this.uploadForm.addControl('consumption', new FormControl(this.productData?.consumption || 45, [Validators.required, Validators.min(5), Validators.max(500)]));
 
     this.uploadForm.addControl('integrated_graphics', new FormControl(this.productData?.integrated_graphics || false, [Validators.required]));
-
-    this.setupSocketDropdownLogic();
   }
 
   ngOnDestroy() {
@@ -38,19 +36,6 @@ export class CpuformComponent {
     this.uploadForm.removeControl('boost_clock');
     this.uploadForm.removeControl('consumption');
     this.uploadForm.removeControl('integrated_graphics');
-  }
-
-  setupSocketDropdownLogic() {
-    const socketControl = this.uploadForm.get('socket')!;
-    const brandControl = this.uploadForm.get('brand')!;
-
-    brandControl.valueChanges.subscribe((selectedBrand: string) => {
-      if (selectedBrand === 'AMD') {
-        socketControl.setValue('AM4');
-      } else if (selectedBrand === 'Intel') {
-        socketControl.setValue('LGA1200');
-      }
-    });
   }
 }
 

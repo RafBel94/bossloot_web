@@ -25,7 +25,7 @@ export class MotherboardformComponent {
     
     this.uploadForm.addControl('memory_type', new FormControl(this.productData?.memory_type || 'DDR3', [Validators.required]));
 
-    this.uploadForm.addControl('memory_speed', new FormControl(this.productData?.memory_speed || 2133, [Validators.required, Validators.min(1066), Validators.max(7200)]));
+    this.uploadForm.addControl('memory_speed', new FormControl(this.productData?.memory_speed || 2100, [Validators.required, Validators.min(1000), Validators.max(7000)]));
 
     this.uploadForm.addControl('sata_ports', new FormControl(this.productData?.sata_ports || 2, [Validators.required, Validators.min(1), Validators.max(10)]));
 

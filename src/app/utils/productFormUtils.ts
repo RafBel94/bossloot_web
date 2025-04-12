@@ -4,31 +4,40 @@ export class formUtils {
     static prepareFormData(formGroup: FormGroup, id: string | null, image: File | null): FormData {
         const formData = new FormData();
         const formValues = formGroup.getRawValue();
-    
+
         formData.append('_method', id ? 'PUT' : 'POST');
         formData.append('name', formValues.name ?? '');
         formData.append('description', formValues.description ?? '');
-        formData.append('category', formValues.category ?? '');
+        formData.append('category_id', formValues.category ?? '');
         formData.append('model', formValues.model ?? '');
-        formData.append('brand', formValues.brand ?? '');
+        formData.append('brand_id', formValues.brand ?? '');
         formData.append('price', String(formValues.price ?? 0));
         formData.append('quantity', String(formValues.quantity ?? 0));
         formData.append('on_offer', formValues.on_offer ? '1' : '0');
         formData.append('discount', String(formValues.discount ?? 0));
         formData.append('featured', formValues.featured ? '1' : '0');
-        
+        formData.append('points', String(formValues.points ?? 0));
+
         if (image) {
             formData.append('image', image);
         }
 
         switch (formValues.category) {
-            case 'ram':
+            case 1:
                 formData.append('speed', String(formValues.speed ?? 0));
                 formData.append('memory', String(formValues.memory ?? 0));
                 formData.append('memory_type', formValues.memory_type ?? '');
                 formData.append('latency', String(formValues.latency ?? 0));
                 break;
-            case 'cpu':
+            case 2:
+                formData.append('memory', String(formValues.memory ?? 0));
+                formData.append('memory_type', formValues.memory_type ?? '');
+                formData.append('core_clock', String(formValues.core_clock ?? 0));
+                formData.append('boost_clock', String(formValues.boost_clock ?? 0));
+                formData.append('consumption', String(formValues.consumption ?? 0));
+                formData.append('length', String(formValues.length ?? 0));
+                break;
+            case 3:
                 formData.append('socket', formValues.socket ?? '');
                 formData.append('core_count', String(formValues.core_count ?? 0));
                 formData.append('thread_count', String(formValues.thread_count ?? 0));
@@ -37,15 +46,7 @@ export class formUtils {
                 formData.append('consumption', String(formValues.consumption ?? 0));
                 formData.append('integrated_graphics', formValues.integrated_graphics ? '1' : '0');
                 break;
-            case 'gpu':
-                formData.append('memory', String(formValues.memory ?? 0));
-                formData.append('memory_type', formValues.memory_type ?? '');
-                formData.append('core_clock', String(formValues.core_clock ?? 0));
-                formData.append('boost_clock', String(formValues.boost_clock ?? 0));
-                formData.append('consumption', String(formValues.consumption ?? 0));
-                formData.append('length', String(formValues.length ?? 0));
-                break;
-            case 'motherboard':
+            case 4:
                 formData.append('socket', formValues.socket ?? '');
                 formData.append('chipset', formValues.chipset ?? '');
                 formData.append('form_factor', formValues.form_factor ?? '');
@@ -62,14 +63,14 @@ export class formUtils {
                 formData.append('wifi', formValues.wifi ? '1' : '0');
                 formData.append('bluetooth', formValues.bluetooth ? '1' : '0');
                 break;
-            case 'storage':
+            case 5:
                 formData.append('type', formValues.type ?? '');
                 formData.append('capacity', String(formValues.capacity ?? 0));
                 formData.append('rpm', String(formValues.rpm ?? 0));
                 formData.append('read_speed', String(formValues.read_speed ?? 0));
                 formData.append('write_speed', String(formValues.write_speed ?? 0));
                 break;
-            case 'case':
+            case 6:
                 formData.append('case_type', formValues.case_type ?? '');
                 formData.append('form_factor_support', formValues.form_factor_support ?? '');
                 formData.append('tempered_glass', formValues.tempered_glass ? '1' : '0');
@@ -83,13 +84,13 @@ export class formUtils {
                 formData.append('height', String(formValues.height ?? 0));
                 formData.append('weight', String(formValues.weight ?? 0));
                 break;
-            case 'psu':
+            case 7:
                 formData.append('efficiency_rating', formValues.efficiency_rating ?? '');
                 formData.append('wattage', String(formValues.wattage ?? 0));
                 formData.append('modular', formValues.modular ? '1' : '0');
                 formData.append('fanless', formValues.fanless ? '1' : '0');
                 break;
-            case 'cooler':
+            case 8:
                 formData.append('type', formValues.type ?? '');
                 formData.append('fan_rpm', String(formValues.fan_rpm ?? 0));
                 formData.append('consumption', String(formValues.consumption ?? 0));
@@ -97,7 +98,7 @@ export class formUtils {
                 formData.append('width', String(formValues.width ?? 0));
                 formData.append('height', String(formValues.height ?? 0));
                 break;
-            case 'display':
+            case 9:
                 formData.append('resolution', formValues.resolution ?? '');
                 formData.append('refresh_rate', String(formValues.refresh_rate ?? 0));
                 formData.append('response_time', String(formValues.response_time ?? 0));
@@ -112,14 +113,14 @@ export class formUtils {
                 formData.append('inches', String(formValues.inches ?? 0));
                 formData.append('weight', String(formValues.weight ?? 0));
                 break;
-            case 'keyboard':
+            case 10:
                 formData.append('type', formValues.type ?? '');
                 formData.append('switch_type', formValues.switch_type ?? '');
                 formData.append('width', String(formValues.width ?? 0));
                 formData.append('height', String(formValues.height ?? 0));
                 formData.append('weight', String(formValues.weight ?? 0));
                 break;
-            case 'mouse':
+            case 11:
                 formData.append('dpi', String(formValues.dpi ?? 0));
                 formData.append('sensor', formValues.sensor ?? '');
                 formData.append('buttons', String(formValues.buttons ?? 0));

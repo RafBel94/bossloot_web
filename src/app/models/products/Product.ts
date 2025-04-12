@@ -1,9 +1,9 @@
 export class Product {
     name: string;
     description: string;
-    category: string;
+    category_id: number;
+    brand_id: number;
     model: string;
-    brand: string;
     price: number;
     quantity: number;
     on_offer: boolean;
@@ -15,22 +15,20 @@ export class Product {
     public constructor(
         name: string,
         description: string,
-        category: string,
+        category_id: number,
+        brand_id: number,
         model:string,
-        brand: string,
         price: number,
         quantity: number,
         on_offer: boolean,
         discount: number,
         featured: boolean,
         image: string,
-        points: number,
+        points: number
     ) {
         this.name = name;
         this.description = description;
-        this.category = category;
         this.model = model;
-        this.brand = brand;
         this.price = price;
         this.quantity = quantity;
         this.on_offer = on_offer;
@@ -38,5 +36,7 @@ export class Product {
         this.featured = featured;
         this.image = image;
         this.points = points;
+        this.category_id = category_id;
+        this.brand_id = brand_id;
     }
 }

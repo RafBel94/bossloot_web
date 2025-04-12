@@ -17,9 +17,9 @@ export class CaseProduct extends Product {
     public constructor(
         name: string,
         description: string,
-        category: string,
+        category_id: number,
+        brand_id: number,
         model: string,
-        brand: string,
         price: number,
         quantity: number,
         on_offer: boolean,
@@ -40,7 +40,7 @@ export class CaseProduct extends Product {
         height: number,
         weight: number
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
         this.caseType = caseType;
         this.formFactorSupport = formFactorSupport;
         this.temperedGlass = temperedGlass;

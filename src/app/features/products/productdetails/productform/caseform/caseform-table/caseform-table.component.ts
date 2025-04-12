@@ -9,4 +9,5 @@ import { FormGroup } from '@angular/forms';
 })
 export class CaseformTableComponent {
   @Input() uploadForm!: FormGroup;
+  @Input() brand!: string | null;
 }

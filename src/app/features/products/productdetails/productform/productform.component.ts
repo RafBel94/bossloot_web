@@ -1,30 +1,33 @@
 import { Component, inject, Input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Brand } from '../../../../models/brands/Brand';
+import { Category } from '../../../../models/categories/Category';
+import { BrandService } from '../../../../services/brand.service';
 import { ProductService } from '../../../../services/product.service';
 import { formUtils } from '../../../../utils/productFormUtils';
 import { CaseformTableComponent } from "./caseform/caseform-table/caseform-table.component";
 import { CaseformComponent } from "./caseform/caseform.component";
+import { CoolerformTableComponent } from "./coolerform/coolerform-table/coolerform-table.component";
+import { CoolerformComponent } from "./coolerform/coolerform.component";
 import { CpuformTableComponent } from "./cpuform/cpuform-table/cpuform-table.component";
 import { CpuformComponent } from './cpuform/cpuform.component';
+import { DisplayformTableComponent } from "./displayform/displayform-table/displayform-table.component";
+import { DisplayformComponent } from "./displayform/displayform.component";
 import { GpuformTableComponent } from './gpuform/gpuform-table/gpuform-table.component';
 import { GpuformComponent } from './gpuform/gpuform.component';
+import { KeyboardformTableComponent } from "./keyboardform/keyboardform-table/keyboardform-table.component";
+import { KeyboardformComponent } from "./keyboardform/keyboardform.component";
 import { MotherboardformTableComponent } from "./motherboardform/motherboardform-table/motherboardform-table.component";
 import { MotherboardformComponent } from "./motherboardform/motherboardform.component";
+import { MouseformTableComponent } from "./mouseform/mouseform-table/mouseform-table.component";
+import { MouseformComponent } from "./mouseform/mouseform.component";
 import { PsuformTableComponent } from "./psuform/psuform-table/psuform-table.component";
 import { PsuformComponent } from "./psuform/psuform.component";
 import { RamformTableComponent } from './ramform/ramform-table/ramform-table.component';
 import { RamformComponent } from './ramform/ramform.component';
 import { StorageformTableComponent } from "./storageform/storageform-table/storageform-table.component";
 import { StorageformComponent } from "./storageform/storageform.component";
-import { CoolerformComponent } from "./coolerform/coolerform.component";
-import { CoolerformTableComponent } from "./coolerform/coolerform-table/coolerform-table.component";
-import { DisplayformComponent } from "./displayform/displayform.component";
-import { DisplayformTableComponent } from "./displayform/displayform-table/displayform-table.component";
-import { KeyboardformComponent } from "./keyboardform/keyboardform.component";
-import { KeyboardformTableComponent } from "./keyboardform/keyboardform-table/keyboardform-table.component";
-import { MouseformComponent } from "./mouseform/mouseform.component";
-import { MouseformTableComponent } from "./mouseform/mouseform-table/mouseform-table.component";
 
 @Component({
   selector: 'app-productform',
@@ -36,15 +39,19 @@ export class ProductformComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
   productService = inject(ProductService);
+  brandService = inject(BrandService);
 
   uploadForm!: FormGroup;
   @Input() productData: any | null;
+  @Input() categories: Category[] = [];
+  @Input() brands: Brand[] = [];
   submitButtonText: string = '';
   selectedFile: File | null = null;
   errorMessage = '';
   id = null;
-  category: string | null = null;
+  category_id: number | null = null;
   isLoading = false;
+  brand: string | null = null;
 
   constructor() {
     this.id = this.route.snapshot.params['id'] ?? null;
@@ -52,18 +59,20 @@ export class ProductformComponent {
   }
 
   ngOnInit() {
-    this.category = this.productData?.category ?? 'cpu';
+    this.category_id = this.productData?.category_id ?? 1;
     this.initForm();
+    this.getBrandName(this.uploadForm.get('brand')?.value);
     this.setupOfferDiscountLogic();
+    this.isLoading = false;
   }
 
   initForm() {
     this.uploadForm = new FormGroup({
       name: new FormControl(this.productData?.name || '', [Validators.required, Validators.maxLength(60)]),
       description: new FormControl(this.productData?.description || '', [Validators.required, Validators.maxLength(255)]),
-      category: new FormControl(this.productData?.category || 'cpu', [Validators.required, Validators.maxLength(60)]),
+      category: new FormControl(this.productData?.category_id || 1, [Validators.required]),
+      brand: new FormControl(this.productData?.brand_id || 1, [Validators.required]),
       model: new FormControl(this.productData?.model || '', [Validators.required, Validators.maxLength(60)]),
-      brand: new FormControl(this.productData?.brand || 'AMD', [Validators.required, Validators.maxLength(60)]),
       price: new FormControl(this.productData?.price || 0, [Validators.required, Validators.min(1), Validators.max(99999)]),
       quantity: new FormControl(this.productData?.quantity || 0, [Validators.required, Validators.min(0)]),
       on_offer: new FormControl(this.productData?.on_offer || false, [Validators.required]),
@@ -73,6 +82,21 @@ export class ProductformComponent {
       points: new FormControl(this.productData?.points || 0, [Validators.required, Validators.min(0), Validators.max(2000)]),
     });
   }
+
+  onBrandChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedBrand = Number(selectElement.value);
+    this.getBrandName(selectedBrand);
+  }
+
+  getBrandName(id: number) {
+    for (let brand of this.brands) {
+      if (brand.id === id) {
+        this.brand = brand.name;
+        break;
+      }
+    }
+}
 
   private setupOfferDiscountLogic() {
     this.uploadForm.get('on_offer')?.valueChanges.subscribe((isOnOffer) => {
@@ -109,70 +133,8 @@ export class ProductformComponent {
 
   onCategoryChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
-    this.category = selectElement.value;
-
-    switch (this.category) {
-      case 'cpu':
-        this.uploadForm.patchValue({
-          brand: 'AMD',
-        })
-        break;
-      case 'gpu':
-        this.uploadForm.patchValue({
-          brand: 'NVIDIA',
-        })
-        break;
-      case 'motherboard':
-        this.uploadForm.patchValue({
-          brand: 'ASUS',
-        })
-        break;
-      case 'ram':
-        this.uploadForm.patchValue({
-          brand: 'Corsair',
-        })
-        break;
-      case 'storage':
-        this.uploadForm.patchValue({
-          brand: 'Samsung',
-        });
-        break;
-      case 'psu':
-        this.uploadForm.patchValue({
-          brand: 'EVGA',
-        });
-        break;
-      case 'case':
-        this.uploadForm.patchValue({
-          brand: 'NZXT',
-        });
-        break;
-      case 'display':
-        this.uploadForm.patchValue({
-          brand: 'LG',
-        });
-        break;
-      case 'keyboard':
-        this.uploadForm.patchValue({
-          brand: 'Logitech',
-        });
-        break;
-      case 'mouse':
-        this.uploadForm.patchValue({
-          brand: 'Razer',
-        });
-        break;
-      case 'cooler':
-        this.uploadForm.patchValue({
-          brand: 'Cooler Master',
-        });
-        break;
-      default:
-        this.uploadForm.patchValue({
-          brand: '',
-        });
-        break;
-    }
+    const selectedCategory = Number(selectElement.value);
+    this.category_id = selectedCategory;
   }
 
   onSubmit() {

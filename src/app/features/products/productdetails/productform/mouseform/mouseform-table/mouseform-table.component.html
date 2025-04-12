@@ -60,7 +60,7 @@
                     } @else if(uploadForm.controls['brand'].errors?.['maxlength']) {
                         <span class="fw-bold text-danger">Brand cannot be longer than 60 characters</span>
                     } @else {
-                        {{ uploadForm.get('brand')?.value }}
+                        {{ brand }}
                     }
                 </td>
             </tr>

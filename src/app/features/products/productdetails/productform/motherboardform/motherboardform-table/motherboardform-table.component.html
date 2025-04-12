@@ -60,7 +60,7 @@
                     } @else if(uploadForm.controls['brand'].errors?.['maxlength']) {
                         <span class="fw-bold text-danger">Brand cannot be longer than 60 characters</span>
                     } @else {
-                        {{ uploadForm.get('brand')?.value }}
+                        {{ brand }}
                     }
                 </td>
             </tr>
@@ -264,9 +264,9 @@
                     @if(uploadForm.controls['memory_speed'].errors?.['required']) {
                         <span class="fw-bold text-danger">Memory speed is required</span>
                     } @else if(uploadForm.controls['memory_speed'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Memory speed cannot be lower than 1066</span>
+                        <span class="fw-bold text-danger">Memory speed cannot be lower than 1000</span>
                     } @else if(uploadForm.controls['memory_speed'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Memory speed cannot be higher than 7200</span>
+                        <span class="fw-bold text-danger">Memory speed cannot be higher than 7000</span>
                     } @else {
                         {{ uploadForm.get('memory_speed')?.value }}
                     }

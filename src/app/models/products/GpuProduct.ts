@@ -11,9 +11,9 @@ export class GpuProduct extends Product {
     public constructor(
         name: string,
         description: string,
-        category: string,
+        category_id: number,
+        brand_id: number,
         model: string,
-        brand: string,
         price: number,
         quantity: number,
         on_offer: boolean,
@@ -28,7 +28,7 @@ export class GpuProduct extends Product {
         consumption: number,
         length: number,
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
         this.memory = memory;
         this.memory_type = memory_type;
         this.core_clock = core_clock;

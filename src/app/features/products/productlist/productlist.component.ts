@@ -48,12 +48,11 @@ export class ProductlistComponent {
   // DATA AND HEADER CONFIGURATION
   rowData: TableProduct[] = [];
   colDefs: ColDef[] = [
-    { field: "name", filter: true, minWidth: 280, maxWidth: 320 },
+    { field: "name", filter: true, minWidth: 230, maxWidth: 250 },
     { field: "category", filter: true, minWidth: 160, maxWidth: 160 },
     { field: "model", filter: true, minWidth: 280, maxWidth: 320 },
     { field: "brand", filter: true, minWidth: 170, maxWidth: 180 },
     { field: "price", filter: true, minWidth: 100, maxWidth: 120 },
-    { field: "quantity", filter: true, minWidth: 100, maxWidth: 120 },
     { 
       field: "on_offer", 
       headerName: 'On Offer', 

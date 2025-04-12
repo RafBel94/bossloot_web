@@ -60,7 +60,7 @@
                     } @else if(uploadForm.controls['brand'].errors?.['maxlength']) {
                         <span class="fw-bold text-danger">Brand cannot be longer than 60 characters</span>
                     } @else {
-                        {{ uploadForm.get('brand')?.value }}
+                        {{ brand }}
                     }
                 </td>
             </tr>
@@ -213,11 +213,11 @@
                     @if(uploadForm.controls['base_clock'].errors?.['required']) {
                         <span class="fw-bold text-danger">Base clock speed is required</span>
                     } @else if(uploadForm.controls['base_clock'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Base clock cannot be lower than 800</span>
+                        <span class="fw-bold text-danger">Base clock cannot be lower than 1</span>
                     } @else if(uploadForm.controls['base_clock'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Base clock cannot be higher than 8000</span>
+                        <span class="fw-bold text-danger">Base clock cannot be higher than 8</span>
                     } @else {
-                        {{ uploadForm.get('base_clock')?.value }} MHz
+                        {{ uploadForm.get('base_clock')?.value }} GHz
                     }
                 </td>
             </tr>
@@ -234,11 +234,11 @@
                     @if(uploadForm.controls['boost_clock'].errors?.['required']) {
                         <span class="fw-bold text-danger">Boost speed is required</span>
                     } @else if(uploadForm.controls['boost_clock'].errors?.['min']) {
-                        <span class="fw-bold text-danger">Boost cannot be lower than 800</span>
+                        <span class="fw-bold text-danger">Boost cannot be lower than 1</span>
                     } @else if(uploadForm.controls['boost_clock'].errors?.['max']) {
-                        <span class="fw-bold text-danger">Boost cannot be higher than 8000</span>
+                        <span class="fw-bold text-danger">Boost cannot be higher than 8</span>
                     } @else {
-                        {{ uploadForm.get('boost_clock')?.value }} MHz
+                        {{ uploadForm.get('boost_clock')?.value }} GHz
                     }
                 </td>
             </tr>

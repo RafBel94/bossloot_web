@@ -9,4 +9,5 @@ import { FormGroup } from '@angular/forms';
 })
 export class GpuformTableComponent {
   @Input() uploadForm!: FormGroup;
+  @Input() brand!: string | null;
 }

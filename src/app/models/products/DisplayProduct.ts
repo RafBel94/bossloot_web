@@ -18,9 +18,9 @@ export class DisplayProduct extends Product {
     public constructor(
         name: string,
         description: string,
-        category: string,
+        category_id: number,
+        brand_id: number,
         model: string,
-        brand: string,
         price: number,
         quantity: number,
         on_offer: boolean,
@@ -42,7 +42,7 @@ export class DisplayProduct extends Product {
         inches: number,
         weight: number
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
         this.resolution = resolution;
         this.refresh_rate = refresh_rate;
         this.response_time = response_time;

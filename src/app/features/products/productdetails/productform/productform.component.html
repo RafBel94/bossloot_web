@@ -59,110 +59,9 @@
                 <!-- BRAND FIELD -->
                 <div class="mb-3 w-75">
                     <label class="form-label" for="brand">Brand:</label>
-                    <select id="brand" class="form-select" formControlName="brand">
-                        @if(category == 'ram'){
-                            <option [value]="'Corsair'">Corsair</option>
-                            <option [value]="'Kingston'">Kingston</option>
-                            <option [value]="'Crucial'">Crucial</option>
-                            <option [value]="'G.Skill'">G.Skill</option>
-                            <option [value]="'ADATA'">ADATA</option>
-                            <option [value]="'Patriot'">Patriot</option>
-                            <option [value]="'HyperX'">HyperX</option>
-                        }
-                        @if(category == 'cpu'){
-                            <option [value]="'AMD'">AMD</option>
-                            <option [value]="'Intel'">Intel</option>
-                        }
-                        @if(category == 'gpu'){
-                            <option [value]="'AMD'">AMD</option>
-                            <option [value]="'NVIDIA'">NVIDIA</option>
-                            <option [value]="'Intel'">Intel</option>
-                            <option [value]="'MSI'">MSI</option>
-                            <option [value]="'ASUS'">ASUS</option>
-                            <option [value]="'GIGABYTE'">GIGABYTE</option>
-                            <option [value]="'Zotac'">Zotac</option>
-                            <option [value]="'PNY'">PNY</option>
-                            <option [value]="'ASRock'">ASRock</option>
-                            <option [value]="'Sapphire'">Sapphire</option>
-                            <option [value]="'PowerColor'">PowerColor</option>
-                        }
-                        @if(category == 'motherboard'){
-                            <option [value]="'MSI'">MSI</option>
-                            <option [value]="'ASUS'">ASUS</option>
-                            <option [value]="'GIGABYTE'">GIGABYTE</option>
-                            <option [value]="'ASRock'">ASRock</option>
-                        }
-                        @if(category == 'psu'){
-                            <option [value]="'Corsair'">Corsair</option>
-                            <option [value]="'Seasonic'">Seasonic</option>
-                            <option [value]="'EVGA'">EVGA</option>
-                            <option [value]="'Be Quiet!'">Be Quiet!</option>
-                            <option [value]="'NZXT'">NZXT</option>
-                            <option [value]="'Cooler Master'">Cooler Master</option>
-                            <option [value]="'Thermaltake'">Thermaltake</option>
-                            <option [value]="'MSI'">MSI</option>
-                            <option [value]="'SilverStone'">SilverStone</option>
-                            <option [value]="'GIGABYTE'">GIGABYTE</option>
-                            <option [value]="'Deepcool'">Deepcool</option>
-                        }
-                        @if(category == 'case'){
-                            <option [value]="'Corsair'">Corsair</option>
-                            <option [value]="'NZXT'">NZXT</option>
-                            <option [value]="'Cooler Master'">Cooler Master</option>
-                            <option [value]="'Thermaltake'">Thermaltake</option>
-                            <option [value]="'Antec'">Antec</option>
-                            <option [value]="'SilverStone'">SilverStone</option>
-                            <option [value]="'Deepcool'">Deepcool</option>
-                            <option [value]="'MSI'">MSI</option>
-                            <option [value]="'ASUS'">ASUS</option>
-                            <option [value]="'Aerocool'">Aerocool</option>
-                        }
-                        @if(category == 'cooler'){
-                            <option [value]="'Noctua'">Noctua</option>
-                            <option [value]="'Corsair'">Corsair</option>
-                            <option [value]="'NZXT'">NZXT</option>
-                            <option [value]="'Cooler Master'">Cooler Master</option>
-                            <option [value]="'Be Quiet!'">Be Quiet!</option>
-                            <option [value]="'Arctic'">Arctic</option>
-                            <option [value]="'Thermaltake'">Thermaltake</option>
-                            <option [value]="'Deepcool'">Deepcool</option>
-                        }
-                        @if(category == 'display'){
-                            <option [value]="'Samsung'">Samsung</option>
-                            <option [value]="'LG'">LG</option>
-                            <option [value]="'Dell'">Dell</option>
-                            <option [value]="'ASUS'">ASUS</option>
-                            <option [value]="'Acer'">Acer</option>
-                            <option [value]="'HP'">HP</option>
-                            <option [value]="'BenQ'">BenQ</option>
-                            <option [value]="'MSI'">MSI</option>
-                            <option [value]="'GIGABYTE'">GIGABYTE</option>
-                            <option [value]="'Philips'">Philips</option>
-                            <option [value]="'AOC'">AOC</option>
-                            <option [value]="'Lenovo'">Lenovo</option>
-                        }
-                        @if(category == 'storage'){
-                            <option [value]="'Samsung'">Samsung</option>
-                            <option [value]="'Western Digital'">Western Digital</option>
-                            <option [value]="'Crucial'">Crucial</option>
-                            <option [value]="'SK Hynix'">SK Hynix</option>
-                            <option [value]="'Kingston'">Kingston</option>
-                            <option [value]="'Seagate'">Seagate</option>
-                            <option [value]="'Corsair'">Corsair</option>
-                            <option [value]="'ADATA'">ADATA</option>
-                            <option [value]="'Sabrent'">Sabrent</option>
-                            <option [value]="'PNY'">PNY</option>
-                            <option [value]="'Lexar'">Lexar</option>
-                        }
-                        @if(category == 'keyboard' || category == 'mouse'){
-                            <option [value]="'Corsair'">Corsair</option>
-                            <option [value]="'Logitech'">Logitech</option>
-                            <option [value]="'Razer'">Razer</option>
-                            <option [value]="'SteelSeries'">SteelSeries</option>
-                            <option [value]="'Glorious PC Gaming Race'">Glorious PC Gaming Race</option>
-                            <option [value]="'Keychron'">Keychron</option>
-                            <option [value]="'HyperX'">HyperX</option>
-                            <option [value]="'Fnatic'">Fnatic</option>
+                    <select id="brand" class="form-select" formControlName="brand" (click)="onBrandChange($event)">
+                        @for (brand of brands; track brand.id) {
+                        <option [value]="brand.id">{{ brand.name }}</option>
                         }
                     </select>
                 </div>
@@ -172,18 +71,10 @@
                 <div class="mb-3 w-75">
                     <label class="form-label" for="category">Category:</label>
                     <select class="form-select" id="category" type="text" formControlName="category"
-                        (change)="onCategoryChange($event)">
-                        <option id="cpu" [value]="'cpu'">Processing Unit</option>
-                        <option id="ram" [value]="'ram'">RAM</option>
-                        <option id="gpu" [value]="'gpu'">Graphics Card</option>
-                        <option id="motherboard" [value]="'motherboard'">Motherboard</option>
-                        <option id="storage" [value]="'storage'">Storage Unit</option>
-                        <option id="psu" [value]="'psu'">Power Supply</option>
-                        <option id="case" [value]="'case'">Case</option>
-                        <option id="cooler" [value]="'cooler'">Refrigeration</option>
-                        <option id="display" [value]="'display'">Display</option>
-                        <option id="keyboard" [value]="'keyboard'">Keyboard</option>
-                        <option id="mouse" [value]="'mouse'">Mouse</option>
+                    (click)="onCategoryChange($event)">
+                        @for (category of categories; track category.id) {
+                        <option [value]="category.id">{{ category.name }}</option>
+                        }
                     </select>
                 </div>
                 }
@@ -313,37 +204,37 @@
         </div>
 
         <!-- SPECIFICATIONS COMPONENT -->
-        @if(category == 'ram'){
+        @if(category_id == 1){
         <app-ramform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'cpu'){
-        <app-cpuform [productData]="productData" [uploadForm]="uploadForm" />
-        }
-        @if(category == 'gpu'){
+        @if(category_id == 2){
         <app-gpuform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'motherboard'){
+        @if(category_id == 3){
+        <app-cpuform [productData]="productData" [uploadForm]="uploadForm" />
+        }
+        @if(category_id == 4){
         <app-motherboardform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'storage'){
+        @if(category_id == 5){
         <app-storageform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'psu'){
+        @if(category_id == 6){
         <app-psuform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'case'){
+        @if(category_id == 7){
         <app-caseform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'cooler'){
+        @if(category_id == 8){
         <app-coolerform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'display'){
+        @if(category_id == 9){
         <app-displayform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'keyboard'){
+        @if(category_id == 10){
         <app-keyboardform [productData]="productData" [uploadForm]="uploadForm" />
         }
-        @if(category == 'mouse'){
+        @if(category_id == 11){
         <app-mouseform [productData]="productData" [uploadForm]="uploadForm" />
         }
 
@@ -354,38 +245,38 @@
             <div class="flex-grow-1 border-bottom border-2"></div>
         </div>
 
-        @if(category == 'ram'){
-        <app-ramform-table [uploadForm]="uploadForm" />
+        @if(category_id == 1){
+        <app-ramform-table [uploadForm]="uploadForm" [brand]="brand"/>
         }
-        @if(category == 'cpu'){
-        <app-cpuform-table [uploadForm]="uploadForm" />
+        @if(category_id == 2){
+        <app-gpuform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'gpu'){
-        <app-gpuform-table [uploadForm]="uploadForm" />
+        @if(category_id == 3){
+        <app-cpuform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'motherboard'){
-        <app-motherboardform-table [uploadForm]="uploadForm" />
+        @if(category_id == 4){
+        <app-motherboardform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'storage'){
-        <app-storageform-table [uploadForm]="uploadForm" />
+        @if(category_id == 5){
+        <app-storageform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'psu'){
-        <app-psuform-table [uploadForm]="uploadForm" />
+        @if(category_id == 6){
+        <app-psuform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'case'){
-        <app-caseform-table [uploadForm]="uploadForm" />
+        @if(category_id == 7){
+        <app-caseform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'cooler'){
-        <app-coolerform-table [uploadForm]="uploadForm" />
+        @if(category_id == 8){
+        <app-coolerform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'display'){
-        <app-displayform-table [uploadForm]="uploadForm" />
+        @if(category_id == 9){
+        <app-displayform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'keyboard'){
-        <app-keyboardform-table [uploadForm]="uploadForm" />
+        @if(category_id == 10){
+        <app-keyboardform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
-        @if(category == 'mouse'){
-        <app-mouseform-table [uploadForm]="uploadForm" />
+        @if(category_id == 11){
+        <app-mouseform-table [uploadForm]="uploadForm" [brand]="brand" />
         }
 
         <!-- ERROR MESSAGE SECTION -->

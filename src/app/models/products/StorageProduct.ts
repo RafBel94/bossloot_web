@@ -10,9 +10,9 @@ export class StorageProduct extends Product {
     public constructor(
         name: string,
         description: string,
-        category: string,
+        category_id: number,
+        brand_id: number,
         model: string,
-        brand: string,
         price: number,
         quantity: number,
         on_offer: boolean,
@@ -26,7 +26,7 @@ export class StorageProduct extends Product {
         read_speed: number,
         write_speed: number,
     ) {
-        super(name, description, category, model, brand, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
         this.type = type;
         this.capacity = capacity;
         this.rpm = rpm;

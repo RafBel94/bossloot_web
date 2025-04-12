@@ -15,7 +15,7 @@ export class KeyboardformComponent {
   ngOnInit() {
     this.uploadForm.addControl('type', new FormControl(this.productData?.type || 'Mechanical', [Validators.required]));
 
-    this.uploadForm.addControl('switch_type', new FormControl(this.productData?.switch_type || 'Red', [Validators.required]));
+    this.uploadForm.addControl('switch_type', new FormControl(this.productData?.switch_type || 'Cherry MX Red', [Validators.required]));
 
     this.uploadForm.addControl('width', new FormControl(this.productData?.width || 350, [Validators.required, Validators.min(250), Validators.max(450)]));
 
