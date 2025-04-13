@@ -135,6 +135,7 @@ export class ProductformComponent {
     const selectElement = event.target as HTMLSelectElement;
     const selectedCategory = Number(selectElement.value);
     this.category_id = selectedCategory;
+    this.uploadForm.patchValue({ category: selectedCategory });
   }
 
   onNewBrand() {
