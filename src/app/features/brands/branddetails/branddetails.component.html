@@ -1,0 +1,11 @@
+@if (!isLoading) {
+    <div class="d-flex h-100 w-100">
+        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+            <div class="w-75">
+                <app-brandform [brandData]="brand"/>
+            </div>
+        </div>
+    </div>
+} @else {
+    <app-loading-logo/>
+}

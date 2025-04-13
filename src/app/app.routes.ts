@@ -10,6 +10,9 @@ import { UserlistComponent } from './features/users/userlist/userlist.component'
 import { ConfirmEmailComponent } from './features/confirmemail/confirmemail.component';
 import { ProductlistComponent } from './features/products/productlist/productlist.component';
 import { ProductdetailsComponent } from './features/products/productdetails/productdetails.component';
+import { BrandsComponent } from './features/brands/brands.component';
+import { BrandlistComponent } from './features/brands/brandlist/brandlist.component';
+import { BranddetailsComponent } from './features/brands/branddetails/branddetails.component';
 
 export const routes: Routes = [
     {
@@ -48,6 +51,16 @@ export const routes: Routes = [
                     { path: 'list', component: ProductlistComponent },
                     { path: 'edit/:id', component: ProductdetailsComponent },
                     { path: 'new', component: ProductdetailsComponent },
+                ]
+            },
+            {
+                path: 'brands',
+                component: BrandsComponent,
+                children: [
+                    { path: '', redirectTo: 'list', pathMatch: 'full' },
+                    { path: 'list', component: BrandlistComponent },
+                    { path: 'edit/:id', component: BranddetailsComponent },
+                    { path: 'new', component: BranddetailsComponent },
                 ]
             },
             { path: '', redirectTo: 'users', pathMatch: 'full' }

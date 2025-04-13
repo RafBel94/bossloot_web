@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AgGridAngular } from 'ag-grid-angular';
@@ -6,7 +5,6 @@ import { themeQuartz, type ColDef, type GridApi, type GridReadyEvent } from 'ag-
 import { TableProduct } from '../../../interfaces/tableProduct';
 import { SimpleProduct } from '../../../models/products/SimpleProduct';
 import { ProductService } from '../../../services/product.service';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
 
 @Component({

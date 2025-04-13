@@ -133,4 +133,20 @@ export class formUtils {
 
         return formData;
     }
+
+    static prepareBrandFormData(formGroup: FormGroup, id: string | null, image: File | null): FormData {
+        const formData = new FormData();
+        const formValues = formGroup.getRawValue();
+
+        formData.append('_method', id ? 'PUT' : 'POST');
+        formData.append('id', id ?? '');
+        formData.append('name', formValues.name ?? '');
+        formData.append('description', formValues.description ?? '');
+
+        if (image) {
+            formData.append('image', image);
+        }
+
+        return formData;
+    }
 }
