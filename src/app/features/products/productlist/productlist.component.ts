@@ -46,17 +46,16 @@ export class ProductlistComponent {
   // DATA AND HEADER CONFIGURATION
   rowData: TableProduct[] = [];
   colDefs: ColDef[] = [
-    { field: "name", filter: true, minWidth: 230, maxWidth: 250 },
-    { field: "category", filter: true, minWidth: 160, maxWidth: 160 },
-    { field: "model", filter: true, minWidth: 280, maxWidth: 320 },
-    { field: "brand", filter: true, minWidth: 170, maxWidth: 180 },
-    { field: "price", filter: true, minWidth: 100, maxWidth: 120 },
+    { field: "name", filter: true,},
+    { field: "category", filter: true, maxWidth: 120},
+    { field: "model", filter: true,},
+    { field: "brand", filter: true, maxWidth: 120},
+    { field: "price", filter: true, maxWidth: 100},
     { 
       field: "on_offer", 
-      headerName: 'On Offer', 
-      filter: true, 
-      minWidth: 100, 
-      maxWidth: 120,
+      headerName: 'Offer', 
+      filter: true,
+      maxWidth: 100,
       cellRenderer: (params: any) => {
         const container = document.createElement('div');
         const icon = document.createElement('i');
@@ -74,14 +73,14 @@ export class ProductlistComponent {
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
-        editButton.className = 'btn btn-primary btn-sm me-3 w-25 ps-2 pe-2';
+        editButton.className = 'btn btn-primary btn-sm me-3 w-50 ps-2 pe-2';
         editButton.addEventListener('click', () => {
           this.editProduct(params.data);
         });
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.className = 'btn btn-danger btn-sm w-25 ps-2 pe-2';
+        deleteButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
         deleteButton.addEventListener('click', () => {
           this.deleteProduct(params.data);
         });
@@ -91,7 +90,8 @@ export class ProductlistComponent {
 
         return container;
       },
-      minWidth: 240
+      minWidth: 240,
+      maxWidth: 300,
     }
   ];
 

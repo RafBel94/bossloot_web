@@ -70,14 +70,14 @@ export class BrandlistComponent {
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
-        editButton.className = 'btn btn-primary btn-sm me-3 w-25 ps-2 pe-2';
+        editButton.className = 'btn btn-primary btn-sm me-3 w-50 ps-2 pe-2';
         editButton.addEventListener('click', () => {
           this.editBrand(params.data.id);
         });
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.className = 'btn btn-danger btn-sm w-25 ps-2 pe-2';
+        deleteButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
         deleteButton.addEventListener('click', () => {
           this.deleteBrand(params.data);
         });
@@ -87,7 +87,8 @@ export class BrandlistComponent {
 
         return container;
       },
-      minWidth: 240
+      minWidth: 240,
+      maxWidth: 300,
     }
   ];
 
@@ -100,7 +101,7 @@ export class BrandlistComponent {
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
-    this.gridApi.setGridOption('rowData', this.brandList);
+    this.gridApi.setGridOption('rowData', this.brandList.slice(1));
   }
 
   onCreateBrand() {

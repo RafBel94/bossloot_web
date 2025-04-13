@@ -50,12 +50,30 @@ export class UserlistComponent {
   // DATA AND HEADER CONFIGURATION
   rowData: TableUser[] = [];
   colDefs: ColDef[] = [
-    { field: "name", filter: true, minWidth:300, maxWidth: 340},
-    { field: "email", filter: true, minWidth:320, maxWidth: 360},
-    { field: "level", filter: true, minWidth:100, maxWidth: 120},
-    { field: "points", filter: true, minWidth: 100, maxWidth: 120},
-    { field: "activated", filter: true, minWidth:120, maxWidth: 140},
-    { field: "email_confirmed", headerName: 'Email Confirmed', filter: true, minWidth:180, maxWidth: 200},
+    { field: "name", filter: true, minWidth: 230},
+    { field: "email", filter: true, minWidth: 250, maxWidth: 360},
+    { field: "level", filter: true, minWidth:80, cellStyle: { textAlign: 'center'} },
+    { field: "points", filter: true, minWidth: 80, cellStyle: { textAlign: 'center'} },
+    { field: "activated", filter: true, minWidth:120,
+      cellRenderer: (params: any) => {
+        const container = document.createElement('div');
+        const icon = document.createElement('i');
+        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
+        container.appendChild(icon);
+        return container;
+      }
+    },
+    { field: "email_confirmed", headerName: 'Confirmed', filter: true, minWidth:120,
+      cellRenderer: (params: any) => {
+        const container = document.createElement('div');
+        const icon = document.createElement('i');
+        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
+        container.appendChild(icon);
+        return container;
+      }
+    },
     {
       headerName: 'Actions',
       cellRenderer: (params: any) => {
@@ -64,14 +82,14 @@ export class UserlistComponent {
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
-        editButton.className = 'btn btn-primary btn-sm me-3 w-2 ps-2 pe-2';
+        editButton.className = 'btn btn-primary btn-sm me-3 w-50 ps-2 pe-2';
         editButton.addEventListener('click', () => {
           this.editUser(params.data);
         });
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
-        deleteButton.className = 'btn btn-danger btn-sm w-25 ps-2 pe-2';
+        deleteButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
         deleteButton.addEventListener('click', () => {
           this.deleteUser(params.data);
         });
