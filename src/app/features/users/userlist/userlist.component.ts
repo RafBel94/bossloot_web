@@ -120,6 +120,11 @@ export class UserlistComponent {
   }
 
   deleteUser(user: any) {
+    if (user.role == 'admin') {
+      this.router.navigate(['/403']);
+      return;
+    }
+    
     if (!confirm('Are you sure you want to delete the user?')) {
       return;
     }

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
 import { BrandService } from '../../../services/brand.service';
 import { Brand } from '../../../models/brands/Brand';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BrandformComponent } from "./brandform/brandform.component";
 
 @Component({
@@ -14,6 +14,7 @@ import { BrandformComponent } from "./brandform/brandform.component";
 export class BranddetailsComponent {
   // INJECTED SERVICES
   route: ActivatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
   brandService = inject(BrandService);
 
   // COMPONENT PROPERTIES
@@ -34,11 +35,21 @@ export class BranddetailsComponent {
       this.brandService.getBrandById(this.brandId)
         .subscribe({
           next: (res: { data: Brand }) => {
+            if (res.data.id == 1) {
+              this.router.navigate(['/403']);
+            }
             this.brand = this.createNewBrand(res.data);
             this.isLoading = false;
           },
           error: (err) => {
-            console.error('Error loading brand:', err);
+            if(err.status == 403) {
+              this.router.navigate(['/403']);
+            } else if(err.status == 404) {
+              this.router.navigate(['/404']);
+            }
+            else {
+              console.log("Error loading brand data: ", err);
+            }
             this.isLoading = false;
           }
         });

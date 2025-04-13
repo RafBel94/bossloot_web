@@ -46,12 +46,23 @@ export class ProfileComponent {
     this.userService.getUserById(this.userId)
       .subscribe({
         next: (res: { data: User }) => {
+          if(res.data.role == 'admin') {
+            this.router.navigate(['/403']);
+            return;
+          }
           this.uploadForm.patchValue(res.data);
           this.isLoading = false;
           this.cdr.detectChanges();
         },
         error: (err) => {
-          console.error('Error loading user:', err);
+          console.log('Error loading user:', err);
+          if (err.status === 403) {
+            this.router.navigate(['/403']);
+          } else if (err.status === 404) {
+            this.router.navigate(['/404']);
+          } else {
+            console.error('Error loading user:', err);
+          }
           this.isLoading = false;
         }
       });
