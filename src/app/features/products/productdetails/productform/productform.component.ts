@@ -83,21 +83,6 @@ export class ProductformComponent {
     });
   }
 
-  onBrandChange(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    const selectedBrand = Number(selectElement.value);
-    this.getBrandName(selectedBrand);
-  }
-
-  getBrandName(id: number) {
-    for (let brand of this.brands) {
-      if (brand.id === id) {
-        this.brand = brand.name;
-        break;
-      }
-    }
-}
-
   private setupOfferDiscountLogic() {
     this.uploadForm.get('on_offer')?.valueChanges.subscribe((isOnOffer) => {
       const discountControl = this.uploadForm.get('discount');
@@ -114,6 +99,21 @@ export class ProductformComponent {
     if (!initialOfferValue) {
       this.uploadForm.get('discount')?.disable();
     }
+  }
+
+  getBrandName(id: number) {
+    for (let brand of this.brands) {
+      if (brand.id === id) {
+        this.brand = brand.name;
+        break;
+      }
+    }
+  }
+  
+  onBrandChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedBrand = Number(selectElement.value);
+    this.getBrandName(selectedBrand);
   }
 
   onFileSelected(event: Event): void {
@@ -135,6 +135,15 @@ export class ProductformComponent {
     const selectElement = event.target as HTMLSelectElement;
     const selectedCategory = Number(selectElement.value);
     this.category_id = selectedCategory;
+    this.uploadForm.patchValue({ category: selectedCategory });
+  }
+
+  onNewBrand() {
+    if (!confirm('Are you sure you want to add a new brand?\nThis will redirect you to the brand creation page.')) {
+      return;
+    }
+
+    this.router.navigate(['/dashboard/brands/new']);
   }
 
   onSubmit() {

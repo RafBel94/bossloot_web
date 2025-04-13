@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../models/products/Product';
 import { RamProduct } from '../../../models/products/RamProduct';
 import { ProductService } from '../../../services/product.service';
@@ -28,6 +28,7 @@ import { Brand } from '../../../models/brands/Brand';
 })
 export class ProductdetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
   productService = inject(ProductService);
   categoryService = inject(CategoryService);
   brandService = inject(BrandService);
@@ -82,6 +83,7 @@ export class ProductdetailsComponent {
           },
           error: (err) => {
             console.error('Error loading product:', err);
+            this.router.navigate(['/404']);
             this.isLoading = false;
           }
         });

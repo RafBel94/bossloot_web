@@ -1,0 +1,81 @@
+<div class="card w-100 p-4">
+    <form #f [formGroup]="uploadForm" (submit)="onSubmit()">
+
+        <!-- IMAGE -->
+        <div class="d-flex flex-column justify-content-center align-items-center w-100">
+            <img class="rounded-3 border border-2 mb-4"
+                [src]="uploadForm.value.image || 'images/product-placeholder.png'" width="200px"
+                alt="Component Image" />
+            <input type="file" class="form-control w-50 mt-3" (change)="onFileSelected($event)"
+                accept=".png, .jpg, .jpeg">
+        </div>
+
+        <!-- GENERAL SPECIFICATIONS SEPARATOR -->
+        <div class="d-flex align-items-center w-100 mt-2">
+            <div class="flex-grow-1 border-bottom border-2"></div>
+            <h2 class="mx-3 mt-3 mb-4 text-center">{{ brandData ? brandData.name : 'New' }} Brand Information</h2>
+            <div class="flex-grow-1 border-bottom border-2"></div>
+        </div>
+
+        <!-- PRODUCT INFORMATION -->
+        <div class="d-flex justify-content-center mt-2">
+
+            <!-- NAME FIELD -->
+            <div class="mb-3 w-75">
+                <label class="form-label" for="name">Name:</label>
+                <input class="form-control" id="name" type="text" formControlName="name" placeholder="Insert new brand name...">
+                <div class="text-danger">
+                    @if (uploadForm.controls['name'].errors?.['required']) {
+                    <div>Name is required.</div>
+                    }
+                    @if (uploadForm.controls['name'].errors?.['maxlength']) {
+                    <div>Name cannot be longer than 60 characters.</div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- DESCRIPTION FIELD -->
+        <div class="d-flex justify-content-center align-items-center w-100 mt-3">
+            <div class="d-flex w-75 mb-3">
+                <div class="w-100">
+                    <label class="form-label" for="description">Description:</label>
+                    <textarea class="form-control" id="description" type="text" formControlName="description"
+                        rows="3" placeholder="Insert new brand description..."></textarea>
+                    <div class="text-danger">
+                        @if (uploadForm.controls['description'].errors?.['required']) {
+                        <div>Description is required.</div>
+                        }
+                        @if (uploadForm.controls['description'].errors?.['maxlength']) {
+                        <div>Description cannot be longer than 255 characters.</div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ERROR MESSAGE SECTION -->
+        @if (!uploadForm.valid) {
+        <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
+            <span class="fw-bold mx-auto">Please resolve the errors before submitting</span>
+        </div>
+        }
+        @if (errorMessage) {
+        <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
+            <span class="fw-bold mx-auto">{{ errorMessage }}</span>
+        </div>
+        }
+
+        <!-- BUTTONS -->
+        <div class="d-flex mx-auto w-50 mt-3">
+            <div class="d-flex justify-content-center w-100 mt-3">
+                <button class="btn btn-primary" type="submit" [disabled]="!uploadForm.valid">{{ submitButtonText
+                    }}</button>
+            </div>
+            <div class="d-flex justify-content-center w-100 mt-3">
+                <button class="btn text-white" type="button" style="background-color: #828282"
+                    (click)="onReturn()">Return</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -57,18 +57,23 @@
             <!-- COLUMN RIGHT -->
             <div class="d-flex flex-column align-items-center w-50">
                 <!-- BRAND FIELD -->
-                <div class="mb-3 w-75">
-                    <label class="form-label" for="brand">Brand:</label>
-                    <select id="brand" class="form-select" formControlName="brand" (click)="onBrandChange($event)">
-                        @for (brand of brands; track brand.id) {
-                        <option [value]="brand.id">{{ brand.name }}</option>
-                        }
-                    </select>
+                <div class="d-flex mb-3 w-50 align-items-center">
+                    <div>
+                        <label class="form-label" for="brand">Brand:</label>
+                        <select id="brand" class="form-select" formControlName="brand" (click)="onBrandChange($event)">
+                            @for (brand of brands; track brand.id) {
+                            <option [value]="brand.id">{{ brand.name }}</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="ms-2" style="margin-top: 2rem;">
+                        <button type="button" class="btn btn-success" (click)="onNewBrand()">New</button>
+                    </div>
                 </div>
 
                 <!-- CATEGORY DROPDOWN -->
                 @if (!productData){
-                <div class="mb-3 w-75">
+                <div class="mb-3 w-50">
                     <label class="form-label" for="category">Category:</label>
                     <select class="form-select" id="category" type="text" formControlName="category"
                     (click)="onCategoryChange($event)">
