@@ -1,0 +1,17 @@
+@if(!isLoading){
+    <div class="h-100 d-flex flex-column justify-content-evenly">
+        <div class="title rounded-2">Manage contact forms</div>
+        <div class="d-flex flex-column h-75">
+            <div class="d-flex justify-content-between">
+                <div class="quick-search rounded-2 p-1 mb-1" style="width: 20rem;">
+                    <input class="w-100 p-2 rounded-2" type="text" id="filter-text-box" placeholder="Quick search..." (input)="onFilterTextBoxChanged()" />
+                </div>
+            </div>
+            <ag-grid-angular class="h-100" [theme]="theme" [rowData]="rowData" [columnDefs]="colDefs" [defaultColDef]="{flex: 1}"
+            [pagination]="pagination" [paginationPageSize]="paginationPageSize" [paginationPageSizeSelector]="paginationPageSizeSelector"
+            (gridReady)="onGridReady($event)" />
+        </div>
+    </div>
+} @else {
+    <app-loading-logo/>
+}

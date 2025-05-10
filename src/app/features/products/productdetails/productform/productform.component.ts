@@ -69,7 +69,7 @@ export class ProductformComponent {
   initForm() {
     this.uploadForm = new FormGroup({
       name: new FormControl(this.productData?.name || '', [Validators.required, Validators.maxLength(60)]),
-      description: new FormControl(this.productData?.description || '', [Validators.required, Validators.maxLength(255)]),
+      description: new FormControl(this.productData?.description || '', [Validators.required]),
       category: new FormControl(this.productData?.category_id || 1, [Validators.required]),
       brand: new FormControl(this.productData?.brand_id || 1, [Validators.required]),
       model: new FormControl(this.productData?.model || '', [Validators.required, Validators.maxLength(60)]),

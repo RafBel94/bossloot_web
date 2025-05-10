@@ -1,0 +1,130 @@
+<div class="card w-100 p-4">
+
+    <!-- SEPARATOR WITH TEXT -->
+    <div class="d-flex align-items-center w-100 mt-2">
+        <div class="flex-grow-1 border-bottom border-2"></div>
+        <h2 class="mx-3 mt-3 mb-4 text-center">Contact form resolve</h2>
+        <div class="flex-grow-1 border-bottom border-2"></div>
+    </div>
+
+    <!-- CONTACT FORM RESOLVE -->
+    <div class="d-flex justify-content-center mt-2">
+        <div class="row w-75">
+            <!-- NAME FIELD -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="name">Name:</label>
+                    <input class="form-control" id="name" type="text"
+                        [value]="contactFormData?.name || 'No name provided'" readonly>
+                </div>
+            </div>
+
+            <!-- EMAIL FIELD -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email:</label>
+                    <input class="form-control" id="email" type="email"
+                        [value]="contactFormData?.email || 'No email provided'" readonly>
+                </div>
+            </div>
+
+            <!-- SUBJECT FIELD -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="subject">Subject:</label>
+                    <input class="form-control" id="subject" type="text"
+                        [value]="contactFormData?.subject || 'No subject provided'" readonly>
+                </div>
+            </div>
+
+            <!-- STATUS FIELD -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="status">Status:</label>
+                    <div class="input-group">
+                        <input class="form-control" id="status" type="text"
+                            [value]="contactFormData?.status || 'pending'" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MESSAGE AND IMAGE CONTAINER -->
+    <div class="d-flex justify-content-center w-100 mt-3">
+        <div class="row w-75">
+            <!-- MESSAGE FIELD -->
+            <div class="col-12 mb-3">
+                <label class="form-label" for="message">Message:</label>
+                <textarea class="form-control" id="message" type="text"
+                    rows="6" [value]="contactFormData?.message || 'Message'" readonly></textarea>
+            </div>
+            
+            <!-- IMAGE THUMBNAIL (Left aligned) -->
+            @if (contactFormData?.image) {
+            <div class="col-md-6 mb-4">
+                <a [href]="contactFormData?.image" target="_blank" title="View full image">
+                    <img class="rounded-3 border border-2 img-fluid thumbnail-hover" 
+                        [src]="contactFormData?.image"
+                        style="max-width: 200px; max-height: 150px; object-fit: cover; cursor: pointer;" 
+                        alt="Contact Form Image" />
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- SEPARATOR WITH TEXT -->
+    <div class="d-flex align-items-center w-100 mt-2">
+        <div class="flex-grow-1 border-bottom border-2"></div>
+        <div class="flex-grow-1 border-bottom border-2"></div>
+    </div>
+
+    <!-- ANSWER SECTION -->
+    <form [formGroup]="responseForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex flex-column justify-content-center">
+                <!-- ANSWER FIELD -->
+                <div class="d-flex justify-content-center align-items-center w-100 mt-3">
+                    <div class="d-flex w-75 mb-3">
+                        <div class="w-100">
+                            <label class="form-label" for="answer">Answer:</label>
+                            <textarea class="form-control" id="answer" type="text" formControlName="answer"
+                                rows="6"></textarea>
+                            <div class="text-danger">
+                                @if (responseForm.controls['answer'].errors?.['required']) {
+                                <div>Answer is required.</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+
+        <!-- ERROR MESSAGE SECTION -->
+        @if (!responseForm.valid) {
+        <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
+            <span class="fw-bold mx-auto">Please resolve the errors before submitting</span>
+        </div>
+        }
+        @if (errorMessage) {
+        <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
+            <span class="fw-bold mx-auto">{{ errorMessage }}</span>
+        </div>
+        }
+        @if (contactFormData?.status === 'answered') {
+        <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
+            <span class="fw-bold mx-auto">This issue has been already answered and cant be answered again</span>
+        </div>
+        }
+
+        <!-- BUTTONS -->
+        <div class="d-flex mx-auto w-50 mt-3">
+            <div class="d-flex justify-content-center w-100 mt-3">
+                <button class="btn btn-primary me-5" type="submit" [disabled]="!responseForm.valid || contactFormData?.status === 'answered'">Submit</button>
+                <button class="btn text-white" type="button" style="background-color: #828282"
+                    (click)="onReturn()">Return</button>
+            </div>
+        </div>
+    </form>
+</div>

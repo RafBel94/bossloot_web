@@ -15,6 +15,9 @@ import { UserlistComponent } from './features/users/userlist/userlist.component'
 import { UsersComponent } from './features/users/users.component';
 import { authGuard } from './guards/auth-guard.guard';
 import { loginRedirectGuard } from './guards/login-redirect.guard';
+import { ContactFormsComponent } from './features/contact-forms/contact-forms.component';
+import { ContactFormsListComponent } from './features/contact-forms/contact-forms-list/contact-forms-list.component';
+import { ContactFormsDetailsComponent } from './features/contact-forms/contact-forms-details/contact-forms-details.component';
 
 export const routes: Routes = [
     {
@@ -63,6 +66,15 @@ export const routes: Routes = [
                     { path: 'list', component: BrandlistComponent },
                     { path: 'edit/:id', component: BranddetailsComponent,},
                     { path: 'new', component: BranddetailsComponent },
+                ]
+            },
+            {
+                path: 'contact-forms',
+                component: ContactFormsComponent,
+                children: [
+                    { path: '', redirectTo: 'list', pathMatch: 'full' },
+                    { path: 'list', component: ContactFormsListComponent },
+                    { path: 'answer/:id', component: ContactFormsDetailsComponent },
                 ]
             },
             { path: '', redirectTo: 'users', pathMatch: 'full' },

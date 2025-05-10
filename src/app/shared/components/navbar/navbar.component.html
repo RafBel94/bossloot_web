@@ -16,6 +16,10 @@
         <fa-icon class="me-2" [icon]="brandIcon"></fa-icon>
         <span>Brands</span>
     </a>
+    <a class="menu-item d-flex" routerLink="/dashboard/contact-forms" routerLinkActive="active">
+        <fa-icon class="me-2" [icon]="contactFormIcon"></fa-icon>
+        <span>Contact Forms</span>
+    </a>
     <div class="d-flex flex-column user-profile">
         <span class="text-white fw-bold mb-3" style="font-size: 1.2em;">Logged as: {{ userName }}</span>
         <button class="logout-btn" (click)="logoutUser()">Logout</button>
