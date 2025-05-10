@@ -1,3 +1,4 @@
+@if (!isLoading) {
 <div class="card w-100 p-4">
 
     <!-- SEPARATOR WITH TEXT -->
@@ -43,7 +44,23 @@
                     <label class="form-label" for="status">Status:</label>
                     <div class="input-group">
                         <input class="form-control" id="status" type="text"
-                            [value]="contactFormData?.status || 'pending'" readonly>
+                            [value]="contactFormData?.status || 'pending'" 
+                            [ngClass]="{
+                                'border-success': contactFormData?.status === 'answered',
+                                'border-danger': contactFormData?.status !== 'answered'
+                            }"
+                            readonly>
+                        <span class="input-group-text" 
+                            [ngClass]="{
+                                'bg-success text-white': contactFormData?.status === 'answered',
+                                'bg-danger text-white': contactFormData?.status !== 'answered'
+                            }">
+                            <i class="bi" 
+                            [ngClass]="{
+                                'bi-check-circle-fill': contactFormData?.status === 'answered',
+                                'bi-exclamation-circle-fill': contactFormData?.status !== 'answered'
+                            }"></i>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -91,7 +108,7 @@
                             <textarea class="form-control" id="answer" type="text" formControlName="answer"
                                 rows="6"></textarea>
                             <div class="text-danger">
-                                @if (responseForm.controls['answer'].errors?.['required']) {
+                                @if (responseForm.controls['answer'].errors?.['required'] && contactFormData?.status !== 'answered') {
                                 <div>Answer is required.</div>
                                 }
                             </div>
@@ -102,7 +119,7 @@
         </div>
 
         <!-- ERROR MESSAGE SECTION -->
-        @if (!responseForm.valid) {
+        @if (!responseForm.valid && contactFormData?.status !== 'answered') {
         <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
             <span class="fw-bold mx-auto">Please resolve the errors before submitting</span>
         </div>
@@ -128,3 +145,6 @@
         </div>
     </form>
 </div>
+} @else {
+    <app-loading-logo/>
+}

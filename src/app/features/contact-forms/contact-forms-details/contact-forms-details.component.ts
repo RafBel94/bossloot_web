@@ -4,10 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ContactForm } from '../../../models/contact-forms/contact-form';
 import { BrandService } from '../../../services/brand.service';
 import { ContactService } from '../../../services/contact.service';
+import { CommonModule } from '@angular/common';
+import { LoadingLogoComponent } from "../../../shared/components/loading-logo/loading-logo.component";
 
 @Component({
   selector: 'app-contact-forms-details',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, LoadingLogoComponent],
   templateUrl: './contact-forms-details.component.html',
   styleUrl: './contact-forms-details.component.scss'
 })
@@ -29,9 +31,9 @@ export class ContactFormsDetailsComponent {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.loadContactFormData();
     this.initResponseForm();
-    this.isLoading = false;
   }
 
   // Load the contact form data
