@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBagShopping } from '@fortawesome/free-solid-svg-icons/faBagShopping';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons/faCircleUser';
 import { AuthService } from "../../../services/auth.service";
-import { faCopyright, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faCopyright, faEnvelope, faStar } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: 'app-navbar',
@@ -18,6 +18,7 @@ export class NavbarComponent {
     productIcon = faBagShopping;
     brandIcon = faCopyright;
     contactFormIcon = faEnvelope;
+    ratingIcon = faStar;
     userName = localStorage.getItem('bosslootUsername');
 
     authService = inject(AuthService);

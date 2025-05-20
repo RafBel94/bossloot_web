@@ -1,0 +1,154 @@
+@if (!isLoading) {
+<div class="card w-100 p-4">
+
+    <!-- SEPARATOR WITH TEXT -->
+    <div class="d-flex align-items-center w-100 mt-2">
+        <div class="flex-grow-1 border-bottom border-2"></div>
+        <h2 class="mx-3 mt-3 mb-4 text-center">Valoration Review</h2>
+        <div class="flex-grow-1 border-bottom border-2"></div>
+    </div>
+
+    <!-- VALORATION DETAILS -->
+    <div class="d-flex justify-content-center mt-2">
+        <div class="row w-75">
+            <!-- USER INFO -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="userName">User Name:</label>
+                    <input class="form-control" id="userName" type="text"
+                        [value]="valorationData?.user?.name || 'No name provided'" readonly>
+                </div>
+            </div>
+
+            <!-- USER LEVEL -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="userLevel">User Level:</label>
+                    <input class="form-control" id="userLevel" type="text"
+                        [value]="valorationData?.user?.level || 'No level'" readonly>
+                </div>
+            </div>
+
+            <!-- PRODUCT NAME -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="productName">Product Name:</label>
+                    <input class="form-control" id="productName" type="text"
+                        [value]="valorationData?.product?.name || 'No product'" readonly>
+                </div>
+            </div>
+
+            <!-- RATING -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="rating">Rating:</label>
+                    <div class="input-group">
+                        <input class="form-control" id="rating" type="text"
+                            [value]="valorationData?.rating || 0" 
+                            readonly>
+                        <span class="input-group-text">
+                            <i class="bi bi-star-fill"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VERIFICATION STATUS -->
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label class="form-label" for="verified">Verification Status:</label>
+                    <div class="input-group">
+                        <input class="form-control" id="verified" type="text"
+                            [value]="valorationData?.verified ? 'Verified' : 'Not Verified'" 
+                            [ngClass]="{
+                                'border-success': valorationData?.verified,
+                                'border-danger': !valorationData?.verified
+                            }"
+                            readonly>
+                        <span class="input-group-text" 
+                            [ngClass]="{
+                                'bg-success text-white': valorationData?.verified,
+                                'bg-danger text-white': !valorationData?.verified
+                            }">
+                            <i class="bi" 
+                            [ngClass]="{
+                                'bi-check-circle-fill': valorationData?.verified,
+                                'bi-exclamation-circle-fill': !valorationData?.verified
+                            }"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMMENT AND IMAGE CONTAINER -->
+    <div class="d-flex justify-content-center w-100 mt-3">
+        <div class="row w-75">
+            <!-- COMMENT FIELD -->
+            <div class="col-12 mb-3">
+                <label class="form-label" for="comment">Comment:</label>
+                <textarea class="form-control" id="comment" rows="6" 
+                    [value]="valorationData?.comment || 'No comment'" readonly></textarea>
+            </div>
+            
+            <!-- IMAGE THUMBNAIL (if available) -->
+            @if (valorationData?.image) {
+            <div class="col-md-6 mb-4">
+                <label class="form-label d-block">Review Image:</label>
+                <a [href]="valorationData?.image" target="_blank" title="View full image">
+                    <img class="rounded-3 border border-2 img-fluid thumbnail-hover" 
+                        [src]="valorationData?.image"
+                        style="max-width: 200px; max-height: 150px; object-fit: cover; cursor: pointer;" 
+                        alt="Valoration Image" />
+                </a>
+            </div>
+            }
+
+            <!-- PRODUCT IMAGE (if available) -->
+            @if (valorationData?.product?.image) {
+            <div class="col-md-6 mb-4">
+                <label class="form-label d-block">Product Image:</label>
+                <a [href]="valorationData?.product?.image" target="_blank" title="View full image">
+                    <img class="rounded-3 border border-2 img-fluid" 
+                        [src]="valorationData?.product?.image"
+                        style="max-width: 200px; max-height: 150px; object-fit: cover;" 
+                        alt="Product Image" />
+                </a>
+            </div>
+            }
+        </div>
+    </div>
+
+    <!-- SEPARATOR -->
+    <div class="d-flex align-items-center w-100 mt-2 mb-4">
+        <div class="flex-grow-1 border-bottom border-2"></div>
+    </div>
+
+    <!-- ERROR MESSAGE SECTION -->
+    @if (errorMessage) {
+    <div class="d-flex mx-auto w-50 mt-3 bg-danger-subtle rounded-3 p-3">
+        <span class="fw-bold mx-auto">{{ errorMessage }}</span>
+    </div>
+    }
+    
+    @if (valorationData?.verified) {
+    <div class="d-flex mx-auto w-50 mt-3 bg-success-subtle rounded-3 p-3">
+        <span class="fw-bold mx-auto">This valoration has already been verified</span>
+    </div>
+    }
+
+    <!-- BUTTONS -->
+    <div class="d-flex mx-auto w-50 mt-3">
+        <div class="d-flex justify-content-center w-100 mt-3">
+            <button class="btn btn-success me-3" type="button" 
+                [disabled]="valorationData?.verified"
+                (click)="onSubmit()">Verify Review</button>
+            <button class="btn text-white" type="button" style="background-color: #828282"
+                (click)="onReturn()">Return</button>
+        </div>
+    </div>
+</div>
+} @else {
+    <app-loading-logo/>
+}

@@ -18,6 +18,9 @@ import { loginRedirectGuard } from './guards/login-redirect.guard';
 import { ContactFormsComponent } from './features/contact-forms/contact-forms.component';
 import { ContactFormsListComponent } from './features/contact-forms/contact-forms-list/contact-forms-list.component';
 import { ContactFormsDetailsComponent } from './features/contact-forms/contact-forms-details/contact-forms-details.component';
+import { ValorationsComponent } from './features/valorations/valorations.component';
+import { ValorationsListComponent } from './features/valorations/valorations-list/valorations-list.component';
+import { ValorationDetailsComponent } from './features/valorations/valoration-details/valoration-details.component';
 
 export const routes: Routes = [
     {
@@ -75,6 +78,15 @@ export const routes: Routes = [
                     { path: '', redirectTo: 'list', pathMatch: 'full' },
                     { path: 'list', component: ContactFormsListComponent },
                     { path: 'answer/:id', component: ContactFormsDetailsComponent },
+                ]
+            },
+            {
+                path: 'valorations',
+                component: ValorationsComponent,
+                children: [
+                    { path: '', redirectTo: 'list', pathMatch: 'full' },
+                    { path: 'list', component: ValorationsListComponent },
+                    { path: 'verify/:id', component: ValorationDetailsComponent },
                 ]
             },
             { path: '', redirectTo: 'users', pathMatch: 'full' },
