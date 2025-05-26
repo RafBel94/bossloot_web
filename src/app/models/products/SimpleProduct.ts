@@ -11,6 +11,7 @@ export class SimpleProduct {
     featured: boolean;
     image: string;
     points: number;
+    deleted: boolean;
 
     public constructor(
         name: string,
@@ -25,6 +26,7 @@ export class SimpleProduct {
         featured: boolean,
         image: string,
         points: number,
+        deleted: boolean
     ) {
         this.name = name;
         this.description = description;
@@ -38,5 +40,6 @@ export class SimpleProduct {
         this.featured = featured;
         this.image = image;
         this.points = points;
+        this.deleted = deleted;
     }
 }

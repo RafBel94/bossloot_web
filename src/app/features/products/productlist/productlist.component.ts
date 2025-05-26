@@ -65,6 +65,20 @@ export class ProductlistComponent {
         return container;
       }
     },
+    { 
+      field: "deleted", 
+      headerName: 'Deleted', 
+      filter: true,
+      maxWidth: 100,
+      cellRenderer: (params: any) => {
+        const container = document.createElement('div');
+        const icon = document.createElement('i');
+        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
+        container.appendChild(icon);
+        return container;
+      }
+    },
     {
       headerName: 'Actions',
       cellRenderer: (params: any) => {
@@ -123,7 +137,10 @@ export class ProductlistComponent {
     this.productService.deleteProduct(product.id).subscribe({
       next: (res: any) => {
         if (this.gridApi) {
-          this.gridApi.applyTransaction({ remove: [product] });
+          const rowNode = this.gridApi.getRowNode(product.id.toString());
+          if (rowNode) {
+            rowNode.setData({ ...rowNode.data, deleted: 1 });
+          }
         }
       },
       error: (err: any) => {

@@ -20,13 +20,14 @@ export class KeyboardProduct extends Product {
         featured: boolean,
         image: string,
         points: number,
+        deleted: boolean,
         type: string,
         switch_type: string,
         width: number,
         height: number,
         weight: number
     ) {
-        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points, deleted);
         this.type = type;
         this.switch_type = switch_type;
         this.width = width;

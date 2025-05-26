@@ -30,6 +30,7 @@ export class MotherboardProduct extends Product {
         featured: boolean,
         image: string,
         points: number,
+        deleted: boolean,
         socket: string,
         chipset: string,
         form_factor: string,
@@ -46,7 +47,7 @@ export class MotherboardProduct extends Product {
         wifi: boolean,
         bluetooth: boolean
     ) {
-        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points, deleted);
         this.socket = socket;
         this.chipset = chipset;
         this.form_factor = form_factor;

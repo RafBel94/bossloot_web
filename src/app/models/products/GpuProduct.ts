@@ -21,6 +21,7 @@ export class GpuProduct extends Product {
         featured: boolean,
         image: string,
         points: number,
+        deleted: boolean,
         memory: number,
         memory_type: string,
         core_clock: number,
@@ -28,7 +29,7 @@ export class GpuProduct extends Product {
         consumption: number,
         length: number,
     ) {
-        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points, deleted);
         this.memory = memory;
         this.memory_type = memory_type;
         this.core_clock = core_clock;
