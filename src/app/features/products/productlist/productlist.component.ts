@@ -139,15 +139,23 @@ export class ProductlistComponent {
         if (this.gridApi) {
           const rowIndex = this.productList.findIndex(p => p.id === product.id);
           if (rowIndex !== -1) {
-            this.productList[rowIndex].deleted = true;
-            this.gridApi.setGridOption('rowData', this.productList);
-            this.cdr.detectChanges();
+            // Actualizar el objeto en el array
+            this.productList[rowIndex] = {
+              ...this.productList[rowIndex],
+              deleted: 1
+            };
+
+            // Usar transacción para actualizar solo esa fila
+            this.gridApi.applyTransaction({
+              update: [this.productList[rowIndex]]
+            });
           }
         }
       },
       error: (err: any) => {
         console.log(err);
+        alert('Error deleting product. Please try again.');
       }
-    })
+    });
   }
 }

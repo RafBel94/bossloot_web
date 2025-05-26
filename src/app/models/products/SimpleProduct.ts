@@ -11,7 +11,7 @@ export class SimpleProduct {
     discount: number;
     featured: boolean;
     image: string;
-    deleted: boolean;
+    deleted: number;
 
     public constructor(
         id: number,
@@ -26,7 +26,7 @@ export class SimpleProduct {
         discount: number,
         featured: boolean,
         image: string,
-        deleted: boolean
+        deleted: number
     ) {
         this.id = id;
         this.name = name;
