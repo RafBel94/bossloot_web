@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://bossloot-kbsiw.ondigitalocean.app/api',
+    apiUrl: 'https://bossloot-kbsiw.ondigitalocean.app',
 };

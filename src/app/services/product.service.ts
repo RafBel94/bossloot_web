@@ -38,4 +38,8 @@ export class ProductService {
   deleteProduct(id: number): Observable<any> {
     return this.http.delete(this.baseUrl + '/api/products/' + id);
   }
+
+  restoreProduct(id: number): Observable<any> {
+    return this.http.post(this.baseUrl + '/api/products/restore/' + id, {});
+  }
 }

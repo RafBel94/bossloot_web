@@ -47,10 +47,17 @@ export class ProductlistComponent {
   rowData: TableProduct[] = [];
   colDefs: ColDef[] = [
     { field: "name", filter: true,},
-    { field: "category", filter: true, maxWidth: 120},
+    { field: "category", filter: true, maxWidth: 160},
     { field: "model", filter: true,},
-    { field: "brand", filter: true, maxWidth: 120},
-    { field: "price", filter: true, maxWidth: 100},
+    { field: "brand", filter: true, maxWidth: 180},
+    { 
+      field: "price", 
+      filter: true, 
+      maxWidth: 100,
+      valueFormatter: (params: any) => {
+        return params.value ? `${params.value}€` : '0€';
+      }
+    },
     { 
       field: "on_offer", 
       headerName: 'Offer', 
@@ -59,7 +66,7 @@ export class ProductlistComponent {
       cellRenderer: (params: any) => {
         const container = document.createElement('div');
         const icon = document.createElement('i');
-        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        icon.className = params.value === 1 ? 'fa-solid fa-check text-success fa-lg' : 'fa-solid fa-times text-danger fa-lg';
         container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
         container.appendChild(icon);
         return container;
@@ -69,11 +76,11 @@ export class ProductlistComponent {
       field: "deleted", 
       headerName: 'Deleted', 
       filter: true,
-      maxWidth: 100,
+      maxWidth: 120,
       cellRenderer: (params: any) => {
         const container = document.createElement('div');
         const icon = document.createElement('i');
-        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        icon.className = params.value === 1 ? 'fa-solid fa-check text-success fa-lg' : 'fa-solid fa-times text-danger fa-lg';
         container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
         container.appendChild(icon);
         return container;
@@ -92,15 +99,24 @@ export class ProductlistComponent {
           this.editProduct(params.data);
         });
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
-        deleteButton.addEventListener('click', () => {
-          this.deleteProduct(params.data);
-        });
+        const actionButton = document.createElement('button');
+    
+        if (params.data.deleted === 1) {
+          actionButton.textContent = 'Restore';
+          actionButton.className = 'btn btn-success btn-sm w-50 ps-2 pe-2';
+          actionButton.addEventListener('click', () => {
+            this.restoreProduct(params.data);
+          });
+        } else {
+          actionButton.textContent = 'Delete';
+          actionButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
+          actionButton.addEventListener('click', () => {
+            this.deleteProduct(params.data);
+          });
+        }
 
         container.appendChild(editButton);
-        container.appendChild(deleteButton);
+        container.appendChild(actionButton);
 
         return container;
       },
@@ -139,22 +155,40 @@ export class ProductlistComponent {
         if (this.gridApi) {
           const rowIndex = this.productList.findIndex(p => p.id === product.id);
           if (rowIndex !== -1) {
-            // Actualizar el objeto en el array
-            this.productList[rowIndex] = {
-              ...this.productList[rowIndex],
-              deleted: 1
-            };
-
-            // Usar transacción para actualizar solo esa fila
-            this.gridApi.applyTransaction({
-              update: [this.productList[rowIndex]]
-            });
+            this.productList[rowIndex].deleted = 1;
+            
+            // Forzar refresh completo
+            this.gridApi.setGridOption('rowData', [...this.productList]);
+            this.gridApi.refreshCells();
           }
         }
       },
       error: (err: any) => {
         console.log(err);
-        alert('Error deleting product. Please try again.');
+      }
+    });
+  }
+
+  restoreProduct(product: any) {
+    if (!confirm('Are you sure you want to restore this product?')) {
+      return;
+    }
+
+    this.productService.restoreProduct(product.id).subscribe({
+      next: (res: any) => {
+        if (this.gridApi) {
+          const rowIndex = this.productList.findIndex(p => p.id === product.id);
+          if (rowIndex !== -1) {
+            this.productList[rowIndex].deleted = 0;
+            
+            // Forzar refresh completo
+            this.gridApi.setGridOption('rowData', [...this.productList]);
+            this.gridApi.refreshCells();
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
       }
     });
   }
