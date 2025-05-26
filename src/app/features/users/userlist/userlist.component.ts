@@ -58,7 +58,7 @@ export class UserlistComponent {
       cellRenderer: (params: any) => {
         const container = document.createElement('div');
         const icon = document.createElement('i');
-        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        icon.className = params.value === 1 ? 'fa-solid fa-check text-success fa-lg' : 'fa-solid fa-times text-danger fa-lg';
         container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
         container.appendChild(icon);
         return container;
@@ -68,7 +68,21 @@ export class UserlistComponent {
       cellRenderer: (params: any) => {
         const container = document.createElement('div');
         const icon = document.createElement('i');
-        icon.className = params.value === 1 ? 'fa-solid fa-check' : 'fa-solid fa-times';
+        icon.className = params.value === 1 ? 'fa-solid fa-check text-success fa-lg' : 'fa-solid fa-times text-danger fa-lg';
+        container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
+        container.appendChild(icon);
+        return container;
+      }
+    },
+    { 
+      field: "deleted", 
+      headerName: 'Deleted', 
+      filter: true,
+      maxWidth: 120,
+      cellRenderer: (params: any) => {
+        const container = document.createElement('div');
+        const icon = document.createElement('i');
+        icon.className = params.value === 1 ? 'fa-solid fa-check text-success fa-lg' : 'fa-solid fa-times text-danger fa-lg';
         container.className = 'd-flex h-100 w-100 justify-content-center align-items-center';
         container.appendChild(icon);
         return container;
@@ -87,19 +101,28 @@ export class UserlistComponent {
           this.editUser(params.data);
         });
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
-        deleteButton.addEventListener('click', () => {
-          this.deleteUser(params.data);
-        });
+        const actionButton = document.createElement('button');
+    
+        if (params.data.deleted === 1) {
+          actionButton.textContent = 'Restore';
+          actionButton.className = 'btn btn-success btn-sm w-50 ps-2 pe-2';
+          actionButton.addEventListener('click', () => {
+            this.restoreUser(params.data);
+          });
+        } else {
+          actionButton.textContent = 'Delete';
+          actionButton.className = 'btn btn-danger btn-sm w-50 ps-2 pe-2';
+          actionButton.addEventListener('click', () => {
+            this.deleteUser(params.data);
+          });
+        }
 
         container.appendChild(editButton);
-        container.appendChild(deleteButton);
+        container.appendChild(actionButton);
 
         return container;
       },
-      minWidth: 240
+      minWidth: 240,
     }
   ];
 
@@ -125,20 +148,51 @@ export class UserlistComponent {
       return;
     }
     
-    if (!confirm('Are you sure you want to delete the user?')) {
+    if (!confirm('Are you sure you want to delete this user?')) {
       return;
     }
 
     this.userService.deleteUser(user.id).subscribe({
       next: (res: any) => {
         if (this.gridApi) {
-          this.gridApi.applyTransaction({ remove: [user] });
+          const rowIndex = this.userList.findIndex(p => p.id === user.id);
+          if (rowIndex !== -1) {
+            this.userList[rowIndex].deleted = 1;
+            
+            // Forzar refresh completo
+            this.gridApi.setGridOption('rowData', [...this.userList]);
+            this.gridApi.refreshCells();
+          }
         }
       },
       error: (err: any) => {
         console.log(err);
       }
     })
+  }
+
+  restoreUser(user: any) {
+    if (!confirm('Are you sure you want to restore this user?')) {
+      return;
+    }
+
+    this.userService.restoreUser(user.id).subscribe({
+      next: (res: any) => {
+        if (this.gridApi) {
+          const rowIndex = this.userList.findIndex(p => p.id === user.id);
+          if (rowIndex !== -1) {
+            this.userList[rowIndex].deleted = 0;
+            
+            // Forzar refresh completo
+            this.gridApi.setGridOption('rowData', [...this.userList]);
+            this.gridApi.refreshCells();
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
 }

@@ -31,4 +31,8 @@ export class UserService {
   deleteUser(id: number) : Observable<any> {
     return this.http.delete(this.baseUrl + '/api/users/' + id);
   }
+
+  restoreUser(id: number) : Observable<any> {
+    return this.http.post(this.baseUrl + '/api/users/restore/' + id, {});
+  }
 }
