@@ -141,6 +141,7 @@ export class ProductlistComponent {
           if (rowIndex !== -1) {
             this.productList[rowIndex].deleted = true;
             this.gridApi.setGridOption('rowData', this.productList);
+            this.cdr.detectChanges();
           }
         }
       },
