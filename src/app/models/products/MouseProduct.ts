@@ -19,7 +19,6 @@ export class MouseProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
-        points: number,
         deleted: boolean,
         dpi: number,
         sensor: string,
@@ -27,7 +26,7 @@ export class MouseProduct extends Product {
         bluetooth: boolean,
         weight: number
     ) {
-        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points, deleted);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, deleted);
         this.dpi = dpi;
         this.sensor = sensor;
         this.buttons = buttons;

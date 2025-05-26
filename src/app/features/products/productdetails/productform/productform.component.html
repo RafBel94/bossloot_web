@@ -146,26 +146,6 @@
                     </div>
                 </div>
 
-                <!-- POINTS FIELD -->
-                <div class="d-flex p-1">
-                    <div class="d-flex flex-column">
-                        <label class="form-label mt-1 me-2" for="points">Points:</label>
-                        <input class="form-control" id="points" type="number" min="0" max="100"
-                            formControlName="points" />
-                        <div class="text-danger">
-                            @if (uploadForm.controls['points'].errors?.['required']) {
-                            <div>Points is required.</div>
-                            }
-                            @if (uploadForm.controls['points'].errors?.['min']) {
-                            <div>Points cannot be lower than 0.</div>
-                            }
-                            @if (uploadForm.controls['points'].errors?.['max']) {
-                            <div>Points cannot be higher than 2000.</div>
-                            }
-                        </div>
-                    </div>
-                </div>
-
                 <!-- QUANTITY FIELD -->
                 <div class="d-flex p-1">
                     <div class="d-flex flex-column">

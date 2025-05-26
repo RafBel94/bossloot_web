@@ -137,9 +137,10 @@ export class ProductlistComponent {
     this.productService.deleteProduct(product.id).subscribe({
       next: (res: any) => {
         if (this.gridApi) {
-          const rowNode = this.gridApi.getRowNode(product.id.toString());
-          if (rowNode) {
-            rowNode.setData({ ...rowNode.data, deleted: 1 });
+          const rowIndex = this.productList.findIndex(p => p.id === product.id);
+          if (rowIndex !== -1) {
+            this.productList[rowIndex].deleted = true;
+            this.gridApi.setGridOption('rowData', this.productList);
           }
         }
       },

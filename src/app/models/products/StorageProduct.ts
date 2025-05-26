@@ -19,7 +19,6 @@ export class StorageProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
-        points: number,
         deleted: boolean,
         type: string,
         capacity: number,
@@ -27,7 +26,7 @@ export class StorageProduct extends Product {
         read_speed: number,
         write_speed: number,
     ) {
-        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points, deleted);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, deleted);
         this.type = type;
         this.capacity = capacity;
         this.rpm = rpm;

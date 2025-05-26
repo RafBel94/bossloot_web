@@ -79,7 +79,6 @@ export class ProductformComponent {
       discount: new FormControl(this.productData?.discount || 0, [Validators.required, Validators.min(0), Validators.max(100)]),
       featured: new FormControl(this.productData?.featured || false, [Validators.required]),
       image: new FormControl(this.productData?.image || ''),
-      points: new FormControl(this.productData?.points || 0, [Validators.required, Validators.min(0), Validators.max(2000)]),
     });
   }
 

@@ -16,7 +16,6 @@ export class formUtils {
         formData.append('on_offer', formValues.on_offer ? '1' : '0');
         formData.append('discount', String(formValues.discount ?? 0));
         formData.append('featured', formValues.featured ? '1' : '0');
-        formData.append('points', String(formValues.points ?? 0));
 
         if (image) {
             formData.append('image', image);

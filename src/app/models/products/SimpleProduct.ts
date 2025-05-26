@@ -1,4 +1,5 @@
 export class SimpleProduct {
+    id: number;
     name: string;
     description: string;
     category: string;
@@ -10,10 +11,10 @@ export class SimpleProduct {
     discount: number;
     featured: boolean;
     image: string;
-    points: number;
     deleted: boolean;
 
     public constructor(
+        id: number,
         name: string,
         description: string,
         category: string,
@@ -25,9 +26,9 @@ export class SimpleProduct {
         discount: number,
         featured: boolean,
         image: string,
-        points: number,
         deleted: boolean
     ) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.category = category;
@@ -39,7 +40,6 @@ export class SimpleProduct {
         this.discount = discount;
         this.featured = featured;
         this.image = image;
-        this.points = points;
         this.deleted = deleted;
     }
 }

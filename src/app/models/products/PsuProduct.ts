@@ -18,14 +18,13 @@ export class PsuProduct extends Product {
         discount: number,
         featured: boolean,
         image: string,
-        points: number,
         deleted: boolean,
         efficiency_rating: string,
         wattage: number,
         modular: boolean,
         fanless: boolean
     ) {
-        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, points, deleted);
+        super(name, description, category_id, brand_id, model, price, quantity, on_offer, discount, featured, image, deleted);
         this.efficiency_rating = efficiency_rating;
         this.wattage = wattage;
         this.modular = modular;
